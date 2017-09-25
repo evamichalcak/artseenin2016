@@ -19,18 +19,21 @@ get_header();
 	?>
 	<section id="art-viewer">
 		<div class="tinder-container">
+
+		    <div class="more-viewer slide-dimension">
+		    	<div class="more-viewer-inner shdw"></div>
+		    </div>
 		
 			<div id="tinderslide">
-				<div class="more-action">+</div>
 			    <ul id="tinderslideList" class="slide-dimension">
-			        <li id="loaderSlide" class="slide-dimension"><div class="loading">Loading...<div class="loader"><span id="loader-percentage">0</span>%</div></div></li>
+			        <li id="loaderSlide" class="slide-dimension"><div class="loading shdw">Loading...<div class="loader"><span id="loader-percentage">0</span>%</div></div></li>
 			    </ul>
 			</div><!-- /#tinderslide -->
 
 			<div class="actions-container slide-dimension">
 				<div class="actions">
-			        <a href="#" class="dislike"><i></i></a>
-			        <a href="#" class="like"><i class="icon-heart-shape-outline"></i></a>
+			        <a href="#" class="dislike"><i class="shdw"></i></a>
+			        <a href="#" class="like"><i class="icon-heart-shape-outline shdw"></i></a>
 			    </div><!-- /.actions -->
 		    </div><!-- /.actions-container -->
 

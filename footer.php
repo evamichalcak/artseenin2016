@@ -23,7 +23,7 @@
 
 	<div class="share-container">
 		<a href="" class="icon-facebook fbshare-action"></a>
-		<a href="" class="icon-facebook washare-action"></a>
+		<a href="" class="icon-whatsapp washare-action"></a>
 		<a href="" class="icon-twitter twshare-action"></a>
 	</div><!-- .share-container -->
 

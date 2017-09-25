@@ -2,4 +2,6 @@
 .icon-heart-shape-outline:before { content: '\e802'; } /* '' */
 .icon-facebook:before { content: '\e803'; } /* '' */
 .icon-twitter:before { content: '\e804'; } /* '' */
-.icon-upload:before { content: '\e805'; } /* '' */
+.icon-plus-circled:before { content: '\e80a'; } /* '' */
+.icon-minus-circled:before { content: '\e80b'; } /* '' */
+.icon-whatsapp:before { content: '\e80c'; } /* '' */

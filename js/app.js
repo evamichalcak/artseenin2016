@@ -111,10 +111,10 @@
 			$('#tinderslide').on('click tap', '.more-action', function(e) {
 				e.preventDefault();
 				$(this).toggleClass('open');
-				$('.more').toggleClass('show');
+				$('.more, .more-viewer').toggleClass('show');
 				var p_id = $('.more-viewer').data('postid');
 				if ($('.more').hasClass('show')) {
-					window.dataLayer.push({'event': 'clickOnMore', 'postid': p_id});
+					//window.dataLayer.push({'event': 'clickOnMore', 'postid': p_id});
 				}
 			});
 		} else {
@@ -151,7 +151,7 @@
 		$('.fbshare-action').attr("href", $('.viewing .share-fb').attr('href'));
 		$('.washare-action').attr("href", $('.viewing .share-wa').attr('href'));
 		$('.twshare-action').attr("href", $('.viewing .share-tw').attr('href'));
-		//$('.more-viewer .more-viewer-inner').html($('.viewing .more').html());
+		$('.more-viewer .more-viewer-inner').html($('.viewing .more').html());
 		$('.more-viewer .more-viewer-inner').data('postid', $('.viewing').data('postid'));
 		var tt = setTimeout(function(){
 			$('#howToIntro').hide();
@@ -247,8 +247,8 @@
 		    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
 		    //html+='<img class="img" width="450" height="450" src="'+posts[index].thumbnail_images.full.url+'"/>';
 		    html+='<div class="content">';
-		    html+='<div class="title">'+posts[index].custom_fields.asiArtista[0]+'</div>';
-		    html+='<div class="visto">Vist a / <em>Visto en</em>: '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action"></button>';
+		    html+='<div class="title shdw">'+posts[index].custom_fields.asiArtista[0]+'</div>';
+		    html+='<div class="visto shdw">Vist a / <em>Visto en</em>: '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action"></button>';
 		    html+='<div class="share">';
 		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
 		    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
