@@ -247,15 +247,15 @@
 		    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
 		    //html+='<img class="img" width="450" height="450" src="'+posts[index].thumbnail_images.full.url+'"/>';
 		    html+='<div class="content">';
-		    html+='<div class="title shdw">'+posts[index].custom_fields.asiArtista[0]+'</div>';
-		    html+='<div class="visto shdw">Vist a / <em>Visto en</em>: '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action"></button>';
+		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
+		    html+='<div class="visto shdw-t-grey">Vist a / <em>Visto en</em>: '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
 		    html+='<div class="share">';
 		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
 		    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
 		    html+='<a href="https://twitter.com/home?status='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
 		    html+='</div></div>';
 		    html+='<div class="more slide-dimension"><p class="art-work-info"><span class="title">'+posts[index].custom_fields.asiTitulo[0]+'</span><br/>de '+posts[index].custom_fields.asiArtista[0]+'</p>'+posts[index].content+'</div>';
-		    html+='<div class="like slide-dimension"></div><div class="dislike slide-dimension"></div></li>';
+		    html+='<div class="like slide-dimension shdw-b-grey icon-heart-shape-outline"></div><div class="dislike slide-dimension shdw-b-grey"></div></li>';
 		});
 		$(sliderList).html(html);
 		return true;

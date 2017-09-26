@@ -143,8 +143,20 @@ a:active {
 	color: #fff;
 }
 
-.shdw {
+.shdw-t-brown {
+  text-shadow: 2px 2px 4px #602400;
+}
+
+.shdw-b-brown {
   text-shadow: 2px 2px 8px #602400;
+}
+
+.shdw-t-grey {
+  text-shadow: 2px 2px 4px #333;
+}
+
+.shdw-b-grey {
+  text-shadow: 2px 2px 8px #333;
 }
 
 ::-webkit-scrollbar {
@@ -427,8 +439,8 @@ J-TINDER
 	/* background-color: #f9ccb8; */
 	background-color: transparent;
 	border: none;
-	box-shadow: none;
-	color: #1d458d;
+  box-shadow: none;
+	color: #fff;
 	font-size: 16px;
 	padding: 0;
 	overflow: visible;	
@@ -497,6 +509,13 @@ J-TINDER
 	}
 }
 
+@media (max-width: 767px) {
+  #tinderslide .content {
+    clear: both;
+    margin-left: 0;
+  }
+}
+
 #tinderslide .content .visto {
   display: inline-block;
 	font-size: 14px;
@@ -525,18 +544,41 @@ J-TINDER
 	display: block;
 }
 
-@media (max-width: 767px) {
-	#tinderslide .content {
-		clear: both;
-		margin-left: 0;
-	}
+#tinderslide li.viewing .img,
+#tinderslide li:first-child {
+  box-shadow: 3px 3px 10px rgba(30, 8, 30, .3);
 }
 
 #tinderslide .dislike,
 #tinderslide .like {
+  background: none;
+  display: inline-block;
+  font-size: 80px;
   left: 0;
   right: 0;
   top: 0;
+}
+
+#tinderslide .dislike:before,
+#tinderslide .like:before {
+  background: none;
+  display: inline-block;
+  left: 0;
+  margin-top: -40px;
+  position: relative;
+  right: 0;
+  top: 40%;
+}
+
+#tinderslide .dislike:before {
+  content: '×';
+  font-family: 'Roboto Thin', sans-serif;
+  font-size: 2em;
+  line-height: 80%;
+}
+
+#tinderslide .like {
+
 }
 
 .tinder-container .actions {
@@ -666,8 +708,7 @@ J-TINDER
 }
 
 .viewing .more-action {
-  border: solid 1px #fff;
-  border-radius: 50%;
+  cursor: pointer;
   display: inline-block;
   height: 1.2em;
   text-align: center;
@@ -675,13 +716,24 @@ J-TINDER
 }
 
 .viewing .more-action:after {
-    content: '+';
+    content: '\e80a';
     display: inline-block;
+    font-family: "fontello";
     font-size: 1.2em;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
     line-height: 1em;
+    margin-left: .2em;
+    margin-right: .2em;
+    speak: none;
+    text-align: center;
+    text-decoration: inherit;
+    text-transform: none;
+    width: 1em;
 }
 .viewing .more-action.open:after {
-    content: '\2013';
+    content: '\e80b';
 }
 
 .slide-actions .actions-wrapper a {
