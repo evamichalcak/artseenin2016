@@ -277,6 +277,134 @@ a:active {
   }
 }
 
+.intro-container {
+    position: absolute;
+    width: 100%;
+    /*height: calc(100% - 44px);*/
+    height: 100%;
+    top: 0;
+    background-color: #b0a9a2;
+    z-index: 10000;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.intro-container .intro-wrapper {
+  align-self: center;
+  width: 80%;
+  font-size: 22px;
+}
+
+.intro-container .intro-wrapper p {
+  max-width: 600px;
+}
+
+@media (min-width: 481px) and (min-height: 481px) {
+  .intro-container .intro-wrapper {
+    font-size: 32px;
+  }
+}
+
+
+.backgroundclip {
+  /* background-image: url('img/firework2-small.gif'); */
+  background-image: url('img/eye-red-2.gif');
+  background-size: cover;
+  color: transparent;
+  display: inline-block;
+  -webkit-background-clip: text;
+  font-family: 'Titan One', sans-serif;
+  font-weight: 900;
+  font-size: 300%;
+  line-height: 1;
+  margin: 0 .2em;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.backgroundclip.size {  
+  background-position: bottom left;
+}
+
+@media (min-width: 350px) and (min-height: 350px) {
+  .backgroundclip {
+  font-size: 350%;
+  }
+}
+
+@media (min-width: 641px) {
+  .backgroundclip {
+  /* background-image: url('img/firework4.gif'); */
+  font-size: 500%;
+  }
+}
+
+.textshadow:before {
+  position: absolute;
+  top: 0;
+  background-image: none;
+  background-color: transparent;
+  -webkit-text-fill-color: #2d1514;
+  background: none;
+  color: #2d1514;
+  -webkit-background-clip: none;
+  content: attr(data-text);
+  text-shadow: .01em .12em .2em #333;
+  z-index: -1;
+}
+
+/*
+
+.backgroundclip {
+  background: linear-gradient(#e62915 50%, #e7e7e7 50%);
+  background-size: 4px 4px;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-fill-color: transparent;
+  position: relative;
+  font-family: 'Titan One', sans-serif;
+  font-weight: 900;
+  font-size: 300%;
+  line-height: 1;
+
+}
+
+.textshadow:before {
+  position: absolute;
+  top: 0;
+  color: white;
+text-shadow: 2px 2px 1px #000,
+             -2px -2px 1px #000,
+             -2px 2px 1px #000,
+              2px -2px 1px #000;
+  content: attr(data-text);
+  text-shadow: .01em .12em .2em #333;
+  z-index: -1;
+}
+
+*/
+
+
+/*
+@media (min-width: 350px) and (min-height: 350px) {
+  .textshadow:before {
+    text-shadow: 2px 12px 8px #333;
+  }
+}
+
+@media (min-width: 641px) {
+  .textshadow:before {
+    text-shadow: 2px 16px 8px #333;
+  }
+}*/
+
+
+
+
+
+
+
 
 /*------------------------------------------------
 
@@ -480,9 +608,23 @@ J-TINDER
 }
 
 #tinderslide .content {
-  color: #fff;
-  display: none;
+  color: #b0a9a2;
+  visibility: hidden;
   text-align: left;
+}
+
+#tinderslide .content .shdw-t-grey {
+  text-shadow: 0px 0px 0px #b0a9a2;
+}
+
+#tinderslide li.viewing .content {
+  color: #fff;
+  transition: color .5s ease-in;
+}
+
+#tinderslide li.viewing .content .shdw-t-grey {
+  text-shadow: 2px 2px 4px #333;
+  transition: text-shadow .5s ease-in;
 }
 
 #tinderslide .content .share {
@@ -542,6 +684,7 @@ J-TINDER
 #tinderslide li.viewing .content,
 #tinderslide li:last-child .content {
 	display: block;
+  visibility: visible;
 }
 
 #tinderslide li.viewing .img,
@@ -667,14 +810,22 @@ J-TINDER
 }
 
 .tinder-container .actions a > i {
+  background: none;
+  color: #fff;
   font-family: 'Roboto Thin', 'Roboto', sans-serif;
-  font-weight: 100;
   font-size: 35px;
   font-style: normal;
-  background: none;
-	font-style: normal;
-  color: #fff;
+  font-style: normal;
+  font-weight: 100;
+  position: relative;
   width: auto;
+}
+
+.tinder-container .actions a:hover > i {
+    top: -1px;
+    left: -1px;
+    transition: top .2s ease-out, left .2s ease-out, text-shadow .2s ease-out;
+    text-shadow: 4px 4px 8px #602400;
 }
 
 .tinder-container .dislike > i:before {
@@ -711,12 +862,16 @@ J-TINDER
   cursor: pointer;
   display: inline-block;
   height: 1.2em;
+  position: relative;
   text-align: center;
   width: 1.2em;
 }
 
 .viewing .more-action:after {
     content: '\e80a';
+    position: absolute;
+    right: -.4em;
+    bottom: -.2em;
     display: inline-block;
     font-family: "fontello";
     font-size: 1.2em;
@@ -730,10 +885,22 @@ J-TINDER
     text-align: center;
     text-decoration: inherit;
     text-transform: none;
+    transform: scale(1, 1);
     width: 1em;
 }
 .viewing .more-action.open:after {
     content: '\e80b';
+}
+
+.viewing .more-action:hover:after {
+    transition: all .2s ease-in;
+    right: -.35em;
+    bottom: -.15em;
+}
+
+#tinderslide li.viewing .content .more-action.shdw-t-grey:hover {
+    text-shadow: 3px 3px 4px #333;
+    transition: text-shadow .2s ease-in;
 }
 
 .slide-actions .actions-wrapper a {
@@ -836,6 +1003,19 @@ J-TINDER
     height: 100%;
     overflow: auto;
     padding: 20px;
+}
+
+.more-viewer-inner a {
+    white-space: -moz-pre-wrap;
+    white-space: -hp-pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: pre-wrap;
+    white-space: pre-line;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin: .2em 0;
+    display: inline-block;
 }
 
 

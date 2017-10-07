@@ -38,6 +38,31 @@ get_header();
 		    </div><!-- /.actions-container -->
 
 	    </div><!-- /.tinder-container -->
+	    <div id="howToIntro" class="intro-container"><div class="intro-wrapper">
+<!-- <svg>
+<defs>
+	<pattern id="wood" patternUnits="userSpaceOnUse" width="400" height="400" >
+		<image xlink:href="https://media.giphy.com/media/l41YcgNSPj6Wy1KyQ/giphy.gif" width="400" height="400" />
+	</pattern>
+</defs>
+<text y="1em" class="shdw-t-grey">Art</text>
+<text y="2em" class="shdw-t-grey">seen</text>
+<text y="3em">in</text>
+<text y="4em">BCN `17</text>
+</svg>
+
+<div class="clip-text clip-text_one shdw-t-grey"><span>JINTOS</span><span>oh</span></div>
+-->
+
+<div class="intro-logo">
+	<span data-text="Art" class="backgroundclip textshadow">Art </span> 
+	<span data-text="seen" class="backgroundclip textshadow size">seen </span> 
+	<span data-text="in" class="backgroundclip textshadow">in </span> 
+	<span data-text="BCN&nbsp;'17" class="backgroundclip textshadow">BCN&nbsp;'17</span>
+</div>
+
+	    	<!-- <p>Hemos seleccionado 100 de las
+mejores obras de arte que hemos visto este año, ahora te toca a tí: </p><p>Repasa la selección, vota tus favoritos pero sobre todo, descubre el mejor arte de Barcelona de 2017.</p></div></div>
 
 	</section><!-- /#art-viewer -->
 

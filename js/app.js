@@ -108,7 +108,7 @@
 			$(dislike).on('click', function() {
 				$(slider).jTinder('dislike');
 			});
-			$('#tinderslide').on('click tap', '.more-action', function(e) {
+			$('#tinderslide').on('click touchstart', '.more-action', function(e) {
 				e.preventDefault();
 				$(this).toggleClass('open');
 				$('.more, .more-viewer').toggleClass('show');
@@ -116,6 +116,10 @@
 				if ($('.more').hasClass('show')) {
 					//window.dataLayer.push({'event': 'clickOnMore', 'postid': p_id});
 				}
+			});
+			//deactivate jTinder events on slide info
+			$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
+				e.stopPropagation();
 			});
 		} else {
 			//print_winners(post_query);
