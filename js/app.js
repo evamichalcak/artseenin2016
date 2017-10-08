@@ -259,7 +259,7 @@
 		    html+='<a href="https://twitter.com/home?status='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
 		    html+='</div></div>';
 		    html+='<div class="more slide-dimension"><p class="art-work-info"><span class="title">'+posts[index].custom_fields.asiTitulo[0]+'</span><br/>de '+posts[index].custom_fields.asiArtista[0]+'</p>'+posts[index].content+'</div>';
-		    html+='<div class="like slide-dimension shdw-b-grey icon-heart-shape-outline"></div><div class="dislike slide-dimension shdw-b-grey"></div></li>';
+		    html+='<div class="icon-heart-shape-outline like slide-dimension shdw-b-grey"></div><div class="icon-x dislike slide-dimension shdw-b-grey"></div></li>';
 		});
 		$(sliderList).html(html);
 		return true;

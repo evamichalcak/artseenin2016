@@ -32,7 +32,7 @@ get_header();
 
 			<div class="actions-container slide-dimension">
 				<div class="actions">
-			        <a href="#" class="dislike"><i class="shdw-b-brown"></i></a>
+			        <a href="#" class="dislike"><i class="icon-x shdw-b-brown"></i></a>
 			        <a href="#" class="like"><i class="icon-heart-shape-outline shdw-b-brown"></i></a>
 			    </div><!-- /.actions -->
 		    </div><!-- /.actions-container -->
