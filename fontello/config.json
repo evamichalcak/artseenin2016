@@ -89,6 +89,20 @@
       ]
     },
     {
+      "uid": "48e90339dd8078809e036b6c8d01bb95",
+      "css": "arrow-right",
+      "code": 59404,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M223.1 37.2L193.4 76.1 748.2 500.8 188.5 930.3 218.4 969.1 828.7 500.8Z",
+        "width": 1000
+      },
+      "search": [
+        "arrow-right"
+      ]
+    },
+    {
       "uid": "ae17b41527779db7595ac49ae1c1e835",
       "css": "facebook",
       "code": 59395,
@@ -170,6 +184,20 @@
       },
       "search": [
         "heart-2"
+      ]
+    },
+    {
+      "uid": "843f5e980022e7df89e521178a24a1ca",
+      "css": "arrow-right",
+      "code": 59395,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M259.7 939.2L221.2 899.3 701 495.8 216.8 90.1 252.1 55.6 782.6 496.7 259.6 939.1Z",
+        "width": 1000
+      },
+      "search": [
+        "arrow-right"
       ]
     }
   ]
