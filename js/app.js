@@ -161,7 +161,7 @@
 		$('#howToIntro').removeClass('logoin');
 		var tt = setTimeout(function(){
 			$('#howToIntro').addClass('logoout');
-		}, 7000);
+		}, 17000);
 		$('.vote-start').on('click tap', function() {
 			$('#howToIntro').fadeOut();
 		});
