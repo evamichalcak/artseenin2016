@@ -108,17 +108,29 @@
 			$(dislike).on('click', function() {
 				$(slider).jTinder('dislike');
 			});
-			$('#tinderslide').on('click touchstart', '.more-action', function(e) {
-				e.preventDefault();
-				$(this).toggleClass('open');
-				$('.more, .more-viewer').toggleClass('show');
-				var p_id = $('.more-viewer').data('postid');
-				if ($('.more').hasClass('show')) {
-					//window.dataLayer.push({'event': 'clickOnMore', 'postid': p_id});
-				}
+			// intro ani
+			$('#howToIntro').removeClass('logoin');
+			var tt = setTimeout(function(){
+				$('#howToIntro').addClass('logoout');
+			}, 8000);
+			$('.vote-start').on('click tap', function() {
+				$('#howToIntro').fadeOut();
 			});
-			//deactivate jTinder events on slide info
-			$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
+			// language chooser
+			$('.ctrl-btn.es-ca').on('click', function() {
+				$('body').removeClass('es-es');
+				$('body').addClass('es-ca');
+			});
+			$('.ctrl-btn.es-es').on('click', function() {
+				$('body').removeClass('es-ca');
+				$('body').addClass('es-es');
+			});
+			// project info slideup on bottom bar
+			$('.site-branding').on('click', function() {
+				$(this).toggleClass('open');
+			});
+			// disable sliding behaviour when clicking links in project info
+			$('.site-branding .share-container a, .site-branding .project-info a').on('click', function(e) {
 				e.stopPropagation();
 			});
 		} else {
@@ -157,23 +169,19 @@
 		$('.twshare-action').attr("href", $('.viewing .share-tw').attr('href'));
 		$('.more-viewer .more-viewer-inner').html($('.viewing .more').html());
 		$('.more-viewer .more-viewer-inner').data('postid', $('.viewing').data('postid'));
-		// intro ani
-		$('#howToIntro').removeClass('logoin');
-		var tt = setTimeout(function(){
-			$('#howToIntro').addClass('logoout');
-		}, 17000);
-		$('.vote-start').on('click tap', function() {
-			$('#howToIntro').fadeOut();
+		$('#tinderslide').on('click touchstart', '.more-action', function(e) {
+			e.preventDefault();
+			$(this).toggleClass('open');
+			$('.more, .more-viewer').toggleClass('show');
+			var p_id = $('.more-viewer').data('postid');
+			if ($('.more').hasClass('show')) {
+				//window.dataLayer.push({'event': 'clickOnMore', 'postid': p_id});
+			}
 		});
-		// language chooser
-		$('.ctrl-btn.es-ca').on('click', function() {
-			$('body').removeClass('es-es');
-			$('body').addClass('es-ca');
-		});
-		$('.ctrl-btn.es-es').on('click', function() {
-			$('body').removeClass('es-ca');
-			$('body').addClass('es-es');
-		});
+		//deactivate jTinder events on slide info
+		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
+			e.stopPropagation();
+		});	
 	}
 
 
@@ -403,6 +411,8 @@
 	function update_viewing_class(post_id) {
 		// preload next image
 		$('.img-load:first-of-type').parent().prev().find('.img').addClass('img-load');
+		// close more-info, if open
+		$('.more, .more-viewer').removeClass('show');
 		//switch viewing class
 		$('#p'+post_id).removeClass('viewing');
 		$('#p'+post_id).prev().addClass('viewing');
@@ -502,7 +512,7 @@
 
 	//display thanks
 	function finish(user_voting_data) {
-		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!></span><span class="lang-es">¡Gracias por participar!</span></li>');
+		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span></li>');
 		//@TODO (voting disabled): viewmesave(user_viewing_data, user_voting_data);
 		$(document).on('asi.saved', function() {			
 			console.log('asi.saved has been fired!');

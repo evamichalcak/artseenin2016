@@ -14,20 +14,40 @@
 	</div><!-- #content -->
 </div><!-- #page -->
 
-<div class="site-branding">
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="logo-container">
-		<img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?>" class="site-logo">
-	</a>
+<section class="site-branding">
+	<div class="bottom-bar">
+		<span class="logo-container">
+			<img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?>" class="site-logo">
+		</span>
 
-	<div class="counter-container"><span id="counterContainer">1</span>/<span id="totalContainer">100</span></div><!-- #counterContainer -->
+		<div class="counter-container"><span id="counterContainer">1</span>/<span id="totalContainer">100</span></div><!-- #counterContainer -->
 
-	<div class="share-container">
-		<a href="" class="icon-facebook fbshare-action"></a>
-		<a href="" class="icon-whatsapp washare-action"></a>
-		<a href="" class="icon-twitter twshare-action"></a>
-	</div><!-- .share-container -->
+		<div class="share-container">
+			<a href="https://www.facebook.com/sharer/sharer.php?u=http://artseeninbcn2017.artssspot.com/?utm_source=fbshare" class="icon-facebook fbshare-action"></a>
+			<a href="whatsapp://send?text=http://artseeninbcn2017.artssspot.com/?utm_source=washare" class="icon-whatsapp washare-action"></a>
+			<a href="https://twitter.com/home?status=http://artseeninbcn2017.artssspot.com/?utm_source=twshare" class="icon-twitter twshare-action"></a>
+		</div><!-- .share-container -->
 
-</div><!-- .site-branding -->
+	</div><!-- .bottom-bar -->
+	<div class="project-info">
+		<div class="info-col">
+			<p>
+				<span class="lang-ca">Una iniciativa de:</span>
+				<span class="lang-es">Una iniciativa de:</span>
+				<span class="lang-en">An initiative by:</span>
+			</p>
+			<p><a href="http://www.artssspot.com" target="_blank" class="artssspot"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/logo-artssspot.png" width="100" height="100" alt=""></a><span class="spacer"></span><a href="https://www.facebook.com/opening.bcn" target="_blank" class="opening"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/logo-opening.png" width="70" height="70" alt=""></a></p>
+		</div><!-- .info-col -->
+		<div class="info-col">
+			<p>
+				<span class="lang-ca">Col·laboradors:</span>
+				<span class="lang-es">Colaboradores:</span>
+				<span class="lang-en">Collaborating:</span>
+			</p>
+			<p><a href="http://www.poblenouurbandistrict.com/" target="_blank" class="pud"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/pud-logo.png" width="60" height="55" alt=""></a><span class="spacer"></span> <a href="http://www.younggalleryweekend.com/" target="_blank" class="ygw"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/ygw-logo.png" width="56" height="48" alt=""></a><span class="spacer"></span> <a href="http://www.bcnstreetart.xyz/" target="_blank" class="streetart"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/streetart-logo.png" width="45" height="45" alt=""></a></p>
+		</div><!-- .info-col -->
+	</div><!-- .project-info -->
+</section><!-- .site-branding -->
 
 <?php wp_footer(); ?>
 

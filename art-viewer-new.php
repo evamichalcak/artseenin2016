@@ -59,7 +59,7 @@ get_header();
 		<a href="#" class="ctrl-btn es-ca">Català</a>
 		<a href="#" class="ctrl-btn es-es">Castellano</a>
 	</div>
-	<p><span class="lang-ca">Entre Artssspot i de obertura BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
+	<p><span class="lang-ca">Entre Artssspot i de Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
 mejores obras de arte que hemos visto este año, ahora te toca a tí: </span></p>
 <p><span class="lang-ca">Repassa la selecció, vota els teus favorits però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span></p>
 <a href="#" class="nav-btn vote-start"><i class="icon-arrow-right shdw-b-brown"></i></a>

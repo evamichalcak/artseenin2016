@@ -186,13 +186,37 @@ a:active {
 }
 
 .site-branding {
+  position: relative;
+  background-color: #f9ccb7;
+  overflow: hidden;
+  height: auto;
+  max-height: 44px;
+  width: 100%;
+  z-index: 10000;
+}
+
+.site-branding.open {
+  position: fixed;
+  bottom: 0;
+  max-height: 10000px;
+}
+
+.site-branding .bottom-bar {
   align-content: space-between;
   align-items: center;
-	background-color: #f9ccb7;
-	box-sizing: border-box;
+  box-sizing: border-box;
   display: flex;
-	padding: 5px 14px;
-	height: 44px;
+  padding: 5px 14px;
+  height: 44px;
+}
+
+.site-branding .project-info {
+  color: #f30a02;
+  padding: 5px 14px;
+}
+
+.site-branding .project-info .info-col {
+  display: inline-block;
 }
 
 .counter-container,
@@ -1273,6 +1297,13 @@ J-TINDER
     word-break: break-all;
     margin: .2em 0;
     display: inline-block;
+  background-color: #816350;
+  border-radius: .75em;
+  box-shadow: 2px 2px 4px rgba(96, 36, 0, .5);
+  color: #fff;
+  padding: 4px 8px;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px #602400;
 }
 
 
