@@ -56,18 +56,20 @@ get_header();
 
 <div class="intro-text">
 	<div class="lang-buttons">
-		<a href="#" class="ctrl-btn es-ca">Català</a>
-		<a href="#" class="ctrl-btn es-es">Castellano</a>
+		<a href="#!" class="demo-pill ctrl-btn es-ca">Català</a>
+		<a href="#!" class="demo-pill ctrl-btn es-es">Castellano</a>
+		<a href="#!" class="demo-pill ctrl-btn en-en">English</a>
 	</div>
-	<p><span class="lang-ca">Entre Artssspot i de Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
-mejores obras de arte que hemos visto este año, ahora te toca a tí: </span></p>
-<p><span class="lang-ca">Repassa la selecció, vota els teus favorits però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span></p>
+	<p><span class="lang-ca">Entre Artssspot i Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
+mejores obras de arte que hemos visto este año, ahora te toca a tí: </span><span class="lang-en">Between Artssspot and Opening BCN we have selected 100 of the
+best works of art that we have seen this year, now it's up to you:</span></p>
+<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p>
 <a href="#" class="nav-btn vote-start"><i class="icon-arrow-right shdw-b-brown"></i></a>
 <!-- <p>Una iniciativa de:</p>
-<p><a href="http://www.artssspot.com" target="_blank" class="artssspot"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/logo-artssspot.png" width="100" height="100" alt=""></a><span class="spacer"></span><a href="https://www.facebook.com/opening.bcn" target="_blank" class="opening"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/logo-opening.png" width="70" height="70" alt=""></a></p>
+<p><a href="http://www.artssspot.com" target="_blank" class="artssspot"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-artssspot.png" width="100" height="100" alt=""></a><span class="spacer"></span><a href="https://www.facebook.com/opening.bcn" target="_blank" class="opening"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-opening.png" width="70" height="70" alt=""></a></p>
 <div class="info-col">
 	<p>Colaboradores:</p>
-	<p><a href="http://www.poblenouurbandistrict.com/" target="_blank" class="pud"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/pud-logo.png" width="60" height="55" alt=""></a><span class="spacer"></span> <a href="http://www.younggalleryweekend.com/" target="_blank" class="ygw"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/ygw-logo.png" width="56" height="48" alt=""></a><span class="spacer"></span> <a href="http://www.bcnstreetart.xyz/" target="_blank" class="streetart"><img src="http://artseeninbcn2016.artssspot.com/wp-content/themes/artseenin2016/img/streetart-logo.png" width="45" height="45" alt=""></a></p>
+	<p><a href="http://www.poblenouurbandistrict.com/" target="_blank" class="pud"><img src="<?php echo get_bloginfo('template_url') ?>/img/pud-logo.png" width="60" height="55" alt=""></a><span class="spacer"></span> <a href="http://www.younggalleryweekend.com/" target="_blank" class="ygw"><img src="<?php echo get_bloginfo('template_url') ?>/img/ygw-logo.png" width="56" height="48" alt=""></a><span class="spacer"></span> <a href="http://www.bcnstreetart.xyz/" target="_blank" class="streetart"><img src="<?php echo get_bloginfo('template_url') ?>/img/streetart-logo.png" width="45" height="45" alt=""></a></p>
 </div>-->
 </div>
 

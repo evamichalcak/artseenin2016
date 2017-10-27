@@ -38,6 +38,7 @@
 	var image_loader = 0;
 	var imgCounter = 1;
 	var hasNewVotes = false;
+	var showdemotour = false;
 
 
 
@@ -71,6 +72,7 @@
 					print_posts(post_query);
 					slider_setup();
 				});
+				showdemotour = true;
 			} else if (previous_actions instanceof Array) {
 				preload_images(post_query);
 				$(loaderDisplay).on('asi.allLoaded', function() {
@@ -112,18 +114,28 @@
 			$('#howToIntro').removeClass('logoin');
 			var tt = setTimeout(function(){
 				$('#howToIntro').addClass('logoout');
-			}, 8000);
+			}, 8);
 			$('.vote-start').on('click tap', function() {
 				$('#howToIntro').fadeOut();
+				if (showdemotour) {
+					demoTour();
+				}
 			});
 			// language chooser
 			$('.ctrl-btn.es-ca').on('click', function() {
 				$('body').removeClass('es-es');
+				$('body').removeClass('en-en');
 				$('body').addClass('es-ca');
 			});
 			$('.ctrl-btn.es-es').on('click', function() {
 				$('body').removeClass('es-ca');
+				$('body').removeClass('en-en');
 				$('body').addClass('es-es');
+			});
+			$('.ctrl-btn.en-en').on('click', function() {
+				$('body').removeClass('es-ca');
+				$('body').removeClass('es-es');
+				$('body').addClass('en-en');
 			});
 			// project info slideup on bottom bar
 			$('.site-branding').on('click', function() {
@@ -196,6 +208,24 @@
 			});
 			$(previewOnly).show();
 		console.log('prev2');
+	}
+
+	function demoTour() {
+		var demo1 =  '<div class="demo-tour slide-dimension">';
+		demo1 += '<span class="demo-pill"><span class="demo--1">Arrastra la imagen para votar y pasar a la siguiente</span>';
+		demo1 += '<span class="demo--2">A la derecha si te gusta</span><span class="demo--3">A la izquierda si no te gusta</span></span>';
+		demo1 += '<span class="demo--4 demo-pill">O utiliza los botones</span></div>';
+
+		var demo2 = '<span class="demo--5 demo-pill">Para saber más sobre la obra, clic aquí</span>';
+
+		var demo3 = '<span class="demo--6 demo-pill">Si una obra te gusta mucho, la puedes compartir desde aquí</span>';
+
+		var demo4 = '<span class="demo--7 demo-pill">Para saber más sobre la iniciativa, clic sobre la barra rosa</span>';
+
+		$('.viewing').append(demo1);
+		$('.viewing .more-action').append(demo2);
+		$('.share-container').append(demo3);
+		$('.logo-container').append(demo4);
 	}
 
 
@@ -273,7 +303,7 @@
 		    //html+='<img class="img" width="450" height="450" src="'+posts[index].thumbnail_images.full.url+'"/>';
 		    html+='<div class="content">';
 		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
-		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
+		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
 		    html+='<div class="share">';
 		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
 		    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
@@ -512,7 +542,7 @@
 
 	//display thanks
 	function finish(user_voting_data) {
-		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span></li>');
+		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span><span class="lang-en">Thanks for taking part!</span></li>');
 		//@TODO (voting disabled): viewmesave(user_viewing_data, user_voting_data);
 		$(document).on('asi.saved', function() {			
 			console.log('asi.saved has been fired!');
