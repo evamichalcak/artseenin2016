@@ -212,20 +212,40 @@
 
 	function demoTour() {
 		var demo1 =  '<div class="demo-tour slide-dimension">';
-		demo1 += '<span class="demo-pill"><span class="demo--1">Arrastra la imagen para votar y pasar a la siguiente</span>';
-		demo1 += '<span class="demo--2">A la derecha si te gusta</span><span class="demo--3">A la izquierda si no te gusta</span></span>';
-		demo1 += '<span class="demo--4 demo-pill">O utiliza los botones</span></div>';
+		demo1 += '<span class="demo-pill"><span class="demo--1"><span class="lang-ca">Arrastra la imatge per votar</span>';
+		demo1 += '<span class="lang-es">Arrastra la imagen para votar</span>';
+		demo1 += '<span class="lang-en">Drag the image to vote</span></span>';
+		demo1 += '<span class="demo--2"><span class="lang-ca">A la dreta si t\'agrada</span>';
+		demo1 += '<span class="lang-es">A la derecha si te gusta</span>';
+		demo1 += '<span class="lang-en">To the right if you like it</span></span>';
+		demo1 += '<span class="demo--3"><span class="lang-ca">A l\'esquerra per descartar</span>';
+		demo1 += '<span class="lang-es">A la izquierda para descartar</span>';
+		demo1 += '<span class="lang-en">To the left to dismiss it</span></span></span>';
+		demo1 += '<span class="demo--4 demo-pill"><span class="lang-ca">O utilitza els botons</span>';
+		demo1 += '<span class="lang-es">O utiliza los botones</span>';
+		demo1 += '<span class="lang-en">Or use the buttons</span></span></div>';
 
-		var demo2 = '<span class="demo--5 demo-pill">Para saber más sobre la obra, clic aquí</span>';
+		var demo2 = '<span class="demo--5 demo-pill"><span class="lang-ca">Més info sobre l\'obra</span>';
+		demo2 += '<span class="lang-es">Más info sobre la obra</span>';
+		demo2 += '<span class="lang-en">More info about the work</span></span>';
 
-		var demo3 = '<span class="demo--6 demo-pill">Si una obra te gusta mucho, la puedes compartir desde aquí</span>';
+		var demo3 = '<span class="demo--6 demo-pill"><span class="lang-ca">Comparteix el que t\'agrada</span>';
+		demo3 += '<span class="lang-es">Comparte lo que te gusta</span>';
+		demo3 += '<span class="lang-en">Share if you like it</span></span>';
 
-		var demo4 = '<span class="demo--7 demo-pill">Para saber más sobre la iniciativa, clic sobre la barra rosa</span>';
+		var demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Més info sobre la iniciativa</span>';
+		demo4 += '<span class="lang-es">Más info sobre la iniciativa</span>';
+		demo4 += '<span class="lang-en">More info about the initiative</span></span>';
 
 		$('.viewing').append(demo1);
 		$('.viewing .more-action').append(demo2);
 		$('.share-container').append(demo3);
 		$('.logo-container').append(demo4);
+
+		var tt = setTimeout(function(){
+			$('.demo-tour, .demo-pill').hide();
+		}, 40500);
+
 	}
 
 
@@ -302,7 +322,8 @@
 		    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
 		    //html+='<img class="img" width="450" height="450" src="'+posts[index].thumbnail_images.full.url+'"/>';
 		    html+='<div class="content">';
-		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
+		    html+='<div class="artist shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
+		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiTitulo[0]+'</div>';
 		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
 		    html+='<div class="share">';
 		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';

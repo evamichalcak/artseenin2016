@@ -245,6 +245,7 @@ a:active {
 .logo-container {
   color: #f30a02;
   flex: 1 1 33.33333%;
+  position: relative;
   text-decoration: none;
 }
 
@@ -278,13 +279,14 @@ a:active {
     top: -1px;
 }
 
-.share-container .icon-facebook:before {
-    padding-right: .5em;
-    margin-left: -.2em;
+@media (min-width: 768px) {
+  .share-container .icon-facebook:before {
+      padding-right: .5em;
+  }
 }
 
 @media (max-width: 480px) {
-  .site-branding {
+  .site-branding .bottom-bar {
     padding: 5px;
   }
 
@@ -772,10 +774,21 @@ text-shadow: 2px 2px 1px #000,
   width: auto;
 }
 
-
 .viewing .demo--4 {
   position: absolute;
   bottom: 25px;
+}
+
+@media screen and (max-width: 639px) {
+  .viewing .demo--4 {
+    display: none !important;
+  }
+}
+
+.demo-pill.demo--5,
+.demo-pill.demo--6,
+.demo-pill.demo--7 {
+  text-align: center;
 }
 
 @keyframes openPill {
@@ -821,6 +834,13 @@ text-shadow: 2px 2px 1px #000,
   75% { transform: translate(-30px,0); }
   100% { transform: translate(0,0); }
 }
+@keyframes moveUp {
+  0% { transform: translate(0,0); display: block; }
+  25% { transform: translate(0,-5px); }
+  50% { transform: translate(0,0); }
+  75% { transform: translate(0,-5px); }
+  100% { transform: translate(0,0); }
+}
 
 .viewing .demo-tour .demo-pill:not(.demo--4) {
   animation: 
@@ -830,29 +850,37 @@ text-shadow: 2px 2px 1px #000,
     moveLeft 1s ease-in-out 18.5s;
 }
 .viewing .demo-tour .demo-pill:before,
-.viewing .demo-tour .demo-pill:after {
+.viewing .demo-tour .demo-pill:after,
+.viewing .demo-pill.demo--4:before,
+.viewing .demo-pill.demo--4:after,
+.demo-pill.demo--5:before,
+.demo-pill.demo--6:before,
+.demo-pill.demo--7:before {
   color: #f30a02;
 /*  border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; */
   display: inline-block;
   font-size: 40px;
   height: 0;
-  text-shadow: 2px 3px 6px rgba(0, 0, 0, .6);
+  text-shadow: 2px 3px 6px rgba(0, 0, 0, .4);
   transition: text-shadow .2s ease-out;
   position: absolute;
   width: 0;
+}
+.viewing .demo-tour .demo-pill:before,
+.viewing .demo-tour .demo-pill:after {
   top: -17px;
 }
 .viewing .demo-tour .demo-pill:before {
   content: '◂';
 /*  border-right: #f30a02 solid 10px;*/
-  left: -40px;
+  left: -30px;
   animation: showIt .2s ease-in 17.5s backwards, moveLeft 1s ease-in-out 18.5s, hideIt .2s ease-in 19.5s forwards;
 }
 .viewing .demo-tour .demo-pill:after {
   content: '▸';
 /*  border-left: #f30a02 solid 10px;*/
-  right: -5px;
+  right: 5px;
   animation: showIt .2s ease-in 11s backwards, moveRight 1s ease-in-out 12s, hideIt .2s ease-in 13s forwards;
 }
 
@@ -869,9 +897,135 @@ text-shadow: 2px 2px 1px #000,
   animation: showText .3s ease-in 13.2s forwards, hideText .3s ease-out 19.5s forwards;
 }
 
+@media screen and (min-width: 640px) {
+  .viewing .demo-pill.demo--4 {
+    animation: openPill .5s ease-in 19.5s both, closePill .5s ease-out 23s forwards, showText .3s ease-in 19.5s forwards, hideText .3s ease-out 23s forwards;
+  }
 
-.viewing .demo-pill.demo--4 {
-  animation: openPill .5s ease-in 19.5s both, closePill .5s ease-out 23s forwards, showText .3s ease-in 19.7s forwards, hideText .3s ease-out 23s forwards;
+  .viewing .demo-pill.demo--4:before {
+    content: '◂';
+  /*  border-right: #f30a02 solid 10px;*/
+    left: -40px;
+    animation: showIt .2s ease-in 19.7s backwards, moveLeft 1s ease-in-out 21.8s, hideIt .2s ease-in 22.8s forwards;
+  }
+  .viewing .demo-pill.demo--4:after {
+    content: '▸';
+  /*  border-left: #f30a02 solid 10px;*/
+    right: -5px;
+    animation: showIt .2s ease-in 19.7s backwards, moveRight 1s ease-in-out 21.8s, hideIt .2s ease-in 22.8s forwards;
+  }
+}
+
+
+.demo-pill.demo--5 {
+  animation: openPill .5s ease-in 19.5s both, closePill .5s ease-out 26s forwards, showText .3s ease-in 19.5s forwards, hideText .3s ease-out 26s forwards;
+  white-space: nowrap;
+  position: relative;
+  left: 50%;
+  margin-right: -15px;
+  transform: translateX(-49%);
+  top: -49px;
+}
+
+.demo-pill.demo--5:before {
+  content: '▾';
+  font-size: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 14px;
+  margin-left: -13px;
+  animation: showIt .2s ease-in 19.5s backwards, moveUp 1s ease-in-out 22s, hideIt .2s ease-in 25.8s forwards;
+}
+
+@media screen and (min-width: 640px) {
+  .demo-pill.demo--5 {
+    animation: openPill .5s ease-in 23s both, closePill .5s ease-out 28s forwards, showText .3s ease-in 23s forwards, hideText .3s ease-out 28s forwards;
+  }
+
+  .demo-pill.demo--5:before {
+    animation: showIt .2s ease-in 23s backwards, moveUp 1s ease-in-out 25s, hideIt .2s ease-in 27.8s forwards;
+  }
+}
+
+
+.demo-pill.demo--6 {
+  animation: openPill .5s ease-in 26s both, closePill .5s ease-out 32s forwards, showText .3s ease-in 26s forwards, hideText .3s ease-out 32s forwards;
+  white-space: nowrap;
+  right: 14px;
+  top: -65px;
+}
+.es-ca .demo-pill.demo--6 {
+  right: 3px;
+}
+.en-en .demo-pill.demo--6 {
+  right: 33px;
+}
+
+.demo-pill.demo--6:before {
+  content: '▾';
+  font-size: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 14px;
+  margin-left: -10px;
+  animation: showIt .2s ease-in 26s backwards, moveUp 1s ease-in-out 28s, hideIt .2s ease-in 31.8s forwards;
+}
+.es-ca .demo-pill.demo--6:before { 
+  margin-left: -15px;
+}
+.en-en .demo-pill.demo--6:before { 
+  margin-left: -14px;
+}
+
+@media screen and (min-width: 640px) {
+  .demo-pill.demo--6 {
+  right: -5px;
+    animation: openPill .5s ease-in 28s both, closePill .5s ease-out 34s forwards, showText .3s ease-in 28s forwards, hideText .3s ease-out 34s forwards;
+  }
+
+  .demo-pill.demo--6:before {
+    margin-left: 14px;
+    animation: showIt .2s ease-in 28s backwards, moveUp 1s ease-in-out 30s, hideIt .2s ease-in 33.8s forwards;
+  }
+  .es-ca .demo-pill.demo--6:before {
+    margin-left: 27px;
+  }
+  .en-en .demo-pill.demo--6:before { 
+    margin-left: -10px;
+  }
+}
+
+
+.demo-pill.demo--7 {
+  animation: openPill .5s ease-in 32s both, closePill .5s ease-out 38s forwards, showText .3s ease-in 32s forwards, hideText .3s ease-out 38s forwards;
+  white-space: nowrap;
+  left: 5px;
+  top: -56px;
+}
+@media screen and (max-width: 480px) {
+  .demo-pill.demo--7 {
+    top: -58px;
+  }
+}
+
+.demo-pill.demo--7:before {
+  content: '▾';
+  font-size: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 14px;
+  margin-left: -15px;
+  animation: showIt .2s ease-in 32s backwards, moveUp 1s ease-in-out 34s, hideIt .2s ease-in 37.8s forwards;
+}
+
+@media screen and (min-width: 640px) {
+  .demo-pill.demo--7 {
+    animation: openPill .5s ease-in 34s both, closePill .5s ease-out 40s forwards, showText .3s ease-in 34s forwards, hideText .3s ease-out 40s forwards;
+  }
+
+  .demo-pill.demo--7:before {
+    animation: showIt .2s ease-in 34s backwards, moveUp 1s ease-in-out 36s, hideIt .2s ease-in 39.8s forwards;
+  }
 }
 
 
