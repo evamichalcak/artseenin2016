@@ -979,8 +979,11 @@ text-shadow: 2px 2px 1px #000,
 
 @media screen and (min-width: 640px) {
   .demo-pill.demo--6 {
-  right: -5px;
+    right: -5px;
     animation: openPill .5s ease-in 28s both, closePill .5s ease-out 34s forwards, showText .3s ease-in 28s forwards, hideText .3s ease-out 34s forwards;
+  }
+  .en-en .demo-pill.demo--6 {
+    right: -10px;
   }
 
   .demo-pill.demo--6:before {
@@ -991,7 +994,7 @@ text-shadow: 2px 2px 1px #000,
     margin-left: 27px;
   }
   .en-en .demo-pill.demo--6:before { 
-    margin-left: -10px;
+    margin-left: -13px;
   }
 }
 
