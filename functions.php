@@ -345,7 +345,7 @@ function ts_check_extra_register_fields($login, $email, $errors) {
 	if ( strlen( $_POST['password'] ) < 8 ) {
 		$errors->add( 'password_too_short', "<strong>ERROR</strong>: La contrasenya ha de tenir almenys 8 caràcters" );
 	}
-	if ( $_POST['are_you_human'] !== '2016' ) {
+	if ( $_POST['are_you_human'] !== '2017' ) {
 		$errors->add( 'not_human', "<strong>ERROR</strong>: Ets un robot? Comprova el formulari ..." );
 	}
 }

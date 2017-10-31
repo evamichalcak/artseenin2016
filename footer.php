@@ -47,6 +47,9 @@
 			<p><a href="http://www.artssspot.com" target="_blank" class="logo-link--s"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-placeholder.png" width="50" height="50" alt=""></a><span class="spacer"></span> <a href="http://www.artssspot.com" target="_blank" class="logo-link--s"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-placeholder.png" width="50" height="50" alt=""></a><span class="spacer"></span> <a href="http://www.artssspot.com" target="_blank" class="logo-link--s"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-placeholder.png" width="50" height="50" alt=""></a></p>
 		</div><!-- .info-col -->
 	</div><!-- .project-info -->
+	<?php echo do_shortcode('[login-with-ajax template="modal" registration="1"]'); 
+	login_with_ajax('registration=1');
+	?>ee
 </section><!-- .site-branding -->
 
 <?php wp_footer(); ?>
