@@ -311,7 +311,7 @@ function my_login_stylesheet() {
 add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
 
 
-/* Login with password according to: http://slobodanmanic.com/249/wordpress-set-password-during-registration/ */
+/* Login with password according to: http://slobodanmanic.com/249/wordpress-set-password-during-registration/ 
 
 
 // Add Password, Repeat Password and Are You Human fields to WordPress registration form
@@ -370,4 +370,45 @@ function ts_edit_password_email_text ( $text ) {
 		$text = 'Si deixes el camp de contrasenya buit es generarà una per a tu. La contrasenya ha de tenir almenys vuit caràcters.';
 	}
 	return $text;
+}*/
+
+// add are you human check functionalityadd_action( 'register_form', 'ts_show_extra_register_fields' );
+function ts_show_extra_register_fields(){
+?>
+	<p>
+		<label for="are_you_human" style="font-size:11px">Comprovem que no ets un robot: La selecció d'art, de quin any és?<br/>
+		<input id="are_you_human" class="input" type="text" tabindex="40" size="25" value="" name="are_you_human" />
+		</label>
+	</p>
+<?php
+}
+// Check the are you human field
+add_action( 'register_post', 'ts_check_extra_register_fields', 10, 3 );
+function ts_check_extra_register_fields($login, $email, $errors) {
+	if ( $_POST['are_you_human'] !== '2017' ) {
+		$errors->add( 'not_human', "<strong>ERROR</strong>: Ets un robot? Comprova el formulari ..." );
+	}
+}
+
+
+
+// disable random password suggestion (https://www.itsupportguides.com/knowledge-base/wordpress/wordpress-how-to-disable-random-password-for-password-resets/)
+add_filter( 'random_password', 'itsg_disable_random_password', 10, 2 );
+
+function itsg_disable_random_password( $password ) {
+    $action = isset( $_GET['action'] ) ? $_GET['action'] : '';
+    if ( 'wp-login.php' === $GLOBALS['pagenow'] && ( 'rp' == $action  || 'resetpass' == $action ) ) {
+        return '';
+    }
+    return $password;
+}
+
+
+// disable inforcement of "strong" PW (https://wordpress.stackexchange.com/questions/216183/loosen-disable-password-policy)
+add_action( 'wp_print_scripts', 'DisableStrongPW', 100 );
+
+function DisableStrongPW() {
+    if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
+        wp_dequeue_script( 'wc-password-strength-meter' );
+    }
 }

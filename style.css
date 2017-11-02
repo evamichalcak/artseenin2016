@@ -384,9 +384,9 @@ a:active {
 }
 
 .ctrl-btn:hover,
-.es-es .ctrl-btn.es-es,
-.es-ca .ctrl-btn.es-ca,
-.en-en .ctrl-btn.en-en {
+html[lang="es-ES"] .ctrl-btn.es-es,
+html[lang="ca"] .ctrl-btn.es-ca,
+html[lang="en-US"] .ctrl-btn.en-en {
   box-shadow: 2px 3px 6px rgba(0, 0, 0, .3);
   left: -1px;
   position: relative;
@@ -396,27 +396,41 @@ a:active {
 
 /* LANGUAGES */
 
-.es-es .lang-es {
+html[lang="es-ES"] .lang-es {
   display: inline-block;
 }
-.es-ca .lang-es,
-.en-en .lang-es {
+html[lang="ca"] .lang-es,
+html[lang="en-US"] .lang-es {
   display: none;
 }
-.es-ca .lang-ca {
+html[lang="ca"] .lang-ca {
   display: inline-block;
 }
-.es-es .lang-ca,
-.en-en .lang-ca {
+html[lang="es-ES"] .lang-ca,
+html[lang="en-US"] .lang-ca {
   display: none;
 }
 
-.en-en .lang-en {
+html[lang="en-US"] .lang-en {
   display: inline-block;
 }
-.es-ca .lang-en,
-.es-es .lang-en {
+html[lang="ca"] .lang-en,
+html[lang="es-ES"] .lang-en {
   display: none;
+}
+
+/* LOGIN */
+.login-modal {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 480px;
+    top: 20%;
+    text-align: center;
 }
 
 
@@ -954,10 +968,10 @@ text-shadow: 2px 2px 1px #000,
   right: 14px;
   top: -65px;
 }
-.es-ca .demo-pill.demo--6 {
+html[lang="ca"] .demo-pill.demo--6 {
   right: 3px;
 }
-.en-en .demo-pill.demo--6 {
+html[lang="en-US"] .demo-pill.demo--6 {
   right: 33px;
 }
 
@@ -970,10 +984,10 @@ text-shadow: 2px 2px 1px #000,
   margin-left: -10px;
   animation: showIt .2s ease-in 26s backwards, moveUp 1s ease-in-out 28s, hideIt .2s ease-in 31.8s forwards;
 }
-.es-ca .demo-pill.demo--6:before { 
+html[lang="ca"] .demo-pill.demo--6:before { 
   margin-left: -15px;
 }
-.en-en .demo-pill.demo--6:before { 
+html[lang="en-US"] .demo-pill.demo--6:before { 
   margin-left: -14px;
 }
 
@@ -982,7 +996,7 @@ text-shadow: 2px 2px 1px #000,
     right: -5px;
     animation: openPill .5s ease-in 28s both, closePill .5s ease-out 34s forwards, showText .3s ease-in 28s forwards, hideText .3s ease-out 34s forwards;
   }
-  .en-en .demo-pill.demo--6 {
+  html[lang="en-US"] .demo-pill.demo--6 {
     right: -10px;
   }
 
@@ -990,10 +1004,10 @@ text-shadow: 2px 2px 1px #000,
     margin-left: 14px;
     animation: showIt .2s ease-in 28s backwards, moveUp 1s ease-in-out 30s, hideIt .2s ease-in 33.8s forwards;
   }
-  .es-ca .demo-pill.demo--6:before {
+  html[lang="ca"] .demo-pill.demo--6:before {
     margin-left: 27px;
   }
-  .en-en .demo-pill.demo--6:before { 
+  html[lang="en-US"] .demo-pill.demo--6:before { 
     margin-left: -13px;
   }
 }
