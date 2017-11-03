@@ -859,9 +859,9 @@ text-shadow: 2px 2px 1px #000,
 .viewing .demo-tour .demo-pill:not(.demo--4) {
   animation: 
     openPill .5s ease-in forwards, 
-    closePill .5s ease-out 19.5s forwards, 
-    moveRight 1s ease-in-out 12s, 
-    moveLeft 1s ease-in-out 18.5s;
+    closePill .5s ease-out 9s forwards, 
+    moveRight 1s ease-in-out 5s, 
+    moveLeft 1s ease-in-out 8s;
 }
 .viewing .demo-tour .demo-pill:before,
 .viewing .demo-tour .demo-pill:after,
@@ -889,50 +889,76 @@ text-shadow: 2px 2px 1px #000,
   content: '◂';
 /*  border-right: #f30a02 solid 10px;*/
   left: -30px;
-  animation: showIt .2s ease-in 17.5s backwards, moveLeft 1s ease-in-out 18.5s, hideIt .2s ease-in 19.5s forwards;
+  animation: 
+    showIt .2s ease-in 7.8s backwards, 
+    moveLeft 1s ease-in-out 8s, 
+    hideIt .2s ease-in 9s forwards;
 }
 .viewing .demo-tour .demo-pill:after {
   content: '▸';
 /*  border-left: #f30a02 solid 10px;*/
   right: 5px;
-  animation: showIt .2s ease-in 11s backwards, moveRight 1s ease-in-out 12s, hideIt .2s ease-in 13s forwards;
+  animation: 
+    showIt .2s ease-in 4.8s backwards, 
+    moveRight 1s ease-in-out 5s, 
+    hideIt .2s ease-in 6s forwards;
 }
 
 .viewing .demo-tour .demo--1 {
-  animation: showText .3s ease-in .2s forwards, hideText .3s ease-out 6.5s forwards;
+  animation: 
+    showText .3s ease-in .2s forwards, 
+    hideText .3s ease-out 3s forwards;
 }
 
 .viewing .demo-tour .demo--2 {
-  animation: showText .3s ease-in 6.7s forwards, hideText .3s ease-out 13s forwards;
+  animation: 
+    showText .3s ease-in 3.2s forwards, 
+    hideText .3s ease-out 6s forwards;
 }
 
 
 .viewing .demo-tour .demo--3 {
-  animation: showText .3s ease-in 13.2s forwards, hideText .3s ease-out 19.5s forwards;
+  animation: 
+    showText .3s ease-in 6.2s forwards, 
+    hideText .3s ease-out 9s forwards;
 }
 
 @media screen and (min-width: 640px) {
   .viewing .demo-pill.demo--4 {
-    animation: openPill .5s ease-in 19.5s both, closePill .5s ease-out 23s forwards, showText .3s ease-in 19.5s forwards, hideText .3s ease-out 23s forwards;
+    animation: 
+      openPill .5s ease-in 9s both, 
+      closePill .5s ease-out 12s forwards, 
+      showText .3s ease-in 9s forwards, 
+      hideText .3s ease-out 12s forwards;
   }
 
   .viewing .demo-pill.demo--4:before {
     content: '◂';
   /*  border-right: #f30a02 solid 10px;*/
     left: -40px;
-    animation: showIt .2s ease-in 19.7s backwards, moveLeft 1s ease-in-out 21.8s, hideIt .2s ease-in 22.8s forwards;
+    animation: 
+      showIt .2s ease-in 10.8s backwards, 
+      moveLeft 1s ease-in-out 11s, 
+      hideIt .2s ease-in 12s forwards;
   }
   .viewing .demo-pill.demo--4:after {
     content: '▸';
   /*  border-left: #f30a02 solid 10px;*/
     right: -5px;
-    animation: showIt .2s ease-in 19.7s backwards, moveRight 1s ease-in-out 21.8s, hideIt .2s ease-in 22.8s forwards;
+    animation: 
+      showIt .2s ease-in 10.8s backwards, 
+      moveRight 1s ease-in-out 11s, 
+      hideIt .2s ease-in 12s forwards;
   }
 }
 
 
 .demo-pill.demo--5 {
-  animation: openPill .5s ease-in 19.5s both, closePill .5s ease-out 26s forwards, showText .3s ease-in 19.5s forwards, hideText .3s ease-out 26s forwards;
+  animation: 
+    openPill .5s ease-in 9s both, 
+    closePill .5s ease-out 12s forwards, 
+    showText .3s ease-in 9s forwards, 
+    hideText .3s ease-out 12s forwards;
   white-space: nowrap;
   position: relative;
   left: 50%;
@@ -948,22 +974,36 @@ text-shadow: 2px 2px 1px #000,
   transform: translateX(-50%);
   top: 14px;
   margin-left: -13px;
-  animation: showIt .2s ease-in 19.5s backwards, moveUp 1s ease-in-out 22s, hideIt .2s ease-in 25.8s forwards;
+  animation: 
+    showIt .2s ease-in 9s backwards, 
+    moveUp 1s ease-in-out 10s, 
+    hideIt .2s ease-in 12s forwards;
 }
 
 @media screen and (min-width: 640px) {
   .demo-pill.demo--5 {
-    animation: openPill .5s ease-in 23s both, closePill .5s ease-out 28s forwards, showText .3s ease-in 23s forwards, hideText .3s ease-out 28s forwards;
+    animation: 
+      openPill .5s ease-in 12s both, 
+      closePill .5s ease-out 15s forwards, 
+      showText .3s ease-in 12s forwards, 
+      hideText .3s ease-out 15s forwards;
   }
 
   .demo-pill.demo--5:before {
-    animation: showIt .2s ease-in 23s backwards, moveUp 1s ease-in-out 25s, hideIt .2s ease-in 27.8s forwards;
+    animation: 
+      showIt .2s ease-in 12s backwards, 
+      moveUp 1s ease-in-out 13s, 
+      hideIt .2s ease-in 15s forwards;
   }
 }
 
 
 .demo-pill.demo--6 {
-  animation: openPill .5s ease-in 26s both, closePill .5s ease-out 32s forwards, showText .3s ease-in 26s forwards, hideText .3s ease-out 32s forwards;
+  animation: 
+    openPill .5s ease-in 12s both, 
+    closePill .5s ease-out 15s forwards, 
+    showText .3s ease-in 12s forwards, 
+    hideText .3s ease-out 15s forwards;
   white-space: nowrap;
   right: 14px;
   top: -65px;
@@ -982,7 +1022,10 @@ html[lang="en-US"] .demo-pill.demo--6 {
   transform: translateX(-50%);
   top: 14px;
   margin-left: -10px;
-  animation: showIt .2s ease-in 26s backwards, moveUp 1s ease-in-out 28s, hideIt .2s ease-in 31.8s forwards;
+  animation: 
+    showIt .2s ease-in 12s backwards, 
+    moveUp 1s ease-in-out 13s, 
+    hideIt .2s ease-in 15s forwards;
 }
 html[lang="ca"] .demo-pill.demo--6:before { 
   margin-left: -15px;
@@ -994,7 +1037,11 @@ html[lang="en-US"] .demo-pill.demo--6:before {
 @media screen and (min-width: 640px) {
   .demo-pill.demo--6 {
     right: -5px;
-    animation: openPill .5s ease-in 28s both, closePill .5s ease-out 34s forwards, showText .3s ease-in 28s forwards, hideText .3s ease-out 34s forwards;
+    animation: 
+      openPill .5s ease-in 15s both, 
+      closePill .5s ease-out 18s forwards, 
+      showText .3s ease-in 15s forwards, 
+      hideText .3s ease-out 18s forwards;
   }
   html[lang="en-US"] .demo-pill.demo--6 {
     right: -10px;
@@ -1002,7 +1049,10 @@ html[lang="en-US"] .demo-pill.demo--6:before {
 
   .demo-pill.demo--6:before {
     margin-left: 14px;
-    animation: showIt .2s ease-in 28s backwards, moveUp 1s ease-in-out 30s, hideIt .2s ease-in 33.8s forwards;
+    animation: 
+      showIt .2s ease-in 15s backwards, 
+      moveUp 1s ease-in-out 16s, 
+      hideIt .2s ease-in 18s forwards;
   }
   html[lang="ca"] .demo-pill.demo--6:before {
     margin-left: 27px;
@@ -1014,7 +1064,11 @@ html[lang="en-US"] .demo-pill.demo--6:before {
 
 
 .demo-pill.demo--7 {
-  animation: openPill .5s ease-in 32s both, closePill .5s ease-out 38s forwards, showText .3s ease-in 32s forwards, hideText .3s ease-out 38s forwards;
+  animation: 
+    openPill .5s ease-in 15s both, 
+    closePill .5s ease-out 18s forwards, 
+    showText .3s ease-in 15s forwards, 
+    hideText .3s ease-out 18s forwards;
   white-space: nowrap;
   left: 5px;
   top: -56px;
@@ -1032,16 +1086,26 @@ html[lang="en-US"] .demo-pill.demo--6:before {
   transform: translateX(-50%);
   top: 14px;
   margin-left: -15px;
-  animation: showIt .2s ease-in 32s backwards, moveUp 1s ease-in-out 34s, hideIt .2s ease-in 37.8s forwards;
+  animation: 
+    showIt .2s ease-in 15s backwards, 
+    moveUp 1s ease-in-out 16s, 
+    hideIt .2s ease-in 18s forwards;
 }
 
 @media screen and (min-width: 640px) {
   .demo-pill.demo--7 {
-    animation: openPill .5s ease-in 34s both, closePill .5s ease-out 40s forwards, showText .3s ease-in 34s forwards, hideText .3s ease-out 40s forwards;
+    animation: 
+      openPill .5s ease-in 18s both, 
+      closePill .5s ease-out 21s forwards, 
+      showText .3s ease-in 18s forwards, 
+      hideText .3s ease-out 21s forwards;
   }
 
   .demo-pill.demo--7:before {
-    animation: showIt .2s ease-in 34s backwards, moveUp 1s ease-in-out 36s, hideIt .2s ease-in 39.8s forwards;
+    animation: 
+      showIt .2s ease-in 18s backwards, 
+      moveUp 1s ease-in-out 19s, 
+      hideIt .2s ease-in 21s forwards;
   }
 }
 
