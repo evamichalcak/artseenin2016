@@ -8,7 +8,6 @@
  *
  * @package ArtSeenIn2016
  */
-
 ?>
 
 	</div><!-- #content -->
@@ -48,17 +47,6 @@
 		</div><!-- .info-col -->
 	</div><!-- .project-info -->
 </section><!-- .site-branding -->
-
-<div class="login-modal">
-	<span class="lang-ca">Entra amb una xarxa social:</span><span class="lang-es">Entra con una red sociales:</span><span class="lang-en">Sign in with a social networks:</span>
-	<?php echo do_shortcode('[apsl-login-lite]'); ?>
-	<span class="lang-ca">O amb el teu mail:</span><span class="lang-es">O con tu mail:</span><span class="lang-en">Or with your mail:</span>
-	<div class="login-form">
-		<span class="register-btn"><span class="lang-ca">Registre</span><span class="lang-es">Registro</span><span class="lang-en">Register</span></span>
-		<span class="login-btn">Login</span>
-		<?php echo do_shortcode('[login-with-ajax template="modal-register"]'); ?>
-	</div>
-</div>
 
 <?php wp_footer(); ?>
 

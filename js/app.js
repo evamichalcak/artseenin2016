@@ -333,8 +333,11 @@
 		    html+='<div class="more slide-dimension"><p class="art-work-info"><span class="title">'+posts[index].custom_fields.asiTitulo[0]+'</span><br/>de '+posts[index].custom_fields.asiArtista[0]+'</p>'+posts[index].content+'</div>';
 		    html+='<div class="icon-heart-shape-outline like slide-dimension shdw-b-grey"></div><div class="icon-x dislike slide-dimension shdw-b-grey"></div></li>';
 		});
-		$(sliderList).html(html);
-		return true;
+		// check for the voteOK variable set by php
+		if ( voteOK ) {
+			$(sliderList).html(html);
+			return true;
+		}
 	}
 
 	//print winning posts 
@@ -444,6 +447,7 @@
 
 	//save post view
 	function save_post_view(post_id) {
+		console.log('!!!save post view');
 		add_post_to_viewing_data(post_id);
 		setCookie('uviews', user_viewing_data);
 		// save viewing array in cookie
@@ -564,7 +568,7 @@
 	//display thanks
 	function finish(user_voting_data) {
 		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span><span class="lang-en">Thanks for taking part!</span></li>');
-		//@TODO (voting disabled): viewmesave(user_viewing_data, user_voting_data);
+		viewmesave(user_viewing_data, user_voting_data);
 		$(document).on('asi.saved', function() {			
 			console.log('asi.saved has been fired!');
 			save_views_votes('done', user_voting_data);
