@@ -111,13 +111,26 @@ get_header(); ?>
 <?php } else { ?>
 	<div class="login-modal-wrapper">
 		<div class="login-modal">
-			<span class="lang-ca">Entra amb una xarxa social:</span><span class="lang-es">Entra con una red sociales:</span><span class="lang-en">Sign in with a social networks:</span>
+			<span class="demo-pill">
+				<span class="lang-ca">Ja hem rebut una votació des de aquesta connexió. Per poder guardar la teva, necessitem que te registres.</span>
+				<span class="lang-es">Ya hemos recibido una votacion desde tu conexión. Para poder guardar la tuya, necesitamos que te registres.</span>
+				<span class="lang-en">We have already received a vote from your connection. In order to save yours, we need you to register.</span>
+			</span>
+			<span class="lang-ca">Entra amb una xarxa social:</span>
+			<span class="lang-es">Entra con una red social:</span>
+			<span class="lang-en">Sign in with a social network:</span>
 			<?php echo do_shortcode('[apsl-login-lite]'); ?>
-			<span class="lang-ca">O amb el teu mail:</span><span class="lang-es">O con tu mail:</span><span class="lang-en">Or with your mail:</span>
+			<span class="lang-ca">O amb el teu mail:</span>
+			<span class="lang-es">O con tu mail:</span>
+			<span class="lang-en">Or with your mail:</span>
 			<div class="login-form">
-				<span class="register-btn"><span class="lang-ca">Registre</span><span class="lang-es">Registro</span><span class="lang-en">Register</span></span>
-				<span class="login-btn">Login</span>
-				<?php echo do_shortcode('[login-with-ajax template="modal-register" registration="0"]'); ?>
+				<span class="register-btn btn form-active" onclick="jQuery('.form-active').removeClass('form-active');jQuery(this).addClass('form-active');jQuery('.lwa-register').addClass('form-active');">
+					<span class="lang-ca">Registre</span>
+					<span class="lang-es">Registro</span>
+					<span class="lang-en">Register</span>
+				</span>
+				<span class="login-btn btn" onclick="jQuery('.form-active').removeClass('form-active');jQuery(this).addClass('form-active');jQuery('.lwa-form').addClass('form-active');">Login</span>
+				<?php echo do_shortcode('[login-with-ajax template="modal-register" registration="1"]'); ?>
 			</div>
 		</div>
 <?php } ?>

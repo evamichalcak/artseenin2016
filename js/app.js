@@ -114,7 +114,7 @@
 			$('#howToIntro').removeClass('logoin');
 			var tt = setTimeout(function(){
 				$('#howToIntro').addClass('logoout');
-			}, 8000);
+			}, 8);
 			$('.vote-start').on('click tap', function() {
 				$('#howToIntro').fadeOut();
 				if (showdemotour) {

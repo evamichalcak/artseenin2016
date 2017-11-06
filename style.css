@@ -420,17 +420,103 @@ html[lang="es-ES"] .lang-en {
 }
 
 /* LOGIN */
+
+.login-modal-wrapper {
+  text-shadow: none;
+  margin: 0 auto;
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+.logoout .login-modal-wrapper {
+  z-index: 1;
+  visibility: visible;
+}
+
 .login-modal {
-    position: fixed;
-    z-index: 10000;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    max-width: 480px;
-    top: 20%;
-    text-align: center;
+    background-color: #9c7e6c;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 10px rgba(30, 8, 30, .3);
+    border-radius: 2px;
+    color: #fff;
+    font-size: 16px;
+    max-width: 400px;
+    padding: 22px 18px;
+    width: 95%;
+}
+
+.login-modal .demo-pill {
+  margin-bottom: 22px;
+}
+
+.login-modal .social-networks .apsl-icon-block {
+    padding: 7px 9px;
+    margin: 10px 1px 22px;
+    text-transform: capitalize;  
+}
+
+.login-modal .social-networks .apsl-icon-block > i {
+  padding-right: 3px;
+}
+
+.login-form {
+  margin-top: 14px;
+}
+
+.register-btn,
+.login-btn {
+    border-radius: .75em .75em 0 0;
+    box-shadow: inset 1px 1px 3px rgba(96, 36, 0, .5);
+    cursor: pointer;
+    display: inline-block;
+    padding: 8px 14px 5px;
+    text-shadow: 2px 2px 4px #602400;
+}
+.tabbed-login-register,
+.form-active.btn {
+    background-color: #816350;
+    box-shadow: 2px 2px 4px rgba(96, 36, 0, .5);
+    color: #fff;
+    cursor: default;
+    text-decoration: none;
+    text-shadow: none;
+    position: relative;
+}
+.tabbed-login-register {
+    border-radius: .75em;
+    padding: 12px 8px 8px ;
+}
+
+.lwa-status-invalid {
+    background-color: #FFEBE8;
+    border: none;
+    color: #C00;
+}
+
+.login-form input {
+  border-radius: .75em;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  margin: 4px auto;
+  outline: none;
+  padding: 8px 12px;
+  width: 80%;
+}
+
+.form-active:not(.btn) {
+  display: block !important;
 }
 
 
@@ -680,28 +766,6 @@ html[lang="es-ES"] .lang-en {
 }
 
 
-.login-modal-wrapper {
-  color: #b0a9a2;
-  text-shadow: none;
-  margin: 0 auto;
-  visibility: hidden;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 0;
-}
-
-.logoout .login-modal-wrapper {
-  z-index: 1;
-  visibility: visible;
-}
 
 
 /*
