@@ -389,7 +389,8 @@ a:active {
 .ctrl-btn:hover,
 .es-es .ctrl-btn.es-es,
 .es-ca .ctrl-btn.es-ca,
-.en-en .ctrl-btn.en-en {
+.en-en .ctrl-btn.en-en,
+.de-de .ctrl-btn.de-de {
   box-shadow: 2px 3px 6px rgba(0, 0, 0, .3);
   left: -1px;
   position: relative;
@@ -397,11 +398,13 @@ a:active {
   transition: padding .2s ease-out, box-shadow .2s ease-out;
 }
 
+
 /* LANGUAGES */
 
 .es-es .lang-es {
   display: inline-block;
 }
+.de-de .lang-es,
 .es-ca .lang-es,
 .en-en .lang-es {
   display: none;
@@ -409,6 +412,7 @@ a:active {
 .es-ca .lang-ca {
   display: inline-block;
 }
+.de-de .lang-ca,
 .es-es .lang-ca,
 .en-en .lang-ca {
   display: none;
@@ -417,8 +421,18 @@ a:active {
 .en-en .lang-en {
   display: inline-block;
 }
+.de-de .lang-en,
 .es-ca .lang-en,
 .es-es .lang-en {
+  display: none;
+}
+
+.de-de .lang-de {
+  display: inline-block;
+}
+.en-en .lang-de,
+.es-ca .lang-de,
+.es-es .lang-de {
   display: none;
 }
 

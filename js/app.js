@@ -125,17 +125,26 @@
 			$('.ctrl-btn.es-ca').on('click', function() {
 				$('body').removeClass('es-es');
 				$('body').removeClass('en-en');
+				$('body').removeClass('de-de');
 				$('body').addClass('es-ca');
 			});
 			$('.ctrl-btn.es-es').on('click', function() {
 				$('body').removeClass('es-ca');
 				$('body').removeClass('en-en');
+				$('body').removeClass('de-de');
 				$('body').addClass('es-es');
 			});
 			$('.ctrl-btn.en-en').on('click', function() {
 				$('body').removeClass('es-ca');
 				$('body').removeClass('es-es');
+				$('body').removeClass('de-de');
 				$('body').addClass('en-en');
+			});
+			$('.ctrl-btn.de-de').on('click', function() {
+				$('body').removeClass('es-ca');
+				$('body').removeClass('es-es');
+				$('body').removeClass('en-en');
+				$('body').addClass('de-de');
 			});
 			// project info slideup on bottom bar
 			$('.site-branding').on('click', function() {
@@ -214,28 +223,35 @@
 		var demo1 =  '<div class="demo-tour slide-dimension">';
 		demo1 += '<span class="demo-pill"><span class="demo--1"><span class="lang-ca">Arrastra la imatge per votar</span>';
 		demo1 += '<span class="lang-es">Arrastra la imagen para votar</span>';
-		demo1 += '<span class="lang-en">Drag the image to vote</span></span>';
-		demo1 += '<span class="demo--2"><span class="lang-ca">A la dreta si t\'agrada</span>';
-		demo1 += '<span class="lang-es">A la derecha si te gusta</span>';
-		demo1 += '<span class="lang-en">To the right if you like it</span></span>';
-		demo1 += '<span class="demo--3"><span class="lang-ca">A l\'esquerra per descartar</span>';
-		demo1 += '<span class="lang-es">A la izquierda para descartar</span>';
-		demo1 += '<span class="lang-en">To the left to dismiss it</span></span></span>';
+		demo1 += '<span class="lang-en">Drag the image to vote</span>';
+		demo1 += '<span class="lang-de">Bewege das Bild um zu stimmen</span></span>';
+		demo1 += '<span class="demo--2"><span class="lang-ca">a la dreta si t\'agrada</span>';
+		demo1 += '<span class="lang-es">a la derecha si te gusta</span>';
+		demo1 += '<span class="lang-en">to the right if you like it</span>';
+		demo1 += '<span class="lang-de">nach Rechts wenn du es Dir gefällt</span></span>';
+		demo1 += '<span class="demo--3"><span class="lang-ca">a l\'esquerra per descartar</span>';
+		demo1 += '<span class="lang-es">a la izquierda para descartar</span>';
+		demo1 += '<span class="lang-en">to the left to dismiss it</span>';
+		demo1 += '<span class="lang-de">nach Links um es zu verwerfen</span></span></span>';
 		demo1 += '<span class="demo--4 demo-pill"><span class="lang-ca">O utilitza els botons</span>';
 		demo1 += '<span class="lang-es">O utiliza los botones</span>';
-		demo1 += '<span class="lang-en">Or use the buttons</span></span></div>';
+		demo1 += '<span class="lang-en">Or use the buttons</span>';
+		demo1 += '<span class="lang-de">Oder verwende die Buttons</span></span></div>';
 
 		var demo2 = '<span class="demo--5 demo-pill"><span class="lang-ca">Més info sobre l\'obra</span>';
 		demo2 += '<span class="lang-es">Más info sobre la obra</span>';
-		demo2 += '<span class="lang-en">More info about the work</span></span>';
+		demo2 += '<span class="lang-en">More info about the work</span>';
+		demo2 += '<span class="lang-de">Mehr info zum Werk</span></span>';
 
 		var demo3 = '<span class="demo--6 demo-pill"><span class="lang-ca">Comparteix el que t\'agrada</span>';
 		demo3 += '<span class="lang-es">Comparte lo que te gusta</span>';
-		demo3 += '<span class="lang-en">Share if you like it</span></span>';
+		demo3 += '<span class="lang-en">Share if you like it</span>';
+		demo3 += '<span class="lang-de">Teile, was Dir gefällt</span></span>';
 
 		var demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Més info sobre la iniciativa</span>';
 		demo4 += '<span class="lang-es">Más info sobre la iniciativa</span>';
-		demo4 += '<span class="lang-en">More info about the initiative</span></span>';
+		demo4 += '<span class="lang-en">More info about the initiative</span>';
+		demo4 += '<span class="lang-de">Mehr info zur Initiative</span></span>';
 
 		$('.viewing').append(demo1);
 		$('.viewing .more-action').append(demo2);
@@ -324,7 +340,7 @@
 		    html+='<div class="content">';
 		    html+='<div class="artist shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
 		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiTitulo[0]+'</div>';
-		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
+		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span><span class="lang-de">Gesehen bei:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
 		    html+='<div class="share">';
 		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
 		    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
@@ -563,7 +579,7 @@
 
 	//display thanks
 	function finish(user_voting_data) {
-		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span><span class="lang-en">Thanks for taking part!</span></li>');
+		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span><span class="lang-en">Thanks for taking part!</span><span class="lang-de">Danke fürs Mitmachen!</span></li>');
 		//@TODO (voting disabled): viewmesave(user_viewing_data, user_voting_data);
 		$(document).on('asi.saved', function() {			
 			console.log('asi.saved has been fired!');

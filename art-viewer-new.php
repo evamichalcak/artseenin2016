@@ -56,14 +56,25 @@ get_header();
 
 <div class="intro-text">
 	<div class="lang-buttons">
-		<a href="#!" class="demo-pill ctrl-btn es-ca">Català</a>
-		<a href="#!" class="demo-pill ctrl-btn es-es">Castellano</a>
+		<a href="#!" class="demo-pill ctrl-btn es-ca" style="display: none;">Català</a>
+		<a href="#!" class="demo-pill ctrl-btn es-es" style="display: none;">Castellano</a>
+		<a href="#!" class="demo-pill ctrl-btn de-de">Deutsch</a>
 		<a href="#!" class="demo-pill ctrl-btn en-en">English</a>
 	</div>
-	<p><span class="lang-ca">Entre Artssspot i Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
-mejores obras de arte que hemos visto este año, ahora te toca a tí: </span><span class="lang-en">Between Artssspot and Opening BCN we have selected 100 of the
-best works of art that we have seen this year, now it's up to you:</span></p>
-<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p>
+	<p>
+		<span class="lang-ca">Entre Artssspot i Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span>
+		<span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
+mejores obras de arte que hemos visto este año, ahora te toca a tí: </span>
+		<span class="lang-en">Between Artssspot and Opening BCN we have selected 100 of the
+best works of art that we have seen this year, now it's up to you:</span>
+		<span class="lang-de">Artssspot hat 100 der besten Kunstwerke, die wir im letzten Jahr gesehen haben ausgewählt, jetzt bist Du dran:</span>
+	</p>
+	<p>
+		<span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span>
+		<span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span>
+		<span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span>
+		<span class="lang-de">Geh die Asuwahl durch, stimme für deine Favoriten, aber vorallem, entdecke die beste zürcher Kunst des Jahres 2017.</span>
+	</p>
 <a href="#" class="nav-btn vote-start"><i class="icon-arrow-right shdw-b-brown"></i></a>
 <!-- <p>Una iniciativa de:</p>
 <p><a href="http://www.artssspot.com" target="_blank" class="artssspot"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-artssspot.png" width="100" height="100" alt=""></a><span class="spacer"></span><a href="https://www.facebook.com/opening.bcn" target="_blank" class="opening"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-opening.png" width="70" height="70" alt=""></a></p>
@@ -77,7 +88,7 @@ best works of art that we have seen this year, now it's up to you:</span></p>
 	<span data-text="Art" class="backgroundclip textshadow word-art">Art </span> 
 	<span data-text="seen" class="backgroundclip textshadow size word-seen">seen </span> 
 	<span data-text="in" class="backgroundclip textshadow word-in">in </span> 
-	<span data-text="BCN&nbsp;'17" class="backgroundclip textshadow word-bcn">BCN&nbsp;'17</span>
+	<span data-text="ZH&nbsp;'17" class="backgroundclip textshadow word-bcn">ZH&nbsp;'17</span>
 </div>
 
 	    	
