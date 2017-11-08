@@ -40,6 +40,14 @@ $blogposts2 = get_posts(array(
             echo $post . ',';
         }
 
+$user_id = get_current_user_id();                            // Get our current user ID
+
+$user_meta1 = get_user_meta( get_current_user_id(), 'vvi', true);
+$user_meta2 = get_user_meta( get_current_user_id(), 'vvo', true);
+
+echo '<br><br>Current user views: ' . $user_meta1 . '<br><br>';
+echo 'Current user votes: ' . $user_meta2 . '<br><br>';
+
 
 #reset user viewing info
 #reset post views (editable)

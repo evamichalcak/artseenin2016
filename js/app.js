@@ -149,6 +149,7 @@
 			//print_winners(post_query);
 			//print_ranking(post_query);
 		}
+		console.log('user_viewing_data on init: ' + user_viewing_data);
 	}
 
 	function slider_setup() {
@@ -244,7 +245,7 @@
 
 		var tt = setTimeout(function(){
 			$('.demo-tour, .demo-pill').hide();
-		}, 40500);
+		}, 22000);
 
 	}
 
@@ -259,9 +260,9 @@
 	function get_posts() {
 		var wpQueryString;
 		if(voteOpen) {	
-			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmevotescount&order=DESC&count=12';
+			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmecount&order=DESC&count=12';
 		} else {
-			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmevotescount&order=DESC&count=12';
+			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmecount&order=DESC&count=12';
 		}
 		$.ajax({
 				url: AppAPI.url + wpQueryString,
@@ -482,18 +483,21 @@
 
 	//actions on dismissing
 	function on_dismiss(post_id) {
+		console.log('viewing cookie: ' + user_viewing_data);
 		update_viewing_class(post_id);
-		save_post_view(post_id);
+		//save_post_view(post_id);
 		checkNewVotes(1);
+		viewmeviewvotestore(post_id, 0);
 		update_image_counter();
 		return true;
 	}
 
 	function on_like(post_id) {
 		update_viewing_class(post_id);
-		save_post_view(post_id);
-		save_post_vote(post_id);
+		//save_post_view(post_id);
+		//save_post_vote(post_id);
 		checkNewVotes(1);
+		viewmeviewvotestore(post_id, 1);
 		update_image_counter();
 		return true;
 	}
