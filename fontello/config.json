@@ -103,6 +103,24 @@
       ]
     },
     {
+      "uid": "616b755d0f4c7d2dc7a1dcc2e5427039",
+      "css": "down-open",
+      "code": 59395,
+      "src": "elusive"
+    },
+    {
+      "uid": "c0a07aca383ff2a164a4d691fa46e35c",
+      "css": "left-open",
+      "code": 59396,
+      "src": "elusive"
+    },
+    {
+      "uid": "dc4a03854ef986d64565143bea4241aa",
+      "css": "right-open",
+      "code": 59397,
+      "src": "elusive"
+    },
+    {
       "uid": "ae17b41527779db7595ac49ae1c1e835",
       "css": "facebook",
       "code": 59395,
