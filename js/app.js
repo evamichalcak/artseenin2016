@@ -135,9 +135,9 @@
 				$('body').addClass('es-es');
 			});
 			$('.ctrl-btn.en-en').on('click', function() {
+				$('body').removeClass('de-de');
 				$('body').removeClass('es-ca');
 				$('body').removeClass('es-es');
-				$('body').removeClass('de-de');
 				$('body').addClass('en-en');
 			});
 			$('.ctrl-btn.de-de').on('click', function() {
@@ -228,11 +228,11 @@
 		demo1 += '<span class="demo--2"><span class="lang-ca">a la dreta si t\'agrada</span>';
 		demo1 += '<span class="lang-es">a la derecha si te gusta</span>';
 		demo1 += '<span class="lang-en">to the right if you like it</span>';
-		demo1 += '<span class="lang-de">nach Rechts wenn du es Dir gefällt</span></span>';
+		demo1 += '<span class="lang-de">nach Rechts, wenn es Dir gefällt</span></span>';
 		demo1 += '<span class="demo--3"><span class="lang-ca">a l\'esquerra per descartar</span>';
 		demo1 += '<span class="lang-es">a la izquierda para descartar</span>';
 		demo1 += '<span class="lang-en">to the left to dismiss it</span>';
-		demo1 += '<span class="lang-de">nach Links um es zu verwerfen</span></span></span>';
+		demo1 += '<span class="lang-de">nach Links, um es zu verwerfen</span></span></span>';
 		demo1 += '<span class="demo--4 demo-pill"><span class="lang-ca">O utilitza els botons</span>';
 		demo1 += '<span class="lang-es">O utiliza los botones</span>';
 		demo1 += '<span class="lang-en">Or use the buttons</span>';
@@ -248,10 +248,10 @@
 		demo3 += '<span class="lang-en">Share if you like it</span>';
 		demo3 += '<span class="lang-de">Teile, was Dir gefällt</span></span>';
 
-		var demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Més info sobre la iniciativa</span>';
-		demo4 += '<span class="lang-es">Más info sobre la iniciativa</span>';
-		demo4 += '<span class="lang-en">More info about the initiative</span>';
-		demo4 += '<span class="lang-de">Mehr info zur Initiative</span></span>';
+		var demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Info sobre la iniciativa</span>';
+		demo4 += '<span class="lang-es">Info sobre la iniciativa</span>';
+		demo4 += '<span class="lang-en">Info about the initiative</span>';
+		demo4 += '<span class="lang-de">Info zur Initiative</span></span>';
 
 		$('.viewing').append(demo1);
 		$('.viewing .more-action').append(demo2);
