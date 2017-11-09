@@ -1130,7 +1130,7 @@ text-shadow: 2px 2px 1px #000,
     showText .3s ease-in 15s forwards, 
     hideText .3s ease-out 18s forwards;
   white-space: nowrap;
-  left: 5px;
+  left: 35px;
   top: -46px;
 }
 @media screen and (max-width: 480px) {

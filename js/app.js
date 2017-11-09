@@ -233,9 +233,9 @@
 		demo3 += '<span class="lang-es">Comparte lo que te gusta</span>';
 		demo3 += '<span class="lang-en">Share if you like it</span></span>';
 
-		var demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Més info sobre la iniciativa</span>';
-		demo4 += '<span class="lang-es">Más info sobre la iniciativa</span>';
-		demo4 += '<span class="lang-en">More info about the initiative</span></span>';
+		var demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Info sobre la iniciativa</span>';
+		demo4 += '<span class="lang-es">Info sobre la iniciativa</span>';
+		demo4 += '<span class="lang-en">Info about the initiative</span></span>';
 
 		$('.viewing').append(demo1);
 		$('.viewing .more-action').append(demo2);
