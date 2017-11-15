@@ -6,11 +6,17 @@
 	var sliderList = "#tinderslideList";
 	var cookieName = "artseeninbcn2016";
 	var loaderDisplay = "#loader-percentage";
+	// var savingMessage = "#savingMessage";
 	var thankYouSlide = "#thankYouSlide";
 	var savedVotes= "#savedVotes";
 	var unsavedVotes= "#unsavedVotes";
+	// var saveVotes = "#saveVotes";
+	// var saveVotesText = "#saveVotesText";
+	// var saveVotesSaved = "#saveVotesSaved";
+	// var saveVotesContainer = "#saveVotesContainer";
 	var counterContainer = "#counterContainer";
 	var totalContainer = "#totalContainer";
+	// var resetVotes = "#resetVotes";
 	var hideOnLast = ".hide-on-last";
 	var dislike = ".dislike-action";
 	var like = ".like-action";
@@ -18,11 +24,11 @@
 	var previewOnlyBtn = "#previewOnly_btn";
 	var howToIntro = "#howToIntro";
 	var rankingContainer = "#ranking_container";
-	var expoContainer = "#art-viewer";
+	var expoContainer = "#expo_container";
 
 	//constans
 	var maxImages = 12;
-	var winningImages = 25;
+	var winningImages = 100;
 	var maxPreloadImages = 10;
 	var voteOpen = true;
 
@@ -31,6 +37,7 @@
 	var posts;
 	var image_loader = 0;
 	var imgCounter = 1;
+	// var hasNewVotes = false;
 	var showdemotour = false;
 
 
@@ -46,120 +53,69 @@
 
 		var previous_actions = get_user_viewing_info();
 		var cookie_actions = getCookie('uviews');
+		var cookie_votes = getCookie('uvotes');
 		var info = savedVotes;
-	    var printable_posts = post_query;
 
 		if (voteOpen) {
-
-			// if either cookie or user variable is "done", go to preview-only
-			if ((cookie_actions === "done") || (previous_actions === 1)) {
-				//clean_screen();
-				console.log('else');
-				preload_images(post_query);
-				$(loaderDisplay).on('asi.allLoaded', function() {
-					print_preview_only(post_query, maxImages);
-					preview_only_setup();
-				});
-			} else {
-				// if there is a cookie
-				if (cookie_actions !== undefined) {
-					// if there is a cookie, load its content as it prevails
-					console.log('cookie beeing read');
-					user_viewing_data = cookie_actions;
-					previous_actions = cookie_actions.split(',');
-					info = unsavedVotes;
-				} else if (previous_actions === 0) {		
-					showdemotour = true;	
-				} 	
-				// if user previus actions has content, clean up post-query, update maxImages and save cookie
-				if (previous_actions !== 0) {	
-					printable_posts = clean_post_array(previous_actions, post_query);
-					maxImages -= previous_actions.length;
-					console.log('printable_posts: ' + printable_posts);
-					setCookie('uviews', user_viewing_data);
-				}
-				// print jTinder
-				preload_images(post_query);
-				$(loaderDisplay).on('asi.allLoaded', function() {
-					print_posts(printable_posts);
-					slider_setup();
-				});
+			// post display
+			// if there are no previous actions but a cookie, load them from cookie
+			if ((previous_actions == '0') && (cookie_actions != undefined)) {
+				console.log('cookie beeing read');
+				user_viewing_data = cookie_actions;
+				user_voting_data = cookie_votes;
+				previous_actions = cookie_actions.split(',');
+				info = unsavedVotes;
 			}
 
+			// there are no previous actions, setup slider and determine whether to show demo
+			if (previous_actions == '0') {
+				preload_images(post_query);
+				$(loaderDisplay).on('asi.allLoaded', function() {
+					print_posts(post_query);
+					slider_setup();
+				});
+				showdemotour = true;
 
+			// if there are previous actions, setup slider excluding viewed posts and inform user
+			} else if (previous_actions instanceof Array) {
+				preload_images(post_query);
+				$(loaderDisplay).on('asi.allLoaded', function() {
+					console.log('init');
+					print_posts(clean_post_array(previous_actions, post_query));
+					slider_setup();
+				});
+				inform_user(info);
 
+			// if previous actions is "done"
+			} else {
+				// ***REFACTOR*** print in slider, not in jTinder
+				//clean_screen();
+				preview_only();
+			}
 
+			// event setup
+			// saves viewing and voting into DB ***REMOVE***
+			// $(saveVotes).on('click', function() {
+			// 	save_views_votes(user_viewing_data, user_voting_data); // removed function
+			// });
 
-			// // if either cookie or user variable is "done", go to preview-only
-			// if ((cookie_actions === "done") || (previous_actions === 1)) {
-			// 	//clean_screen();
-			// 	preview_only();
-			// } else {
-			// 	// no info in user variable
-			// 	if (previous_actions === 0) {
-			// 		// if there is a cookie, load its content
-			// 		if (cookie_actions !== undefined) {
-			// 			console.log('cookie beeing read');
-			// 			user_viewing_data = cookie_actions;
-			// 			//user_voting_data = cookie_votes;
-			// 			previous_actions = cookie_actions.split(',');
-			// 			info = unsavedVotes;
-			// 		} else {					
-			// 			showdemotour = true;
-			// 		}
-			// 	} else if (cookie_actions !== undefined) {
-			// 		setCookie('uviews', user_viewing_data);	
+			// marks state as unsaved votes and informs user ***REMOVE***
+			// $(allContainer).on('asi.newVotes', function() {
+			// 	console.log('asi.newVotes');
+			// 	if (hasNewVotes == true) {
+			// 		$(saveVotesSaved).hide();
+			// 		$(saveVotesText).show();
+			// 	} else {
+			// 		$(saveVotesText).hide();
+			// 		$(saveVotesSaved).show();
 			// 	}
-			// 	preload_images(post_query);
-			// 	$(loaderDisplay).on('asi.allLoaded', function() {
-			// 		print_posts(post_query);
-			// 		slider_setup();
-			// 	});
-			// }
+			// 	$(saveVotesContainer).show();
+			// });
 
-
-
-
-			// // post display
-			// // if there are no previous actions but a cookie, load them from cookie
-			// if ((previous_actions == '0') && (cookie_actions != undefined)) {
-			// 	console.log('cookie beeing read');
-			// 	user_viewing_data = cookie_actions;
-			// 	//user_voting_data = cookie_votes;
-			// 	previous_actions = cookie_actions.split(',');
-			// 	info = unsavedVotes;
-			// }
-
-			// // there are no previous actions, setup slider and determine whether to show demo
-			// if (previous_actions == '0') {
-			// 	preload_images(post_query);
-			// 	$(loaderDisplay).on('asi.allLoaded', function() {
-			// 		print_posts(post_query);
-			// 		slider_setup();
-			// 	});
-			// 	showdemotour = true;
-
-			// // if there are previous actions, setup slider excluding viewed posts and inform user
-			// } else if (previous_actions instanceof Array) {
-			// 	setCookie('uviews', user_viewing_data);
-			// 	preload_images(post_query);
-			// 	$(loaderDisplay).on('asi.allLoaded', function() {
-			// 		console.log('init');
-			// 		print_posts(clean_post_array(previous_actions, post_query));
-			// 		slider_setup();
-			// 	});
-			// 	inform_user(info);
-
-			// // if previous actions is "done"
-			// } else {
-			// 	// ***REFACTOR*** print in slider, not in jTinder
-			// 	//clean_screen();
-			// 	preview_only();
-			// }
-
-
-
-
+			// reinit voting ***REMOVE***
+			// $(resetVotes).on('click', function() {
+			// 	reinit();
+			// });
 
 			// like binding
 			$(like).on('click', function() {
@@ -208,12 +164,7 @@
 
 		// vote is not open, print winners, print ranking, set to viewing only
 		} else {
-			console.log('else');
-			preload_images(post_query);
-			$(loaderDisplay).on('asi.allLoaded', function() {
-				print_preview_only(post_query, winningImages);
-				preview_only_setup();
-			});
+			//print_winners(post_query);
 			//print_ranking(post_query);
 		}
 		console.log('user_viewing_data on init: ' + user_viewing_data);
@@ -223,11 +174,11 @@
 		// if post in query, show requested post
 		show_start_post();
 		// if all posts are through, hide messages and start finish actions ***REMOVE***
-		// if (imgCounter > maxImages) {
-		// 	$(unsavedVotes).hide();
-		// 	$(savedVotes).hide();
-		// 	finish();
-		// }
+		if (imgCounter >= maxImages) {
+			$(unsavedVotes).hide();
+			$(savedVotes).hide();
+			finish(user_voting_data);
+		}
 		// update image counter
 		$(counterContainer).html(imgCounter);
 		$(totalContainer).html(maxImages);
@@ -235,11 +186,11 @@
 		$(slider).jTinder({
 		    onDislike: function (item) {
 		        console.log('Dislike image ' + $(item).data('postid'));
-		        on_swipe($(item).data('postid'), 0);
+		        on_dismiss($(item).data('postid'));
 		    },
 		    onLike: function (item) {
 		        console.log('Like image ' + $(item).data('postid'));
-		        on_swipe($(item).data('postid'), 1);
+		        on_like($(item).data('postid'));
 		    },
 		    animationRevertSpeed: 200,
 		    animationSpeed: 400,
@@ -274,51 +225,17 @@
 
 
 	// ***REFACTOR***: no previeOnlyBtn, show message and setup slider in previw-only mode!
-	function preview_only_setup() {
-		show_start_post();
-		// update image counter
-		$(counterContainer).html(imgCounter);
-		$(totalContainer).html(maxImages);
-		// setup jTinder ***REFACTOR*** this needs to distinguish preview-only state!
-		// $(slider).jTinder({
-		//     onDislike: function (item) {
-		//         console.log('Dislike image ' + $(item).data('postid'));
-		//         on_swipe($(item).data('postid'), 0);
-		//     },
-		//     onLike: function (item) {
-		//         console.log('Like image ' + $(item).data('postid'));
-		//         on_swipe($(item).data('postid'), 1);
-		//     },
-		//     animationRevertSpeed: 200,
-		//     animationSpeed: 400,
-		//     threshold: 1,
-		//     likeSelector: '.like',
-		//     dislikeSelector: '.dislike'
-		// });
-		// add viewing state to visible post
-		$('.slider-image:last-child').addClass('viewing');
-		// write sharing links into footer ***REFACTOR***
-		$('.fbshare-action').attr("href", $('.viewing .share-fb').attr('href'));
-		$('.washare-action').attr("href", $('.viewing .share-wa').attr('href'));
-		$('.twshare-action').attr("href", $('.viewing .share-tw').attr('href'));
-		// write post content into more-viewer, set up more-viewer events ***REFACTOR***
-		$('.more-viewer .more-viewer-inner').html($('.viewing .more').html());
-		$('.more-viewer .more-viewer-inner').data('postid', $('.viewing').data('postid'));
-		$('#tinderslide').on('click touchstart', '.more-action', function(e) {
-			e.preventDefault();
-			$(this).toggleClass('open');
-			$('.more, .more-viewer').toggleClass('show');
-			var p_id = $('.more-viewer').data('postid');
-			// google analytics event ***REFACTOR***
-			if ($('.more').hasClass('show')) {
-				//window.dataLayer.push({'event': 'clickOnMore', 'postid': p_id});
-			}
-		});
-		// deactivate jTinder events on slide info
-		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
-			e.stopPropagation();
-		});	
-		$(previewOnly).show();
+	function preview_only() {
+		console.log('prev');
+			$(previewOnlyBtn).on('click', function() {
+				preload_images(post_query);
+				$(loaderDisplay).on('asi.allLoaded', function() {
+					print_posts(post_query);
+					slider_setup();
+				});
+			});
+			$(previewOnly).show();
+		console.log('prev2');
 	}
 
 	function demoTour() {
@@ -437,6 +354,7 @@
 		    html+='<div class="img';
 		    html+=(index > (posts.length - 3)) ? ' img-load' : '';
 		    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
+		    //html+='<img class="img" width="450" height="450" src="'+posts[index].thumbnail_images.full.url+'"/>';
 		    html+='<div class="content">';
 		    html+='<div class="artist shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
 		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiTitulo[0]+'</div>';
@@ -457,56 +375,18 @@
 	}
 
 	//print winning posts as slider ***REFACTOR*** for viewing only state during voting
-
-	function print_preview_only(posts, postcount) {
-		console.log('printing previw only');
-		var printable = post_query.slice(-postcount);
-		console.log(printable);
-		var html = '';
-		$.each(posts, function(index, element) {
-		    html+='<li class="slider-image slide-dimension panel'+index+'" id="p'+posts[index].id+'" data-postid="'+posts[index].id+'">';
-		    html+='<div class="img';
-		    html+=(index > (posts.length - 3)) ? ' img-load' : '';
-		    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
-		    html+='<div class="content">';
-		    html+='<div class="artist shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
-		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiTitulo[0]+'</div>';
-		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
-		    html+='<div class="share">';
-		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
-		    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
-		    html+='<a href="https://twitter.com/home?status='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
-		    html+='</div></div></li>';
+	function print_winners(posts) {
+		console.log('printing posts');
+		var last25 = post_query.slice(-25);
+		var html ='<div class="my-slider"><ul>';
+		$.each(last25, function(index, element) {
+			html+='<li>' + posts[index].custom_fields.asiArtista[0] + '</li>';
 		});
-		$(sliderList).html(html);
+		html+='</ul></div>';
+		$(expoContainer).html(html);
+		$('.my-slider').unslider();
 		return true;
 	}
-
-	// function print_preview_only(posts, postcount) {
-	// 	console.log('printing previw only');
-	// 	var printable = post_query.slice(-postcount);
-	// 	console.log(printable);
-	// 	var html ='<div class="my-slider slide-dimension"><ul>';
-	// 	$.each(printable, function(index, element) {
-	// 		html+='<li class="slider-image slide-dimension panel'+index+'" id="p'+posts[index].id+'" data-postid="'+posts[index].id+'">';
-	// 	    html+='<div class="img';
-	// 	    html+=(index > (posts.length - 3)) ? ' img-load' : '';
-	// 	    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
-	// 	    html+='<div class="content">';
-	// 	    html+='<div class="artist shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
-	// 	    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiTitulo[0]+'</div>';
-	// 	    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
-	// 	    html+='<div class="share">';
-	// 	    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
-	// 	    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
-	// 	    html+='<a href="https://twitter.com/home?status='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
-	// 	    html+='</div></div>';
-	// 	});
-	// 	html+='</ul></div>';
-	// 	$(expoContainer).html(html);
-	// 	$('.my-slider').unslider();
-	// 	return true;
-	// }
 
 	//print ranking 
 	function print_ranking(posts) {
@@ -565,12 +445,24 @@
 		}
 	}
 
-	// // creating string array with viewing info or adding new post to it
-	// function add_post_to_viewing_data(post_id) {
-	// 	if ((user_viewing_data == undefined) || (user_viewing_data.length <= 0)) {
-	// 		user_viewing_data = post_id;
+	// creating string array with viewing info or adding new post to it
+	function add_post_to_viewing_data(post_id) {
+		// ***REFACTOR*** this probably needs to be "user_viewing_data !== undefined" or "user_viewing_data.length <= 0"
+		if ((user_viewing_data == undefined) || (user_viewing_data.length > 0)) {
+			user_viewing_data += ',' + post_id;
+		} else {
+			user_viewing_data += post_id;
+		}
+		return true;
+	}
+
+	// ***REMOVE*** creating string array with voting info or adding new post to it 
+	// function add_post_to_voting_data(post_id) {
+	// 	// ***REFACTOR*** this probably needs to be "user_voting_data !== undefined" or "user_voting_data.length <= 0"
+	// 	if ((user_voting_data == undefined) || (user_voting_data.length > 0)) {
+	// 		user_voting_data += ',' + post_id;
 	// 	} else {
-	// 		user_viewing_data += ',' + post_id;
+	// 		user_voting_data += post_id;
 	// 	}
 	// 	return true;
 	// }
@@ -592,24 +484,21 @@
 	//-----------------------------------------
 
 	//save post view to local array and cookie ***REFACTOR*** this is probably not needed or it should save view also to DB
-	function update_cookie(post_id) {
-		console.log('update cookie');
-		if ((user_viewing_data == undefined) || (user_viewing_data.length <= 0)) {
-			user_viewing_data = post_id;
-		} else {
-			user_viewing_data += ',' + post_id;
-		}
+	function save_post_view(post_id) {
+		console.log('!!!save post view');
+		add_post_to_viewing_data(post_id);
 		setCookie('uviews', user_viewing_data);
 		// save viewing array in cookie
+
 		return true;
 	}
 
 	//save post vote as cookie ***REFACTOR*** this is probably not needed, it should save vote as comment instead
-	// function save_post_vote(post_id) {
-	// 	// add_post_to_voting_data(post_id); // removed function
-	// 	setCookie('uvotes', user_voting_data);
-	// 	return true;
-	// }
+	function save_post_vote(post_id) {
+		// add_post_to_voting_data(post_id); // removed function
+		setCookie('uvotes', user_voting_data);
+		return true;
+	}
 
 	//update markup on slide change
 	function update_viewing_class(post_id) {
@@ -629,28 +518,51 @@
 		return true;
 	}
 
-	//actions on swipe, recieves vote (0 or 1)
-	function on_swipe(post_id, vote) {
+	//actions on dismissing ***REFACTOR*** update viewing, save view into DB, update cookie 
+	function on_dismiss(post_id) {
 		console.log('viewing cookie: ' + user_viewing_data);
 		// update jTinder view
 		update_viewing_class(post_id);
-		//update cookie
-		update_cookie(post_id);
+		// ***ADD*** save to cookie or call save_post_veiw
+		//save_post_view(post_id);
+		// ***REMOVE****
+		//checkNewVotes(1);
 		// save view to DB
-		viewmeviewvotestore(post_id, vote);
+		viewmeviewvotestore(post_id, 0);
 		// update counter
 		update_image_counter();
 		return true;
 	}
 
+	function on_like(post_id) {
+		update_viewing_class(post_id);
+		// ***ADD*** save to cookie or call save_post_veiw
+		//save_post_view(post_id);
+		//save_post_vote(post_id);
+		// ***REMOVE****
+		//checkNewVotes(1);
+		// save view to DB and generate comment
+		viewmeviewvotestore(post_id, 1);
+		// update counter
+		update_image_counter();
+		return true;
+	}
+
+	// ***REMOVE**** this was only needed to show message that saving is needed
+	// function checkNewVotes(toggle) {
+	// 	console.log('checking new votes');
+	// 	if (toggle != hasNewVotes) {
+	// 		hasNewVotes = toggle;
+	// 		$(allContainer).trigger('asi.newVotes');
+	// 	}
+	// }
+
 	function update_image_counter() {
-		console.log(imgCounter);
 		// if all images are viewed, do finish actions
 		if (imgCounter >= maxImages) {
 			$(unsavedVotes).hide();
 			$(savedVotes).hide();
-			finish();
-			console.log('finish executed')
+			finish(user_voting_data);
 		} else {
 			// update counter		
 			imgCounter++;
@@ -690,27 +602,48 @@
 
 	//-----------------------------------------
 
+	// actions on exit ***REMOVE*** bulk DB save is not needed anymore
+	// function save_views_votes(user_viewing_data, user_voting_data) {
+	// 	viewmeusersave(user_viewing_data, user_voting_data);
+	// 	//checkNewVotes(0);
+	// 	//alert_user
+	// 	return null;
+	// }
 
 	// actions on exit ***REFACTOR*** what does hideOnLast hide?
 	function clean_screen() {
+		$(hideOnLast).hide();
 		$(thankYouSlide).show();
 		$(allContainer).addClass('finished');
 		return true;
 	}
  
-	// save finish and display thanks
-	function finish() {
-		// set user meta and cookie to "done"
-		viewmeusersave('done', user_voting_data);
-		setCookie('uviews', 'done');
-		// show thanks
+	//display thanks
+	function finish(user_voting_data) {
 		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span><span class="lang-en">Thanks for taking part!</span></li>');
-		clean_screen();
-		$(hideOnLast).hide();
+		// ***REMOVE*** bulk save to DB is not needed anymore
+		// viewmesave(user_viewing_data, user_voting_data);
+		// ***REFACTOR*** not waiting for asi.saved anymore
+		$(document).on('asi.saved', function() {			
+			console.log('asi.saved has been fired!');
+			// save_views_votes('done', user_voting_data); // removed function
+			// $(saveVotesContainer).hide();
+			clean_screen();
+			// ***REFACTOR*** cookies should not be deleted but set to 'done'
+			deleteCookie('uviews');
+			deleteCookie('uvotes');
+			// ***REMOVE*** duplicte from clean_screen?
+			$(hideOnLast).hide();
+		});
 		return true;
 	}
 
-
+	// ***REMOVE*** reinit not possible anymore
+	// function reinit() {
+	// 	deleteCookie('uviews');
+	// 	deleteCookie('uvotes');
+	// 	location.reload();
+	// }
 
 // EXEC!!!!!!
 get_posts();
