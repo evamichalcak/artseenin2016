@@ -6,17 +6,17 @@
 	var sliderList = "#tinderslideList";
 	var cookieName = "artseeninbcn2016";
 	var loaderDisplay = "#loader-percentage";
-	var savingMessage = "#savingMessage";
+	// var savingMessage = "#savingMessage";
 	var thankYouSlide = "#thankYouSlide";
 	var savedVotes= "#savedVotes";
 	var unsavedVotes= "#unsavedVotes";
-	var saveVotes = "#saveVotes";
-	var saveVotesText = "#saveVotesText";
-	var saveVotesSaved = "#saveVotesSaved";
-	var saveVotesContainer = "#saveVotesContainer";
+	// var saveVotes = "#saveVotes";
+	// var saveVotesText = "#saveVotesText";
+	// var saveVotesSaved = "#saveVotesSaved";
+	// var saveVotesContainer = "#saveVotesContainer";
 	var counterContainer = "#counterContainer";
 	var totalContainer = "#totalContainer";
-	var resetVotes = "#resetVotes";
+	// var resetVotes = "#resetVotes";
 	var hideOnLast = ".hide-on-last";
 	var dislike = ".dislike-action";
 	var like = ".like-action";
@@ -37,7 +37,7 @@
 	var posts;
 	var image_loader = 0;
 	var imgCounter = 1;
-	var hasNewVotes = false;
+	// var hasNewVotes = false;
 	var showdemotour = false;
 
 
@@ -95,25 +95,28 @@
 
 			// event setup
 			// saves viewing and voting into DB ***REMOVE***
-			$(saveVotes).on('click', function() {
-				save_views_votes(user_viewing_data, user_voting_data);
-			});
+			// $(saveVotes).on('click', function() {
+			// 	save_views_votes(user_viewing_data, user_voting_data); // removed function
+			// });
+
 			// marks state as unsaved votes and informs user ***REMOVE***
-			$(allContainer).on('asi.newVotes', function() {
-				console.log('asi.newVotes');
-				if (hasNewVotes == true) {
-					$(saveVotesSaved).hide();
-					$(saveVotesText).show();
-				} else {
-					$(saveVotesText).hide();
-					$(saveVotesSaved).show();
-				}
-				$(saveVotesContainer).show();
-			});
+			// $(allContainer).on('asi.newVotes', function() {
+			// 	console.log('asi.newVotes');
+			// 	if (hasNewVotes == true) {
+			// 		$(saveVotesSaved).hide();
+			// 		$(saveVotesText).show();
+			// 	} else {
+			// 		$(saveVotesText).hide();
+			// 		$(saveVotesSaved).show();
+			// 	}
+			// 	$(saveVotesContainer).show();
+			// });
+
 			// reinit voting ***REMOVE***
-			$(resetVotes).on('click', function() {
-				reinit();
-			});
+			// $(resetVotes).on('click', function() {
+			// 	reinit();
+			// });
+
 			// like binding
 			$(like).on('click', function() {
 				$(slider).jTinder('like');
@@ -221,9 +224,9 @@
 	}
 
 
+	// ***REFACTOR***: no previeOnlyBtn, show message and setup slider in previw-only mode!
 	function preview_only() {
 		console.log('prev');
-			// ***REFACTOR***: no previeOnlyBtn!
 			$(previewOnlyBtn).on('click', function() {
 				preload_images(post_query);
 				$(loaderDisplay).on('asi.allLoaded', function() {
@@ -454,15 +457,15 @@
 	}
 
 	// ***REMOVE*** creating string array with voting info or adding new post to it 
-	function add_post_to_voting_data(post_id) {
-		// ***REFACTOR*** this probably needs to be "user_voting_data !== undefined" or "user_voting_data.length <= 0"
-		if ((user_voting_data == undefined) || (user_voting_data.length > 0)) {
-			user_voting_data += ',' + post_id;
-		} else {
-			user_voting_data += post_id;
-		}
-		return true;
-	}
+	// function add_post_to_voting_data(post_id) {
+	// 	// ***REFACTOR*** this probably needs to be "user_voting_data !== undefined" or "user_voting_data.length <= 0"
+	// 	if ((user_voting_data == undefined) || (user_voting_data.length > 0)) {
+	// 		user_voting_data += ',' + post_id;
+	// 	} else {
+	// 		user_voting_data += post_id;
+	// 	}
+	// 	return true;
+	// }
 
 
 	//inform user that they have already started voting
@@ -492,7 +495,7 @@
 
 	//save post vote as cookie ***REFACTOR*** this is probably not needed, it should save vote as comment instead
 	function save_post_vote(post_id) {
-		add_post_to_voting_data(post_id);
+		// add_post_to_voting_data(post_id); // removed function
 		setCookie('uvotes', user_voting_data);
 		return true;
 	}
@@ -523,7 +526,7 @@
 		// ***ADD*** save to cookie or call save_post_veiw
 		//save_post_view(post_id);
 		// ***REMOVE****
-		checkNewVotes(1);
+		//checkNewVotes(1);
 		// save view to DB
 		viewmeviewvotestore(post_id, 0);
 		// update counter
@@ -537,7 +540,7 @@
 		//save_post_view(post_id);
 		//save_post_vote(post_id);
 		// ***REMOVE****
-		checkNewVotes(1);
+		//checkNewVotes(1);
 		// save view to DB and generate comment
 		viewmeviewvotestore(post_id, 1);
 		// update counter
@@ -546,13 +549,13 @@
 	}
 
 	// ***REMOVE**** this was only needed to show message that saving is needed
-	function checkNewVotes(toggle) {
-		console.log('checking new votes');
-		if (toggle != hasNewVotes) {
-			hasNewVotes = toggle;
-			$(allContainer).trigger('asi.newVotes');
-		}
-	}
+	// function checkNewVotes(toggle) {
+	// 	console.log('checking new votes');
+	// 	if (toggle != hasNewVotes) {
+	// 		hasNewVotes = toggle;
+	// 		$(allContainer).trigger('asi.newVotes');
+	// 	}
+	// }
 
 	function update_image_counter() {
 		// if all images are viewed, do finish actions
@@ -600,12 +603,12 @@
 	//-----------------------------------------
 
 	// actions on exit ***REMOVE*** bulk DB save is not needed anymore
-	function save_views_votes(user_viewing_data, user_voting_data) {
-		viewmeusersave(user_viewing_data, user_voting_data);
-		checkNewVotes(0);
-		//alert_user
-		return null;
-	}
+	// function save_views_votes(user_viewing_data, user_voting_data) {
+	// 	viewmeusersave(user_viewing_data, user_voting_data);
+	// 	//checkNewVotes(0);
+	// 	//alert_user
+	// 	return null;
+	// }
 
 	// actions on exit ***REFACTOR*** what does hideOnLast hide?
 	function clean_screen() {
@@ -619,13 +622,14 @@
 	function finish(user_voting_data) {
 		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span><span class="lang-en">Thanks for taking part!</span></li>');
 		// ***REMOVE*** bulk save to DB is not needed anymore
-		viewmesave(user_viewing_data, user_voting_data);
+		// viewmesave(user_viewing_data, user_voting_data);
 		// ***REFACTOR*** not waiting for asi.saved anymore
 		$(document).on('asi.saved', function() {			
 			console.log('asi.saved has been fired!');
-			save_views_votes('done', user_voting_data);
-			$(saveVotesContainer).hide();
+			// save_views_votes('done', user_voting_data); // removed function
+			// $(saveVotesContainer).hide();
 			clean_screen();
+			// ***REFACTOR*** cookies should not be deleted but set to 'done'
 			deleteCookie('uviews');
 			deleteCookie('uvotes');
 			// ***REMOVE*** duplicte from clean_screen?
@@ -635,11 +639,11 @@
 	}
 
 	// ***REMOVE*** reinit not possible anymore
-	function reinit() {
-		deleteCookie('uviews');
-		deleteCookie('uvotes');
-		location.reload();
-	}
+	// function reinit() {
+	// 	deleteCookie('uviews');
+	// 	deleteCookie('uvotes');
+	// 	location.reload();
+	// }
 
 // EXEC!!!!!!
 get_posts();

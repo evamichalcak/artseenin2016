@@ -18,24 +18,22 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,300i" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Titan+One" rel="stylesheet">
 
-<link rel="apple-touch-icon" sizes="57x57" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="http://www.doartystuff.com/wp-content/uploads/2015/07/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="http://www.doartystuff.com/wp-content/uploads/2015/07/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://www.doartystuff.com/wp-content/uploads/2015/07/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="http://www.doartystuff.com/wp-content/uploads/2015/07/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="http://www.doartystuff.com/wp-content/uploads/2015/07/favicon-16x16.png">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="http://www.doartystuff.com/wp-content/uploads/2015/07/ms-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="57x57" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="http://www.artssspot.com/wp-content/uploads/2017/03/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://www.artssspot.com/wp-content/uploads/2017/03/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="http://www.artssspot.com/wp-content/uploads/2017/03/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://www.artssspot.com/wp-content/uploads/2017/03/favicon-16x16.png">
 <meta name="theme-color" content="#ffffff">
 
-<meta property="og:title" content="Art seen in BCN 2016 - El millor art vist a Barcelona el 2016"/>
+<meta property="og:title" content="Art seen in BCN 2017 - El millor art vist a Barcelona el 2017"/>
 <meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat i el públic ha votat als seus favorits! El resultat és una imatge fresca i amb identitat pròpia de l'art a Barcelona."/>
 <!-- <meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a trobar els 25 millors amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2016 a Barcelona."/> -->
 <meta property="og:type" content="article"/>
@@ -48,7 +46,7 @@
 <!-- <meta name="twitter:url" content="<?php echo the_permalink(); ?>wp-login.php?action=register" /> -->
 <meta name="twitter:url" content="<?php echo the_permalink(); ?>" />
 <meta name="twitter:site" content="@doartystuff" />
-<meta name="twitter:title" content="Art seen in BCN 2016 - El millor art vist a Barcelona el 2016" />
+<meta name="twitter:title" content="Art seen in BCN 2017 - El millor art vist a Barcelona el 2017" />
 <!-- <meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a trobar els 25 millors amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2016 a Barcelona." /> -->
 <meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat i el públic ha votat als seus favorits! El resultat és una imatge fresca i amb identitat pròpia de l'art a Barcelona." />
 <meta name="twitter:image" content="<?php echo the_permalink(); ?>wp-content/uploads/2017/01/albarran-cabrera-7.jpg" />

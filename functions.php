@@ -240,48 +240,54 @@ add_action( 'wp_ajax_um_all_cb', 'um_modifications_all_callback' );
 
 
 
-
-/* start customize login */
-function my_custom_login() {
-echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-styles.css" />';
-}
-add_action('login_head', 'my_custom_login');
-
-
-function my_login_logo_url() {
-return get_bloginfo( 'url' );
-}
-add_filter( 'login_headerurl', 'my_login_logo_url' );
-
-function my_login_logo_url_title() {
-return 'Your Site Name and Info';
-}
-add_filter( 'login_headertitle', 'my_login_logo_url_title' );
-
-function my_login_head() {
-remove_action('login_head', 'wp_shake_js', 12);
-}
-add_action('login_head', 'my_login_head');
-
-function admin_login_redirect( $redirect_to, $request, $user )
-{
-global $user;
-if( isset( $user->roles ) && is_array( $user->roles ) ) {
-if( in_array( "administrator", $user->roles ) ) {
-return $redirect_to;
-} else {
-return home_url();
-}
-}
-else
-{
-return $redirect_to;
-}
-}
-add_filter("login_redirect", "admin_login_redirect", 10, 3);
-/* end customize login */
+// REMOVED ALL CUSTOMIZED LOGIN CODE (Legacy????)
+// /* start customize login */
+// function my_custom_login() {
+// echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-styles.css" />';
+// }
+// add_action('login_head', 'my_custom_login');
 
 
+// function my_login_logo_url() {
+// return get_bloginfo( 'url' );
+// }
+// add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+// function my_login_logo_url_title() {
+// return 'Your Site Name and Info';
+// }
+// add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+// function my_login_head() {
+// remove_action('login_head', 'wp_shake_js', 12);
+// }
+// add_action('login_head', 'my_login_head');
+
+// function admin_login_redirect( $redirect_to, $request, $user )
+// {
+// global $user;
+// if( isset( $user->roles ) && is_array( $user->roles ) ) {
+// if( in_array( "administrator", $user->roles ) ) {
+// return $redirect_to;
+// } else {
+// return home_url();
+// }
+// }
+// else
+// {
+// return $redirect_to;
+// }
+// }
+// add_filter("login_redirect", "admin_login_redirect", 10, 3);
+// /* end customize login */
+
+add_action('after_setup_theme', 'remove_admin_bar');
+ 
+function remove_admin_bar() {
+if (!current_user_can('administrator') && !is_admin()) {
+  show_admin_bar(false);
+}
+}
 
 /* start block dashboard for non admins */
 add_action( 'init', 'blockusers_init' );
