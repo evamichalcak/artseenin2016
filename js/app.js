@@ -58,6 +58,7 @@
 
 		if (voteOpen) {
 			// post display
+			// if there are no previous actions but a cookie, load them from cookie
 			if ((previous_actions == '0') && (cookie_actions != undefined)) {
 				console.log('cookie beeing read');
 				user_viewing_data = cookie_actions;
@@ -66,6 +67,7 @@
 				info = unsavedVotes;
 			}
 
+			// there are no previous actions, setup slider and determine whether to show demo
 			if (previous_actions == '0') {
 				preload_images(post_query);
 				$(loaderDisplay).on('asi.allLoaded', function() {
@@ -73,6 +75,8 @@
 					slider_setup();
 				});
 				showdemotour = true;
+
+			// if there are previous actions, setup slider excluding viewed posts and inform user
 			} else if (previous_actions instanceof Array) {
 				preload_images(post_query);
 				$(loaderDisplay).on('asi.allLoaded', function() {
@@ -81,15 +85,20 @@
 					slider_setup();
 				});
 				inform_user(info);
+
+			// if previous actions is "done"
 			} else {
+				// ***REFACTOR*** print in slider, not in jTinder
 				//clean_screen();
 				preview_only();
 			}
 
 			// event setup
+			// saves viewing and voting into DB ***REMOVE***
 			$(saveVotes).on('click', function() {
 				save_views_votes(user_viewing_data, user_voting_data);
 			});
+			// marks state as unsaved votes and informs user ***REMOVE***
 			$(allContainer).on('asi.newVotes', function() {
 				console.log('asi.newVotes');
 				if (hasNewVotes == true) {
@@ -101,12 +110,15 @@
 				}
 				$(saveVotesContainer).show();
 			});
+			// reinit voting ***REMOVE***
 			$(resetVotes).on('click', function() {
 				reinit();
 			});
+			// like binding
 			$(like).on('click', function() {
 				$(slider).jTinder('like');
 			});
+			// dislike binding
 			$(dislike).on('click', function() {
 				$(slider).jTinder('dislike');
 			});
@@ -115,6 +127,7 @@
 			var tt = setTimeout(function(){
 				$('#howToIntro').addClass('logoout');
 			}, 8);
+			// start button binding: hide intro, show demo if required ***TODO: disable jTinder during demo***
 			$('.vote-start').on('click tap', function() {
 				$('#howToIntro').fadeOut();
 				if (showdemotour) {
@@ -145,6 +158,8 @@
 			$('.site-branding .share-container a, .site-branding .project-info a').on('click', function(e) {
 				e.stopPropagation();
 			});
+
+		// vote is not open, print winners, print ranking, set to viewing only
 		} else {
 			//print_winners(post_query);
 			//print_ranking(post_query);
@@ -153,14 +168,18 @@
 	}
 
 	function slider_setup() {
+		// if post in query, show requested post
 		show_start_post();
+		// if all posts are through, hide messages and start finish actions ***REMOVE***
 		if (imgCounter >= maxImages) {
 			$(unsavedVotes).hide();
 			$(savedVotes).hide();
 			finish(user_voting_data);
 		}
+		// update image counter
 		$(counterContainer).html(imgCounter);
 		$(totalContainer).html(maxImages);
+		// setup jTinder ***REFACTOR*** this needs to distinguish preview-only state!
 		$(slider).jTinder({
 		    onDislike: function (item) {
 		        console.log('Dislike image ' + $(item).data('postid'));
@@ -176,10 +195,13 @@
 		    likeSelector: '.like',
 		    dislikeSelector: '.dislike'
 		});
+		// add viewing state to visible post
 		$('.slider-image:last-child').addClass('viewing');
+		// write sharing links into footer ***REFACTOR***
 		$('.fbshare-action').attr("href", $('.viewing .share-fb').attr('href'));
 		$('.washare-action').attr("href", $('.viewing .share-wa').attr('href'));
 		$('.twshare-action').attr("href", $('.viewing .share-tw').attr('href'));
+		// write post content into more-viewer, set up more-viewer events ***REFACTOR***
 		$('.more-viewer .more-viewer-inner').html($('.viewing .more').html());
 		$('.more-viewer .more-viewer-inner').data('postid', $('.viewing').data('postid'));
 		$('#tinderslide').on('click touchstart', '.more-action', function(e) {
@@ -187,11 +209,12 @@
 			$(this).toggleClass('open');
 			$('.more, .more-viewer').toggleClass('show');
 			var p_id = $('.more-viewer').data('postid');
+			// google analytics event ***REFACTOR***
 			if ($('.more').hasClass('show')) {
 				//window.dataLayer.push({'event': 'clickOnMore', 'postid': p_id});
 			}
 		});
-		//deactivate jTinder events on slide info
+		// deactivate jTinder events on slide info
 		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
 			e.stopPropagation();
 		});	
@@ -200,6 +223,7 @@
 
 	function preview_only() {
 		console.log('prev');
+			// ***REFACTOR***: no previeOnlyBtn!
 			$(previewOnlyBtn).on('click', function() {
 				preload_images(post_query);
 				$(loaderDisplay).on('asi.allLoaded', function() {
@@ -212,6 +236,7 @@
 	}
 
 	function demoTour() {
+		// generate html part 1
 		var demo1 =  '<div class="demo-tour slide-dimension">';
 		demo1 += '<span class="demo-pill"><span class="demo--1"><span class="lang-ca">Arrastra la imatge per votar</span>';
 		demo1 += '<span class="lang-es">Arrastra la imagen para votar</span>';
@@ -226,23 +251,28 @@
 		demo1 += '<span class="lang-es">O utiliza los botones</span>';
 		demo1 += '<span class="lang-en">Or use the buttons</span></span></div>';
 
+		// generate html part 2
 		var demo2 = '<span class="demo--5 demo-pill"><span class="lang-ca">Més info sobre l\'obra</span>';
 		demo2 += '<span class="lang-es">Más info sobre la obra</span>';
 		demo2 += '<span class="lang-en">More info about the work</span></span>';
 
+		// generate html part 3
 		var demo3 = '<span class="demo--6 demo-pill"><span class="lang-ca">Comparteix el que t\'agrada</span>';
 		demo3 += '<span class="lang-es">Comparte lo que te gusta</span>';
 		demo3 += '<span class="lang-en">Share if you like it</span></span>';
 
+		// generate html part 4
 		var demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Més info sobre la iniciativa</span>';
 		demo4 += '<span class="lang-es">Más info sobre la iniciativa</span>';
 		demo4 += '<span class="lang-en">More info about the initiative</span></span>';
 
+		// append html to correct elements
 		$('.viewing').append(demo1);
 		$('.viewing .more-action').append(demo2);
 		$('.share-container').append(demo3);
 		$('.logo-container').append(demo4);
 
+		// hide demo elements after animation is over ***REFACTO***: needs to also reactivate jTinder functionality (see line 129)
 		var tt = setTimeout(function(){
 			$('.demo-tour, .demo-pill').hide();
 		}, 22000);
@@ -256,7 +286,7 @@
 
 	//-----------------------------------------
 
-	//get posts ordered by view count
+	//get posts ordered by view count from DB and initialize on success ***REFACTOR*** needs to check if voting open and if not, do orderby comments count
 	function get_posts() {
 		var wpQueryString;
 		if(voteOpen) {	
@@ -312,7 +342,7 @@
 		return true;	
 	}
 
-	//transform remaining posts into 
+	//generate html for jTinder and print posts if voteOK (IP and cookie detection)
 	function print_posts(posts) {
 		console.log('printing posts');
 		var html = '';
@@ -341,7 +371,7 @@
 		}
 	}
 
-	//print winning posts 
+	//print winning posts as slider ***REFACTOR*** for viewing only state during voting
 	function print_winners(posts) {
 		console.log('printing posts');
 		var last25 = post_query.slice(-25);
@@ -400,6 +430,7 @@
 
 	//-----------------------------------------
 
+	// checks to set viewing state: new, done or return an array
 	function get_user_viewing_info() {
 		console.log('getting user viewing info');
 		if (user_viewing_data === '') {
@@ -411,8 +442,9 @@
 		}
 	}
 
-
+	// creating string array with viewing info or adding new post to it
 	function add_post_to_viewing_data(post_id) {
+		// ***REFACTOR*** this probably needs to be "user_viewing_data !== undefined" or "user_viewing_data.length <= 0"
 		if ((user_viewing_data == undefined) || (user_viewing_data.length > 0)) {
 			user_viewing_data += ',' + post_id;
 		} else {
@@ -421,7 +453,9 @@
 		return true;
 	}
 
+	// ***REMOVE*** creating string array with voting info or adding new post to it 
 	function add_post_to_voting_data(post_id) {
+		// ***REFACTOR*** this probably needs to be "user_voting_data !== undefined" or "user_voting_data.length <= 0"
 		if ((user_voting_data == undefined) || (user_voting_data.length > 0)) {
 			user_voting_data += ',' + post_id;
 		} else {
@@ -446,7 +480,7 @@
 
 	//-----------------------------------------
 
-	//save post view
+	//save post view to local array and cookie ***REFACTOR*** this is probably not needed or it should save view also to DB
 	function save_post_view(post_id) {
 		console.log('!!!save post view');
 		add_post_to_viewing_data(post_id);
@@ -456,7 +490,7 @@
 		return true;
 	}
 
-	//save post vote as comment
+	//save post vote as cookie ***REFACTOR*** this is probably not needed, it should save vote as comment instead
 	function save_post_vote(post_id) {
 		add_post_to_voting_data(post_id);
 		setCookie('uvotes', user_voting_data);
@@ -481,27 +515,37 @@
 		return true;
 	}
 
-	//actions on dismissing
+	//actions on dismissing ***REFACTOR*** update viewing, save view into DB, update cookie 
 	function on_dismiss(post_id) {
 		console.log('viewing cookie: ' + user_viewing_data);
+		// update jTinder view
 		update_viewing_class(post_id);
+		// ***ADD*** save to cookie or call save_post_veiw
 		//save_post_view(post_id);
+		// ***REMOVE****
 		checkNewVotes(1);
+		// save view to DB
 		viewmeviewvotestore(post_id, 0);
+		// update counter
 		update_image_counter();
 		return true;
 	}
 
 	function on_like(post_id) {
 		update_viewing_class(post_id);
+		// ***ADD*** save to cookie or call save_post_veiw
 		//save_post_view(post_id);
 		//save_post_vote(post_id);
+		// ***REMOVE****
 		checkNewVotes(1);
+		// save view to DB and generate comment
 		viewmeviewvotestore(post_id, 1);
+		// update counter
 		update_image_counter();
 		return true;
 	}
 
+	// ***REMOVE**** this was only needed to show message that saving is needed
 	function checkNewVotes(toggle) {
 		console.log('checking new votes');
 		if (toggle != hasNewVotes) {
@@ -511,11 +555,13 @@
 	}
 
 	function update_image_counter() {
+		// if all images are viewed, do finish actions
 		if (imgCounter >= maxImages) {
 			$(unsavedVotes).hide();
 			$(savedVotes).hide();
 			finish(user_voting_data);
-		} else {		
+		} else {
+			// update counter		
 			imgCounter++;
 			$(counterContainer).html(imgCounter);
 		}
@@ -537,7 +583,7 @@
 	}
 
 	function setCookie(cname, cvalue) {
-	    var expires = "expires=Thu, 10 Feb 2017 00:00:01 GMT";
+	    var expires = "expires=Thu, 10 Feb 2018 00:00:01 GMT";
 	    document.cookie = cname + "=" + cvalue + " ;" + expires;
 	}
 
@@ -553,7 +599,7 @@
 
 	//-----------------------------------------
 
-	//actions on exit
+	// actions on exit ***REMOVE*** bulk DB save is not needed anymore
 	function save_views_votes(user_viewing_data, user_voting_data) {
 		viewmeusersave(user_viewing_data, user_voting_data);
 		checkNewVotes(0);
@@ -561,18 +607,20 @@
 		return null;
 	}
 
-	//actions on exit
+	// actions on exit ***REFACTOR*** what does hideOnLast hide?
 	function clean_screen() {
 		$(hideOnLast).hide();
 		$(thankYouSlide).show();
 		$(allContainer).addClass('finished');
 		return true;
 	}
-
+ 
 	//display thanks
 	function finish(user_voting_data) {
 		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span><span class="lang-en">Thanks for taking part!</span></li>');
+		// ***REMOVE*** bulk save to DB is not needed anymore
 		viewmesave(user_viewing_data, user_voting_data);
+		// ***REFACTOR*** not waiting for asi.saved anymore
 		$(document).on('asi.saved', function() {			
 			console.log('asi.saved has been fired!');
 			save_views_votes('done', user_voting_data);
@@ -580,11 +628,13 @@
 			clean_screen();
 			deleteCookie('uviews');
 			deleteCookie('uvotes');
+			// ***REMOVE*** duplicte from clean_screen?
 			$(hideOnLast).hide();
 		});
 		return true;
 	}
 
+	// ***REMOVE*** reinit not possible anymore
 	function reinit() {
 		deleteCookie('uviews');
 		deleteCookie('uvotes');
