@@ -22,9 +22,9 @@
 
 	//constans
 	var maxImages = 12;
-	var winningImages = 25;
+	var winningImages = 5;
 	var maxPreloadImages = 10;
-	var voteOpen = true;
+	var voteOpen = false;
 
 	// variables
 	var post_query;
@@ -57,9 +57,11 @@
 				console.log('else');
 				preload_images(post_query);
 				$(loaderDisplay).on('asi.allLoaded', function() {
-					print_preview_only(post_query, maxImages);
+					print_posts(post_query, maxImages);
 					preview_only_setup();
+					$(previewOnly).show();
 				});
+
 			} else {
 				// if there is a cookie
 				if (cookie_actions !== undefined) {
@@ -84,103 +86,13 @@
 					print_posts(printable_posts);
 					slider_setup();
 				});
+
 			}
 
 
 
-
-
-			// // if either cookie or user variable is "done", go to preview-only
-			// if ((cookie_actions === "done") || (previous_actions === 1)) {
-			// 	//clean_screen();
-			// 	preview_only();
-			// } else {
-			// 	// no info in user variable
-			// 	if (previous_actions === 0) {
-			// 		// if there is a cookie, load its content
-			// 		if (cookie_actions !== undefined) {
-			// 			console.log('cookie beeing read');
-			// 			user_viewing_data = cookie_actions;
-			// 			//user_voting_data = cookie_votes;
-			// 			previous_actions = cookie_actions.split(',');
-			// 			info = unsavedVotes;
-			// 		} else {					
-			// 			showdemotour = true;
-			// 		}
-			// 	} else if (cookie_actions !== undefined) {
-			// 		setCookie('uviews', user_viewing_data);	
-			// 	}
-			// 	preload_images(post_query);
-			// 	$(loaderDisplay).on('asi.allLoaded', function() {
-			// 		print_posts(post_query);
-			// 		slider_setup();
-			// 	});
-			// }
-
-
-
-
-			// // post display
-			// // if there are no previous actions but a cookie, load them from cookie
-			// if ((previous_actions == '0') && (cookie_actions != undefined)) {
-			// 	console.log('cookie beeing read');
-			// 	user_viewing_data = cookie_actions;
-			// 	//user_voting_data = cookie_votes;
-			// 	previous_actions = cookie_actions.split(',');
-			// 	info = unsavedVotes;
-			// }
-
-			// // there are no previous actions, setup slider and determine whether to show demo
-			// if (previous_actions == '0') {
-			// 	preload_images(post_query);
-			// 	$(loaderDisplay).on('asi.allLoaded', function() {
-			// 		print_posts(post_query);
-			// 		slider_setup();
-			// 	});
-			// 	showdemotour = true;
-
-			// // if there are previous actions, setup slider excluding viewed posts and inform user
-			// } else if (previous_actions instanceof Array) {
-			// 	setCookie('uviews', user_viewing_data);
-			// 	preload_images(post_query);
-			// 	$(loaderDisplay).on('asi.allLoaded', function() {
-			// 		console.log('init');
-			// 		print_posts(clean_post_array(previous_actions, post_query));
-			// 		slider_setup();
-			// 	});
-			// 	inform_user(info);
-
-			// // if previous actions is "done"
-			// } else {
-			// 	// ***REFACTOR*** print in slider, not in jTinder
-			// 	//clean_screen();
-			// 	preview_only();
-			// }
-
-
-
-
-
-			// like binding
-			$(like).on('click', function() {
-				$(slider).jTinder('like');
-			});
-			// dislike binding
-			$(dislike).on('click', function() {
-				$(slider).jTinder('dislike');
-			});
-			// intro ani
-			$('#howToIntro').removeClass('logoin');
-			var tt = setTimeout(function(){
-				$('#howToIntro').addClass('logoout');
-			}, 8);
-			// start button binding: hide intro, show demo if required ***TODO: disable jTinder during demo***
-			$('.vote-start').on('click tap', function() {
-				$('#howToIntro').fadeOut();
-				if (showdemotour) {
-					demoTour();
-				}
-			});
+			
+			
 			// language chooser
 			$('.ctrl-btn.es-ca').on('click', function() {
 				$('body').removeClass('es-es');
@@ -211,11 +123,25 @@
 			console.log('else');
 			preload_images(post_query);
 			$(loaderDisplay).on('asi.allLoaded', function() {
-				print_preview_only(post_query, winningImages);
+				maxImages = winningImages;
+				print_posts(post_query, winningImages);
 				preview_only_setup();
 			});
+
 			//print_ranking(post_query);
 		}
+		// intro ani
+		$('#howToIntro').removeClass('logoin');
+		var tt = setTimeout(function(){
+			$('#howToIntro').addClass('logoout');
+		}, 8);
+		// start button binding: hide intro, show demo if required ***TODO: disable jTinder during demo***
+		$('.vote-start').on('click tap', function() {
+			$('#howToIntro').fadeOut();
+			if (showdemotour) {
+				demoTour();
+			}
+		});
 		console.log('user_viewing_data on init: ' + user_viewing_data);
 	}
 
@@ -235,11 +161,11 @@
 		$(slider).jTinder({
 		    onDislike: function (item) {
 		        console.log('Dislike image ' + $(item).data('postid'));
-		        on_swipe($(item).data('postid'), 0);
+		        on_swipe_vote($(item).data('postid'), 0);
 		    },
 		    onLike: function (item) {
 		        console.log('Like image ' + $(item).data('postid'));
-		        on_swipe($(item).data('postid'), 1);
+		        on_swipe_vote($(item).data('postid'), 1);
 		    },
 		    animationRevertSpeed: 200,
 		    animationSpeed: 400,
@@ -270,31 +196,25 @@
 		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
 			e.stopPropagation();
 		});	
+
+		//Button setup
+		// like binding
+		$(like).on('click', function() {
+			$(slider).jTinder('like');
+		});
+		// dislike binding
+		$(dislike).on('click', function() {
+			$(slider).jTinder('dislike');
+		});
 	}
 
 
-	// ***REFACTOR***: no previeOnlyBtn, show message and setup slider in previw-only mode!
 	function preview_only_setup() {
 		show_start_post();
 		// update image counter
 		$(counterContainer).html(imgCounter);
 		$(totalContainer).html(maxImages);
-		// setup jTinder ***REFACTOR*** this needs to distinguish preview-only state!
-		// $(slider).jTinder({
-		//     onDislike: function (item) {
-		//         console.log('Dislike image ' + $(item).data('postid'));
-		//         on_swipe($(item).data('postid'), 0);
-		//     },
-		//     onLike: function (item) {
-		//         console.log('Like image ' + $(item).data('postid'));
-		//         on_swipe($(item).data('postid'), 1);
-		//     },
-		//     animationRevertSpeed: 200,
-		//     animationSpeed: 400,
-		//     threshold: 1,
-		//     likeSelector: '.like',
-		//     dislikeSelector: '.dislike'
-		// });
+
 		// add viewing state to visible post
 		$('.slider-image:last-child').addClass('viewing');
 		// write sharing links into footer ***REFACTOR***
@@ -318,7 +238,27 @@
 		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
 			e.stopPropagation();
 		});	
-		$(previewOnly).show();
+
+		// add class for preview
+		$('.tinder-container').addClass('preview-only forward-only');
+		// bind right swipe
+		$('#tinderslide').on('swiperight', '.slider-image', function(e) {
+			on_swipe_right($('.viewing').data(postid))
+		});	
+		// bind left swipe
+		$('#tinderslide').on('swipeleft', '.slider-image', function(e) {
+			on_swipe_left($('.viewing').data(postid))
+		});	
+
+		//button setup
+		// like binding
+		$(like).on('click', function() {
+			on_swipe_right($('.viewing').data('postid'));
+		});
+		// dislike binding
+		$(dislike).on('click', function() {
+			on_swipe_left($('.viewing').data('postid'));
+		});
 	}
 
 	function demoTour() {
@@ -429,84 +369,37 @@
 	}
 
 	//generate html for jTinder and print posts if voteOK (IP and cookie detection)
-	function print_posts(posts) {
-		console.log('printing posts');
+	function print_posts(posts, postcount) {
+		console.log('printing posts, printcount is: ' + postcount);
+		var printable = posts;
+		if (postcount) {
+			printable = posts.slice(-postcount);
+		}
 		var html = '';
-		$.each(posts, function(index, element) {
-		    html+='<li class="slider-image slide-dimension panel'+index+'" id="p'+posts[index].id+'" data-postid="'+posts[index].id+'">';
+		$.each(printable, function(index, element) {
+		    html+='<li class="slider-image slide-dimension panel'+index+'" id="p'+printable[index].id+'" data-postid="'+printable[index].id+'">';
 		    html+='<div class="img';
-		    html+=(index > (posts.length - 3)) ? ' img-load' : '';
-		    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
+		    html+=(index > (printable.length - 3)) ? ' img-load' : '';
+		    html+='" style="background-image: url('+printable[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
 		    html+='<div class="content">';
-		    html+='<div class="artist shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
-		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiTitulo[0]+'</div>';
-		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
+		    html+='<div class="artist shdw-t-grey">'+printable[index].custom_fields.asiArtista[0]+'</div>';
+		    html+='<div class="title shdw-t-grey">'+printable[index].custom_fields.asiTitulo[0]+'</div>';
+		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+printable[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
 		    html+='<div class="share">';
-		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
-		    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
-		    html+='<a href="https://twitter.com/home?status='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
+		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+printable[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
+		    html+='<a href="whatsapp://send?text='+printable[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
+		    html+='<a href="https://twitter.com/home?status='+printable[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
 		    html+='</div></div>';
-		    html+='<div class="more slide-dimension"><p class="art-work-info"><span class="title">'+posts[index].custom_fields.asiTitulo[0]+'</span><br/>de '+posts[index].custom_fields.asiArtista[0]+'</p>'+posts[index].content+'</div>';
+		    html+='<div class="more slide-dimension"><p class="art-work-info"><span class="title">'+printable[index].custom_fields.asiTitulo[0]+'</span><br/>de '+printable[index].custom_fields.asiArtista[0]+'</p>'+printable[index].content+'</div>';
 		    html+='<div class="icon-heart-shape-outline like slide-dimension shdw-b-grey"></div><div class="icon-x dislike slide-dimension shdw-b-grey"></div></li>';
 		});
-		// check for the voteOK variable set by php
-		if ( voteOK ) {
+		// check for the voteOK variable set by php or if we're only previewing
+		if ( postcount || voteOK ) {
 			$(sliderList).html(html);
 			return true;
 		}
 	}
 
-	//print winning posts as slider ***REFACTOR*** for viewing only state during voting
-
-	function print_preview_only(posts, postcount) {
-		console.log('printing previw only');
-		var printable = post_query.slice(-postcount);
-		console.log(printable);
-		var html = '';
-		$.each(posts, function(index, element) {
-		    html+='<li class="slider-image slide-dimension panel'+index+'" id="p'+posts[index].id+'" data-postid="'+posts[index].id+'">';
-		    html+='<div class="img';
-		    html+=(index > (posts.length - 3)) ? ' img-load' : '';
-		    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
-		    html+='<div class="content">';
-		    html+='<div class="artist shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
-		    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiTitulo[0]+'</div>';
-		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
-		    html+='<div class="share">';
-		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
-		    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
-		    html+='<a href="https://twitter.com/home?status='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
-		    html+='</div></div></li>';
-		});
-		$(sliderList).html(html);
-		return true;
-	}
-
-	// function print_preview_only(posts, postcount) {
-	// 	console.log('printing previw only');
-	// 	var printable = post_query.slice(-postcount);
-	// 	console.log(printable);
-	// 	var html ='<div class="my-slider slide-dimension"><ul>';
-	// 	$.each(printable, function(index, element) {
-	// 		html+='<li class="slider-image slide-dimension panel'+index+'" id="p'+posts[index].id+'" data-postid="'+posts[index].id+'">';
-	// 	    html+='<div class="img';
-	// 	    html+=(index > (posts.length - 3)) ? ' img-load' : '';
-	// 	    html+='" style="background-image: url('+posts[index].thumbnail_images.full.url+');"><div class="loader"><div class="ball-clip-rotate"><div></div></div></div></div>';
-	// 	    html+='<div class="content">';
-	// 	    html+='<div class="artist shdw-t-grey">'+posts[index].custom_fields.asiArtista[0]+'</div>';
-	// 	    html+='<div class="title shdw-t-grey">'+posts[index].custom_fields.asiTitulo[0]+'</div>';
-	// 	    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+posts[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
-	// 	    html+='<div class="share">';
-	// 	    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
-	// 	    html+='<a href="whatsapp://send?text='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
-	// 	    html+='<a href="https://twitter.com/home?status='+posts[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
-	// 	    html+='</div></div>';
-	// 	});
-	// 	html+='</ul></div>';
-	// 	$(expoContainer).html(html);
-	// 	$('.my-slider').unslider();
-	// 	return true;
-	// }
 
 	//print ranking 
 	function print_ranking(posts) {
@@ -612,14 +505,22 @@
 	// }
 
 	//update markup on slide change
-	function update_viewing_class(post_id) {
+	function update_viewing_class(post_id, backward) {
+		console.log('update viewing class');
+		console.log(post_id);
 		// preload next image
 		$('.img-load:first-of-type').parent().prev().find('.img').addClass('img-load');
 		// close more-info, if open
 		$('.more, .more-viewer').removeClass('show');
 		//switch viewing class
 		$('#p'+post_id).removeClass('viewing');
-		$('#p'+post_id).prev().addClass('viewing');
+		if (backward) {
+			console.log(backward);
+			$('#p'+post_id).next().addClass('viewing');
+			$('#p'+post_id).css('display', 'inline-block');
+		} else {
+			$('#p'+post_id).prev().addClass('viewing');
+		}
 		//load new slide content into actions section
 		$('.fbshare-action').attr("href", $('.viewing .share-fb').attr('href'));
 		$('.washare-action').attr("href", $('.viewing .share-wa').attr('href'));
@@ -630,7 +531,7 @@
 	}
 
 	//actions on swipe, recieves vote (0 or 1)
-	function on_swipe(post_id, vote) {
+	function on_swipe_vote(post_id, vote) {
 		console.log('viewing cookie: ' + user_viewing_data);
 		// update jTinder view
 		update_viewing_class(post_id);
@@ -638,13 +539,6 @@
 		update_cookie(post_id);
 		// save view to DB
 		viewmeviewvotestore(post_id, vote);
-		// update counter
-		update_image_counter();
-		return true;
-	}
-
-	function update_image_counter() {
-		console.log(imgCounter);
 		// if all images are viewed, do finish actions
 		if (imgCounter >= maxImages) {
 			$(unsavedVotes).hide();
@@ -652,10 +546,54 @@
 			finish();
 			console.log('finish executed')
 		} else {
-			// update counter		
-			imgCounter++;
-			$(counterContainer).html(imgCounter);
+			// update counter
+			update_image_counter();
 		}
+		return true;
+	}
+
+	//actions on swipe_right, moving forward
+	function on_swipe_right(post_id) {
+		console.log('right swipe, moving forward');
+		// update view
+		if (imgCounter < maxImages) {
+			update_viewing_class(post_id);
+			$('#p'+post_id).attr('style', 'display:none');
+			// update counter
+			update_image_counter();
+			update_navigation();
+		}
+		return true;
+	}
+
+	//actions on swipe_left, moving back
+	function on_swipe_left(post_id) {
+		console.log('left swipe, moving back');
+		// update view
+		if (1 < imgCounter) {
+			update_viewing_class(post_id, true);
+			$('.viewing').attr('style', 'display:inline-block');
+			// update counter
+			update_image_counter(true);
+			update_navigation();
+		}
+		return true;
+	}
+
+	function update_navigation() {
+		imgCounter == 1 ? $('.tinder-container').addClass('forward-only') : $('.tinder-container').removeClass('forward-only');
+		imgCounter == maxImages ? $('.tinder-container').addClass('back-only') : $('.tinder-container').removeClass('back-only');
+	}
+
+	function update_image_counter( backwards ) {
+		console.log(imgCounter);
+		// update counter
+		if(backwards && (imgCounter > 1)) {
+			imgCounter--;
+		} else if (imgCounter < maxImages) {		
+			imgCounter++;
+		}
+		$(counterContainer).html(imgCounter);	
 	}
 
 
