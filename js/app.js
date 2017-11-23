@@ -288,9 +288,8 @@
 		demo3 += '<span class="lang-en">Share if you like it</span></span>';
 
 		// generate html part 4
-		var demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Més info sobre la iniciativa</span>';
-		demo4 += '<span class="lang-es">Más info sobre la iniciativa</span>';
-		demo4 += '<span class="lang-en">More info about the initiative</span></span>';
+		demo4 += '<span class="lang-es">Info sobre la iniciativa</span>';
+		demo4 += '<span class="lang-en">Info about the initiative</span></span>';
 
 		// append html to correct elements
 		$('.viewing').append(demo1);
