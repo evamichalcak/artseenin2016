@@ -68,8 +68,14 @@ get_header(); ?>
 
 			<div class="actions-container slide-dimension">
 				<div class="actions">
-			        <a href="#" class="dislike dislike-action"><i class="icon-x shdw-b-brown"></i></a>
-			        <a href="#" class="like like-action"><i class="icon-heart-shape-outline shdw-b-brown"></i></a>
+			        <a href="#" class="dislike dislike-action">
+			        	<i class="icon-x shdw-b-brown"></i>
+			        	<i class="icon-arrow-left shdw-b-brown"></i>
+			        </a>
+			        <a href="#" class="like like-action">
+			        	<i class="icon-heart-shape-outline shdw-b-brown"></i>
+			        	<i class="icon-arrow-right shdw-b-brown"></i>
+			        </a>
 			    </div><!-- /.actions -->
 		    </div><!-- /.actions-container -->
 

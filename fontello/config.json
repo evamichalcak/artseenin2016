@@ -103,6 +103,38 @@
       ]
     },
     {
+      "uid": "616b755d0f4c7d2dc7a1dcc2e5427039",
+      "css": "down-open",
+      "code": 59395,
+      "src": "elusive"
+    },
+    {
+      "uid": "c0a07aca383ff2a164a4d691fa46e35c",
+      "css": "left-open",
+      "code": 59396,
+      "src": "elusive"
+    },
+    {
+      "uid": "dc4a03854ef986d64565143bea4241aa",
+      "css": "right-open",
+      "code": 59397,
+      "src": "elusive"
+    },
+    {
+      "uid": "ad41398ec499edecb1b2826cdadb3e84",
+      "css": "arrow-left",
+      "code": 59405,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M780.9 39.8L810.7 78.7 255.8 503.4 815.5 932.9 785.7 971.8 175.4 503.4Z",
+        "width": 1000
+      },
+      "search": [
+        "arrow-left"
+      ]
+    },
+    {
       "uid": "ae17b41527779db7595ac49ae1c1e835",
       "css": "facebook",
       "code": 59395,

@@ -24,7 +24,7 @@
 	var maxImages = 12;
 	var winningImages = 5;
 	var maxPreloadImages = 10;
-	var voteOpen = false;
+	var voteOpen = true;
 
 	// variables
 	var post_query;
@@ -134,7 +134,7 @@
 		$('#howToIntro').removeClass('logoin');
 		var tt = setTimeout(function(){
 			$('#howToIntro').addClass('logoout');
-		}, 8);
+		}, 8000);
 		// start button binding: hide intro, show demo if required ***TODO: disable jTinder during demo***
 		$('.vote-start').on('click tap', function() {
 			$('#howToIntro').fadeOut();
@@ -558,7 +558,7 @@
 		// update view
 		if (imgCounter < maxImages) {
 			update_viewing_class(post_id);
-			$('#p'+post_id).attr('style', 'display:none');
+			$('#p'+post_id).hide(150);
 			// update counter
 			update_image_counter();
 			update_navigation();
@@ -572,7 +572,7 @@
 		// update view
 		if (1 < imgCounter) {
 			update_viewing_class(post_id, true);
-			$('.viewing').attr('style', 'display:inline-block');
+			$('.viewing').show(150);
 			// update counter
 			update_image_counter(true);
 			update_navigation();
