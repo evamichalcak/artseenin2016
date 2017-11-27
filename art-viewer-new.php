@@ -33,7 +33,8 @@ function check_ip() {
 			update_option( 'asib_voted_ips', $voted_ips );
 			return true;
 		} else {
-			return false;
+			//return false;
+			return true;
 		}
 	} else {
 		$voted_ips[$ip] = 1;
@@ -42,12 +43,7 @@ function check_ip() {
 	}
 }
 
-if ($_SERVER['QUERY_STRING'] ) {
-	parse_str($_SERVER['QUERY_STRING']);
-	$cookie_name = "pid";
-	$cookie_value = $pid;
-	setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-}
+
 
 $voteOK = is_user_logged_in() || isset($_COOKIE['uviews']) || check_ip();
 
@@ -166,6 +162,15 @@ get_header(); ?>
 	<?php echo 'var user_voting_data = "' . get_user_meta( get_current_user_id(), 'vvo', true) . '";'; ?>
 	<?php echo 'var user_id = "' . get_current_user_id() . '";'; ?>
 	<?php echo 'var voteOK = "' . $voteOK . '";'; ?>
+
+	<?php 
+	// echo "var json=". json_encode(get_posts(array(
+ //        'orderby'   => 'meta_value',
+	// 	'meta_key'  => '_viewmecount',
+	// 	'order'		=> 'DESC',
+ //    )));
+	?>
+
 	</script>
 
 	<?php

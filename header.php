@@ -33,23 +33,47 @@
 <link rel="icon" type="image/png" sizes="16x16" href="http://www.artssspot.com/wp-content/uploads/2017/03/favicon-16x16.png">
 <meta name="theme-color" content="#ffffff">
 
-<meta property="og:title" content="Art seen in BCN 2017 - El millor art vist a Barcelona el 2017"/>
-<meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat i el públic ha votat als seus favorits! El resultat és una imatge fresca i amb identitat pròpia de l'art a Barcelona."/>
-<!-- <meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a trobar els 25 millors amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2016 a Barcelona."/> -->
+
+<?php
+if ($_SERVER['QUERY_STRING'] ) {
+	parse_str($_SERVER['QUERY_STRING']);
+	$cookie_name = "pid";
+	$cookie_value = $pid;
+	setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+}
+if ($pid) { ?>
+
+	<meta property="og:title" content="<?php echo get_the_title( $pid ) ?> - Art seen in BCN 2017"/>
+	<meta property="og:image" content="<?php echo get_the_post_thumbnail_url($pid, 'full') ?>"/>
+	<meta property="og:url" content="<?php echo the_permalink() . '?pid=' . $pid; ?>"/>
+	<meta name="twitter:title" content="<?php echo get_the_title( $pid ) ?> - Art seen in BCN 2017" />
+	<meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($pid, 'full') ?>" />
+	<meta name="twitter:url" content="<?php echo the_permalink() . '?pid=' . $pid; ?>" />
+
+<?php } else { ?>
+
+	<meta property="og:title" content="Art seen in BCN 2017 - El millor art vist a Barcelona el 2017"/>
+	<meta property="og:image" content="<?php bloginfo('template_url'); ?>/img/asibcn-logo-share.png"/>
+	<!-- <meta property="og:image" content="<?php echo the_permalink(); ?>wp-content/uploads/2017/01/albarran-cabrera-7.jpg"/> -->
+	<meta property="og:url" content="<?php echo the_permalink(); ?>"/>
+	<meta name="twitter:title" content="Art seen in BCN 2017 - El millor art vist a Barcelona el 2017" />
+	<meta name="twitter:image" content="<?php bloginfo('template_url'); ?>/img/asibcn-logo-share.png" />
+	<!-- <meta name="twitter:image" content="<?php echo the_permalink(); ?>wp-content/uploads/2017/01/albarran-cabrera-7.jpg" /> -->
+	<meta name="twitter:url" content="<?php echo the_permalink(); ?>" />
+
+<?php } ?>
+
+<!-- <meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat i el públic ha votat als seus favorits! El resultat és una imatge fresca i amb identitat pròpia de l'art a Barcelona."/> -->
+<meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a decidir els favorits amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2016 a Barcelona."/>
 <meta property="og:type" content="article"/>
-<meta property="og:url" content="<?php echo the_permalink(); ?>"/>
 <meta property="og:site_name" content="<?php echo get_bloginfo(); ?>"/>
-<!-- <meta property="og:image" content="<?php bloginfo('template_url'); ?>/img/asibcn-logo-share.png"/> -->
-<meta property="og:image" content="<?php echo the_permalink(); ?>wp-content/uploads/2017/01/albarran-cabrera-7.jpg"/>
+
 <meta property="fb:app_id" content="328047170906455"/>
 <meta name="twitter:card" content="summary" />
-<!-- <meta name="twitter:url" content="<?php echo the_permalink(); ?>wp-login.php?action=register" /> -->
-<meta name="twitter:url" content="<?php echo the_permalink(); ?>" />
 <meta name="twitter:site" content="@doartystuff" />
-<meta name="twitter:title" content="Art seen in BCN 2017 - El millor art vist a Barcelona el 2017" />
-<!-- <meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a trobar els 25 millors amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2016 a Barcelona." /> -->
-<meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat i el públic ha votat als seus favorits! El resultat és una imatge fresca i amb identitat pròpia de l'art a Barcelona." />
-<meta name="twitter:image" content="<?php echo the_permalink(); ?>wp-content/uploads/2017/01/albarran-cabrera-7.jpg" />
+<meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a decidir els favorits amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2016 a Barcelona." />
+<!-- <meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat i el públic ha votat als seus favorits! El resultat és una imatge fresca i amb identitat pròpia de l'art a Barcelona." /> -->
+
 
 
 

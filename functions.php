@@ -124,10 +124,11 @@ function artseenin2016_scripts() {
 	wp_enqueue_script( 'art-app', get_template_directory_uri() . '/js/app.js', array('jquery-transform2d', 'jquery-jTinder'), '20151215', true );
 
 	//Slider/Viewer
-  	wp_enqueue_style( 'styles-unslider', get_template_directory_uri() . '/js/unslider/css/unslider.css');
-  	wp_enqueue_script( 'jquery-swipe', get_template_directory_uri() . '/js/jQuerySwipe/js/jquery.event.swipe.js', array(), '20151215', true );
-  	wp_enqueue_script( 'unslider', get_template_directory_uri() . '/js/unslider/js/unslider-min.js', array('jquery-swipe'), '20151215', true );
-
+  	//wp_enqueue_style( 'styles-unslider', get_template_directory_uri() . '/js/unslider/css/unslider.css');
+ //   	wp_enqueue_script( 't-poly', get_template_directory_uri() . '/js/node_modules/tocca/bind.polyfill.js', array(), '20151215', true );
+	// wp_enqueue_script( 't-prefix', get_template_directory_uri() . '//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js', array(), '20151215', true );
+	// wp_enqueue_script( 'tocca', get_template_directory_uri() . '/js/node_modules/tocca/Tocca.min.js', array('t-poly'), '20151215', true );
+  	//wp_enqueue_script( 'unslider', get_template_directory_uri() . '/js/unslider/js/unslider-min.js', array('jquery-swipe'), '20151215', true );
     // Localize Our Script so we can use `ajax_url`
     wp_localize_script(
         'art-app',

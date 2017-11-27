@@ -22,9 +22,9 @@
 
 	//constans
 	var maxImages = 12;
-	var winningImages = 5;
-	var maxPreloadImages = 10;
-	var voteOpen = true;
+	var winningImages = 1;
+	var maxPreloadImages = 5;
+	var voteOpen = false;
 
 	// variables
 	var post_query;
@@ -210,6 +210,7 @@
 
 
 	function preview_only_setup() {
+		console.log('previewonly_setup');
 		show_start_post();
 		// update image counter
 		$(counterContainer).html(imgCounter);
@@ -242,12 +243,14 @@
 		// add class for preview
 		$('.tinder-container').addClass('preview-only forward-only');
 		// bind right swipe
-		$('#tinderslide').on('swiperight', '.slider-image', function(e) {
-			on_swipe_right($('.viewing').data(postid))
+		$('#tinderslide').on('swiperight', '.slider-image', function(e,data) {
+			console.log('swipeevent right');
+			on_swipe_right($('.viewing').data(postid));
 		});	
 		// bind left swipe
-		$('#tinderslide').on('swipeleft', '.slider-image', function(e) {
-			on_swipe_left($('.viewing').data(postid))
+		$('#tinderslide').on('swipeleft', '.slider-image', function(e,data) {
+			console.log('swipeevent right');
+			on_swipe_left($('.viewing').data(postid));
 		});	
 
 		//button setup
@@ -288,6 +291,7 @@
 		demo3 += '<span class="lang-en">Share if you like it</span></span>';
 
 		// generate html part 4
+		demo4 = '<span class="demo--7 demo-pill"><span class="lang-ca">Info sobre la iniciativa</span>';
 		demo4 += '<span class="lang-es">Info sobre la iniciativa</span>';
 		demo4 += '<span class="lang-en">Info about the initiative</span></span>';
 
@@ -361,7 +365,7 @@
 	function update_loader() {
 		image_loader+=10;
 		$(loaderDisplay).html(image_loader);
-		if (image_loader == maxPreloadImages) {
+		if (image_loader >= maxPreloadImages) {
 			$(loaderDisplay).trigger('asi.allLoaded');
 		}
 		return true;	
@@ -646,6 +650,59 @@
 		$(hideOnLast).hide();
 		return true;
 	}
+
+
+
+// SWIPE EVENTS //
+
+	window.addEventListener('load', function(){
+
+   // var touchsurface = document.getElementById('touchsurface'),
+   var touchsurface = document.getElementById('page'),
+  startX,
+  startY,
+  dist,
+  threshold = 150, //required min distance traveled to be considered swipe
+  allowedTime = 400, // maximum time allowed to travel that distance
+  elapsedTime,
+  startTime
+
+ function handleswipe(isrightswipe){
+  if (isrightswipe)
+   touchsurface.innerHTML = 'Congrats, you\'ve made a <span style="color:red">right swipe!</span>'
+  else{
+   touchsurface.innerHTML = 'Condition for right swipe not met yet'
+  }
+ }
+
+ touchsurface.addEventListener('touchstart', function(e){
+  touchsurface.innerHTML = ''
+  var touchobj = e.changedTouches[0]
+  dist = 0
+  startX = touchobj.pageX
+  startY = touchobj.pageY
+  startTime = new Date().getTime() // record time when finger first makes contact with surface
+  e.preventDefault()
+
+ }, false)
+
+ touchsurface.addEventListener('touchmove', function(e){
+  e.preventDefault() // prevent scrolling when inside DIV
+ }, false)
+
+ touchsurface.addEventListener('touchend', function(e){
+  var touchobj = e.changedTouches[0]
+  dist = touchobj.pageX - startX // get total dist traveled by finger while in contact with surface
+  elapsedTime = new Date().getTime() - startTime // get time elapsed
+  // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
+var swiperightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100)
+handleswipe(swiperightBol)
+e.preventDefault()
+}, false)
+
+}, false);
+
+// <div id="touchsurface" style="position:fixed; top:0; background:red; width:200px;height:200px;z-index:10000000;">Swipe Me</div>
 
 
 

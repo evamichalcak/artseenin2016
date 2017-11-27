@@ -325,8 +325,17 @@ a:active {
   }
 }
 
-#art-viewer {
-  height: calc(100vh - 55px);
+/*#art-viewer {
+  height: calc(100% - 55px);
+  border: solid 1px red;
+}*/
+
+html,
+body,
+#art-viewer,
+#page,
+#content {
+  height: 100%;
 }
 
 @media (min-width: 400px) and (min-height: 600px),
@@ -341,7 +350,6 @@ a:active {
     width: 100%;
   }
 }
-
 
 
 .nav-btn {    
@@ -567,6 +575,10 @@ html[lang="es-ES"] .lang-en,
   .intro-container .intro-wrapper {
     font-size: 32px;
   }
+}
+
+.intro-logo {
+  margin-top: -55px;
 }
 
 .logoin .intro-logo > span { 
@@ -1406,32 +1418,26 @@ J-TINDER
 */
 @media (min-height: 600px) and (min-width: 400px) and (max-width: 1280px) {
   .tinder-container .more-viewer {
-      margin-top: -30px !important;
+      margin-top: -40px !important;
   }
   #tinderslide ul {
-      margin-top: -60px !important;
+      margin-top: -70px !important;
   }
 }
+
 
 
 @media screen and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1) {
 
-  .tinder-container .more-viewer {
-
-      margin-top: -60px !important;
-
-  }
-}
-
-@media screen and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
+/*  #tinderslide ul {
+      margin-top: -160px !important;
+  }*/
 
   .tinder-container .more-viewer {
 
-      margin-top: -60px !important;
+      margin-top: -70px !important;
 
   }
 }
