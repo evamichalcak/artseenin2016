@@ -24,7 +24,7 @@
 	var maxImages = 12;
 	var winningImages = 1;
 	var maxPreloadImages = 5;
-	var voteOpen = false;
+	var voteOpen = true;
 
 	// variables
 	var post_query;
@@ -658,20 +658,21 @@
 	window.addEventListener('load', function(){
 
    // var touchsurface = document.getElementById('touchsurface'),
-   var touchsurface = document.getElementById('page'),
+   var touchsurface = document.getElementById('tinderslideList'),
+   touchresponse = document.getElementById('testtemp'),
   startX,
   startY,
   dist,
   threshold = 150, //required min distance traveled to be considered swipe
   allowedTime = 400, // maximum time allowed to travel that distance
   elapsedTime,
-  startTime
+  startTime;
 
  function handleswipe(isrightswipe){
   if (isrightswipe)
-   touchsurface.innerHTML = 'Congrats, you\'ve made a <span style="color:red">right swipe!</span>'
+   touchresponse.innerHTML = 'Congrats, you\'ve made a <span style="color:red">right swipe!</span>'
   else{
-   touchsurface.innerHTML = 'Condition for right swipe not met yet'
+   touchresponse.innerHTML = 'Condition for right swipe not met yet'
   }
  }
 

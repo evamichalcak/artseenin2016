@@ -172,6 +172,7 @@ get_header(); ?>
 	?>
 
 	</script>
+	<p id="testtemp" style="position: absolute; top: 0; left: 0; z-index: 1000000;"></p>
 
 	<?php
 	get_footer(); ?>
