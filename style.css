@@ -1224,7 +1224,7 @@ html[lang="en-US"] .demo-pill.demo--6:before,
 @media screen and (min-width: 640px) {
   .demo-pill.demo--6 {
     top: -3px;
-    right: 90px;
+    right: 110px;
     animation: 
       openPill .5s ease-in 15s both, 
       closePill .5s ease-out 18s forwards, 
@@ -1232,11 +1232,11 @@ html[lang="en-US"] .demo-pill.demo--6:before,
       hideText .3s ease-out 18s forwards;
   }
    
-  html[lang="ca"] .demo-pill .demo--6,
+  html[lang="ca"] .demo-pill.demo--6,
   .es-ca .demo-pill.demo--6,
-  html[lang="en-US"] .demo-pill.demo--6 {
-  .en-en .demo-pill.demo--6,
-    right: 90px;
+  html[lang="en-US"] .demo-pill.demo--6, 
+  .en-en .demo-pill.demo--6 {
+    right: 110px;
   }
 
   .demo-pill.demo--6:before {
@@ -1252,7 +1252,7 @@ html[lang="en-US"] .demo-pill.demo--6:before,
       hideIt .2s ease-in 18s forwards;
   }
   html[lang="ca"] .demo-pill.demo--6:before,
- .es-ca .demo-pill.demo--6:before,
+  .es-ca .demo-pill.demo--6:before,
   html[lang="en-US"] .demo-pill.demo--6:before,
   .en-en .demo-pill.demo--6:before { 
     margin-left: 0;
@@ -1306,6 +1306,106 @@ html[lang="en-US"] .demo-pill.demo--6:before,
   }
 }
 
+/* preview only demo */
+
+
+.preview-only .demo-pill.demo--5 {
+  animation: 
+    openPill .5s ease-in 1s both, 
+    closePill .5s ease-out 4s forwards, 
+    showText .3s ease-in 1s forwards, 
+    hideText .3s ease-out 4s forwards;
+}
+
+.preview-only .demo-pill.demo--5:before {
+  animation: 
+    showIt .2s ease-in 1s backwards, 
+    moveUp 1s ease-in-out 1s, 
+    hideIt .2s ease-in 4s forwards;
+}
+
+@media screen and (min-width: 640px) {
+  .preview-only .demo-pill.demo--5 {
+    animation: 
+       openPill .5s ease-in 1s both, 
+      closePill .5s ease-out 4s forwards, 
+      showText .3s ease-in 1s forwards, 
+      hideText .3s ease-out 4s forwards;
+  }
+
+  .preview-only .demo-pill.demo--5:before {
+    animation: 
+      showIt .2s ease-in 1s backwards, 
+      moveUp 1s ease-in-out 1s, 
+      hideIt .2s ease-in 4s forwards;
+  }
+}
+
+.preview-only .demo-pill.demo--6 {
+  animation: 
+    openPill .5s ease-in 4s both, 
+    closePill .5s ease-out 7s forwards, 
+    showText .3s ease-in 4s forwards, 
+    hideText .3s ease-out 7s forwards;
+}
+
+.preview-only .demo-pill.demo--6:before {
+  animation: 
+    showIt .2s ease-in 4s backwards, 
+    moveUp 1s ease-in-out 5s, 
+    hideIt .2s ease-in 7s forwards;
+}
+
+
+@media screen and (min-width: 640px) {
+  .preview-only .demo-pill.demo--6 {
+    animation: 
+      openPill .5s ease-in 4s both, 
+      closePill .5s ease-out 7s forwards, 
+      showText .3s ease-in 4s forwards, 
+      hideText .3s ease-out 7s forwards;
+  }
+
+  .preview-only .demo-pill.demo--6:before {
+    animation: 
+      showIt .2s ease-in 4.8s backwards, 
+      moveRightSmall 1s ease-in-out 5s, 
+      hideIt .2s ease-in 7s forwards;
+  }
+}
+
+
+.preview-only .demo-pill.demo--7 {
+  animation: 
+    openPill .5s ease-in 7s both, 
+    closePill .5s ease-out 10s forwards, 
+    showText .3s ease-in 7s forwards, 
+    hideText .3s ease-out 10s forwards;
+}
+
+.preview-only .demo-pill.demo--7:before {
+  animation: 
+    showIt .2s ease-in 7s backwards, 
+    moveUp 1s ease-in-out 8s, 
+    hideIt .2s ease-in 10s forwards;
+}
+
+@media screen and (min-width: 640px) {
+  .preview-only .demo-pill.demo--7 {
+    animation: 
+      openPill .5s ease-in 7s both, 
+      closePill .5s ease-out 10s forwards, 
+      showText .3s ease-in 7s forwards, 
+      hideText .3s ease-out 10s forwards; 
+  }
+
+  .preview-only .demo-pill.demo--7:before {
+    animation: 
+      showIt .2s ease-in 7s backwards, 
+      moveUp 1s ease-in-out 8s, 
+      hideIt .2s ease-in 10s forwards;
+  }
+}
 
 
 /*------------------------------------------------

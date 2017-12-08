@@ -98,11 +98,26 @@ get_header(); ?>
 			<a href="#!" class="demo-pill ctrl-btn es-es">Castellano</a>
 			<a href="#!" class="demo-pill ctrl-btn en-en">English</a>
 		</div>
-		<p><span class="lang-ca">Entre Artssspot i Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
+
+		<p style="text-transform: uppercase; margin-bottom: 20px;">
+			<span class="lang-ca">Ull, no comparteixis aquest enllaç amb tercers!</span>
+			<span class="lang-es">¡Ojo, no compartas este enlace con terceros!</span>
+			<span class="lang-en">Attention, do not share this link with third parties!</span>
+		</p>
+		<p>
+			<span class="lang-ca">Si us plau, revisa que estigui bé i sense errors d'ortografia la informació visible a la pantalla i que hàgim inclòs tot el que necessites incloure d'informació addicional (crèdits, enllaços, etc.) en la info que apareix fent clic al "+" .</span>
+			<span class="lang-es">Por favor, revisa que esté bien y sin errores de ortografía la información visible en la pantalla y que hayamos incluido todo lo que necesitas incluir de información adicional (créditos, enlaces, etc.) en la info que aparece haciendo clic en el "+".</span>
+			<span class="lang-en">Please check that the information visible on the screen is correct and without errors of spelling and that we have included everything you need to include of additional information (credits, links, etc.) in the information that appears by clicking on the "+" .</span>
+		</p>
+
+		<!-- <p><span class="lang-ca">Entre Artssspot i Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
 	mejores obras de arte que hemos visto este año, ahora te toca a tí: </span><span class="lang-en">Between Artssspot and Opening BCN we have selected 100 of the
 	best works of art that we have seen this year, now it's up to you:</span></p>
-	<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p>
-	<a href="#" class="nav-btn vote-start"><i class="icon-arrow-right shdw-b-brown"></i></a>
+	<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p> -->
+	<a href="#!" class="nav-btn vote-start"><i class="icon-arrow-right shdw-b-brown"></i></a>
+	
+
+
 	<!-- <p>Una iniciativa de:</p>
 	<p><a href="http://www.artssspot.com" target="_blank" class="artssspot"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-artssspot.png" width="100" height="100" alt=""></a><span class="spacer"></span><a href="https://www.facebook.com/opening.bcn" target="_blank" class="opening"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-opening.png" width="70" height="70" alt=""></a></p>
 	<div class="info-col">

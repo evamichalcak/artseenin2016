@@ -23,16 +23,17 @@
 	//constans
 	var maxImages = 12;
 	var winningImages = 1;
-	var maxPreloadImages = 5;
-	var voteOpen = true;
+	var maxPreloadImages = 1;
+	var voteOpen = false;
+	var siteURL = "https://artseeninbcn17.artssspot.com";
 
 	// variables
 	var post_query;
 	var posts;
 	var image_loader = 0;
 	var imgCounter = 1;
-	var showdemotour = false;
-
+	var showdemotour = true;
+	var pid = getCookie('pid');
 
 
 	//-----------------------------------------
@@ -89,35 +90,6 @@
 
 			}
 
-
-
-			
-			
-			// language chooser
-			$('.ctrl-btn.es-ca').on('click', function() {
-				$('body').removeClass('es-es');
-				$('body').removeClass('en-en');
-				$('body').addClass('es-ca');
-			});
-			$('.ctrl-btn.es-es').on('click', function() {
-				$('body').removeClass('es-ca');
-				$('body').removeClass('en-en');
-				$('body').addClass('es-es');
-			});
-			$('.ctrl-btn.en-en').on('click', function() {
-				$('body').removeClass('es-ca');
-				$('body').removeClass('es-es');
-				$('body').addClass('en-en');
-			});
-			// project info slideup on bottom bar
-			$('.site-branding').on('click', function() {
-				$(this).toggleClass('open');
-			});
-			// disable sliding behaviour when clicking links in project info
-			$('.site-branding .share-container a, .site-branding .project-info a').on('click', function(e) {
-				e.stopPropagation();
-			});
-
 		// vote is not open, print winners, print ranking, set to viewing only
 		} else {
 			console.log('else');
@@ -130,6 +102,35 @@
 
 			//print_ranking(post_query);
 		}
+
+		// language chooser
+		$('.ctrl-btn.es-ca').on('click', function() {
+			$('body').removeClass('es-es');
+			$('body').removeClass('en-en');
+			$('body').addClass('es-ca');
+			$('html').attr('lang', 'ca');
+		});
+		$('.ctrl-btn.es-es').on('click', function() {
+			$('body').removeClass('es-ca');
+			$('body').removeClass('en-en');
+			$('body').addClass('es-es');
+			$('html').attr('lang', 'es-ES');
+		});
+		$('.ctrl-btn.en-en').on('click', function() {
+			$('body').removeClass('es-ca');
+			$('body').removeClass('es-es');
+			$('body').addClass('en-en');
+			$('html').attr('lang', 'en-US');
+		});
+		// project info slideup on bottom bar
+		$('.site-branding').on('click', function() {
+			$(this).toggleClass('open');
+		});
+		// disable sliding behaviour when clicking links in project info
+		$('.site-branding .share-container a, .site-branding .project-info a').on('click', function(e) {
+			e.stopPropagation();
+		});
+
 		// intro ani
 		$('#howToIntro').removeClass('logoin');
 		var tt = setTimeout(function(){
@@ -137,9 +138,13 @@
 		}, 8000);
 		// start button binding: hide intro, show demo if required ***TODO: disable jTinder during demo***
 		$('.vote-start').on('click tap', function() {
+			var previewTour = false;
 			$('#howToIntro').fadeOut();
+			if ((pid !== undefined) && (winningImages == 1)) {
+				previewTour = true;
+			}
 			if (showdemotour) {
-				demoTour();
+				demoTour(previewTour);
 			}
 		});
 		console.log('user_viewing_data on init: ' + user_viewing_data);
@@ -264,22 +269,24 @@
 		});
 	}
 
-	function demoTour() {
+	function demoTour(previewTour) {
+		var demo1 =  '';
+		if (!previewTour) {
 		// generate html part 1
-		var demo1 =  '<div class="demo-tour slide-dimension">';
-		demo1 += '<span class="demo-pill"><span class="demo--1"><span class="lang-ca">Arrastra la imatge per votar</span>';
-		demo1 += '<span class="lang-es">Arrastra la imagen para votar</span>';
-		demo1 += '<span class="lang-en">Drag the image to vote</span></span>';
-		demo1 += '<span class="demo--2"><span class="lang-ca">A la dreta si t\'agrada</span>';
-		demo1 += '<span class="lang-es">A la derecha si te gusta</span>';
-		demo1 += '<span class="lang-en">To the right if you like it</span></span>';
-		demo1 += '<span class="demo--3"><span class="lang-ca">A l\'esquerra per descartar</span>';
-		demo1 += '<span class="lang-es">A la izquierda para descartar</span>';
-		demo1 += '<span class="lang-en">To the left to dismiss it</span></span></span>';
-		demo1 += '<span class="demo--4 demo-pill"><span class="lang-ca">O utilitza els botons</span>';
-		demo1 += '<span class="lang-es">O utiliza los botones</span>';
-		demo1 += '<span class="lang-en">Or use the buttons</span></span></div>';
-
+			demo1 += '<div class="demo-tour slide-dimension">';
+			demo1 += '<span class="demo-pill"><span class="demo--1"><span class="lang-ca">Arrastra la imatge per votar</span>';
+			demo1 += '<span class="lang-es">Arrastra la imagen para votar</span>';
+			demo1 += '<span class="lang-en">Drag the image to vote</span></span>';
+			demo1 += '<span class="demo--2"><span class="lang-ca">A la dreta si t\'agrada</span>';
+			demo1 += '<span class="lang-es">A la derecha si te gusta</span>';
+			demo1 += '<span class="lang-en">To the right if you like it</span></span>';
+			demo1 += '<span class="demo--3"><span class="lang-ca">A l\'esquerra per descartar</span>';
+			demo1 += '<span class="lang-es">A la izquierda para descartar</span>';
+			demo1 += '<span class="lang-en">To the left to dismiss it</span></span></span>';
+			demo1 += '<span class="demo--4 demo-pill"><span class="lang-ca">O utilitza els botons</span>';
+			demo1 += '<span class="lang-es">O utiliza los botones</span>';
+			demo1 += '<span class="lang-en">Or use the buttons</span></span></div>';
+		}
 		// generate html part 2
 		var demo2 = '<span class="demo--5 demo-pill"><span class="lang-ca">Més info sobre l\'obra</span>';
 		demo2 += '<span class="lang-es">Más info sobre la obra</span>';
@@ -301,10 +308,17 @@
 		$('.share-container').append(demo3);
 		$('.logo-container').append(demo4);
 
-		// hide demo elements after animation is over ***REFACTO***: needs to also reactivate jTinder functionality (see line 129)
-		var tt = setTimeout(function(){
-			$('.demo-tour, .demo-pill').hide();
-		}, 22000);
+		if (!previewTour) {
+			// hide demo elements after animation is over ***REFACTO***: needs to also reactivate jTinder functionality (see line 129)
+			var tt = setTimeout(function(){
+				$('.demo-tour, .demo-pill').hide();
+			}, 22000);
+		} else {
+			$('body').addClass('preview-only');
+			var tt = setTimeout(function(){
+				$('.demo-tour, .demo-pill').hide();
+			}, 20000);
+		}
 
 	}
 
@@ -340,7 +354,6 @@
 	//preload images
 	function preload_images(post_query) {
 		// first check if there is a startpost and if yes, preload it
-		var pid = getCookie('pid');
 		if (pid !== undefined) {
 			$.each(post_query, function(index, post) {
 				if (post.id == pid) {
@@ -376,7 +389,14 @@
 		console.log('printing posts, printcount is: ' + postcount);
 		var printable = posts;
 		if (postcount) {
-			printable = posts.slice(-postcount);
+			if ((pid !== undefined) && (winningImages == 1)) {
+				printable = posts.filter(function( obj ) {
+				  return obj.id == pid;
+				});
+				$('.tinder-container').addClass('back-only');
+			} else {
+				printable = posts.slice(-postcount);
+			}
 		}
 		var html = '';
 		$.each(printable, function(index, element) {
@@ -389,9 +409,9 @@
 		    html+='<div class="title shdw-t-grey">'+printable[index].custom_fields.asiTitulo[0]+'</div>';
 		    html+='<div class="visto shdw-t-grey"><span class="lang-ca">Vist a:</span><span class="lang-es">Visto en:</span><span class="lang-en">Seen at:</span> '+printable[index].custom_fields.asiVisto[0]+'</div><span class="more-action shdw-t-grey"></span>';
 		    html+='<div class="share">';
-		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+printable[index].custom_fields.asiCompartir[0]+'?utm_source=fbshare" class="share-fb">fb</a>';
-		    html+='<a href="whatsapp://send?text='+printable[index].custom_fields.asiCompartir[0]+'?utm_source=washare" class="share-wa">wa</a>';
-		    html+='<a href="https://twitter.com/home?status='+printable[index].custom_fields.asiCompartir[0]+'?utm_source=twshare" class="share-tw">tw</a>';
+		    html+='<a href="https://www.facebook.com/sharer/sharer.php?u='+siteURL+'?pid='+printable[index].id+'&utm_source=fbshare" class="share-fb">fb</a>';
+		    html+='<a href="whatsapp://send?text='+siteURL+'?pid='+printable[index].id+'&utm_source=washare" class="share-wa">wa</a>';
+		    html+='<a href="https://twitter.com/home?status='+siteURL+'?pid='+printable[index].id+'&utm_source=twshare" class="share-tw">tw</a>';
 		    html+='</div></div>';
 		    html+='<div class="more slide-dimension"><p class="art-work-info"><span class="title">'+printable[index].custom_fields.asiTitulo[0]+'</span><br/>de '+printable[index].custom_fields.asiArtista[0]+'</p>'+printable[index].content+'</div>';
 		    html+='<div class="icon-heart-shape-outline like slide-dimension shdw-b-grey"></div><div class="icon-x dislike slide-dimension shdw-b-grey"></div></li>';
@@ -431,10 +451,11 @@
 
 	//check for cookie pid and if present, set start post
 	function show_start_post() {
-		console.log('show start post');
-		var pid = getCookie('pid');
 		if (pid === undefined) {
 			return false;
+		} else if (winningImages == 1) {
+			$('#p'+pid).insertAfter($('.slider-image:last-child')).find('.img').addClass('img-load');
+			return true;
 		} else {
 			$('#p'+pid).insertAfter($('.slider-image:last-child')).find('.img').addClass('img-load');
 			return true;
