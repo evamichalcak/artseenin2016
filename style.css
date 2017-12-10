@@ -183,6 +183,9 @@ a:active {
     -webkit-box-shadow: inset 0 0 6px rgba(96, 36, 0, .5); 
 }
 
+.spacer {
+    margin: 15px;
+}
 
 .site {
 	box-sizing: border-box;
@@ -227,10 +230,14 @@ a:active {
 
 .site-branding .project-info .info-col {
   display: inline-block;
-  max-width: 300px;
+  /*max-width: 300px;*/
   min-width: 250px;
   vertical-align: top;
   width: 45%;
+}
+
+.site-branding .info-col p > a {
+  vertical-align: middle;
 }
 
 .site-branding .project-info .logo-link--s,
