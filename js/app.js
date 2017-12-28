@@ -21,10 +21,10 @@
 	var expoContainer = "#art-viewer";
 
 	//constans
-	var maxImages = 12;
+	var maxImages = 100;
 	var winningImages = 1;
 	var maxPreloadImages = 1;
-	var voteOpen = false;
+	// var voteOpen = false;
 	var siteURL = "https://artseeninbcn17.artssspot.com";
 
 	// variables
@@ -131,11 +131,11 @@
 			e.stopPropagation();
 		});
 
-		// intro ani
-		$('#howToIntro').removeClass('logoin');
-		var tt = setTimeout(function(){
-			$('#howToIntro').addClass('logoout');
-		}, 8000);
+		// intro ani (moved to html)
+		// $('#howToIntro').removeClass('logoin');
+		// var tt = setTimeout(function(){
+		// 	$('#howToIntro').addClass('logoout');
+		// }, 8000);
 		// start button binding: hide intro, show demo if required ***TODO: disable jTinder during demo***
 		$('.vote-start').on('click tap', function() {
 			var previewTour = false;
@@ -189,6 +189,7 @@
 		$('.more-viewer .more-viewer-inner').data('postid', $('.viewing').data('postid'));
 		$('#tinderslide').on('click touchstart', '.more-action', function(e) {
 			e.preventDefault();
+			e.stopPropagation();
 			$(this).toggleClass('open');
 			$('.more, .more-viewer').toggleClass('show');
 			var p_id = $('.more-viewer').data('postid');
@@ -333,9 +334,9 @@
 	function get_posts() {
 		var wpQueryString;
 		if(voteOpen) {	
-			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmecount&order=DESC&count=12';
+			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmecount&order=DESC&count='+maxImages;
 		} else {
-			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmecount&order=DESC&count=12';
+			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmecount&order=DESC&count='+maxImages;
 		}
 		$.ajax({
 				url: AppAPI.url + wpQueryString,
@@ -413,7 +414,7 @@
 		    html+='<a href="whatsapp://send?text='+siteURL+'?pid='+printable[index].id+'&utm_source=washare" class="share-wa">wa</a>';
 		    html+='<a href="https://twitter.com/home?status='+siteURL+'?pid='+printable[index].id+'&utm_source=twshare" class="share-tw">tw</a>';
 		    html+='</div></div>';
-		    html+='<div class="more slide-dimension"><p class="art-work-info"><span class="title">'+printable[index].custom_fields.asiTitulo[0]+'</span><br/>de '+printable[index].custom_fields.asiArtista[0]+'</p>'+printable[index].content+'</div>';
+		    html+='<div class="more slide-dimension"><p class="art-work-info">'+printable[index].content+'</div>';
 		    html+='<div class="icon-heart-shape-outline like slide-dimension shdw-b-grey"></div><div class="icon-x dislike slide-dimension shdw-b-grey"></div></li>';
 		});
 		// check for the voteOK variable set by php or if we're only previewing
@@ -689,16 +690,18 @@
   elapsedTime,
   startTime;
 
- function handleswipe(isrightswipe){
-  if (isrightswipe)
-   touchresponse.innerHTML = 'Congrats, you\'ve made a <span style="color:red">right swipe!</span>'
-  else{
-   touchresponse.innerHTML = 'Condition for right swipe not met yet'
+ function handleswipe(isrightswipe, isleftswipe){
+  if (isrightswipe) {
+  	console.log('SWIPE right');
+   	on_swipe_right($('.viewing').data('postid'));
+  } 
+  if (isleftswipe) {
+  	console.log('SWIPE left');
+   	on_swipe_left($('.viewing').data('postid'));
   }
  }
 
  touchsurface.addEventListener('touchstart', function(e){
-  touchsurface.innerHTML = ''
   var touchobj = e.changedTouches[0]
   dist = 0
   startX = touchobj.pageX
@@ -706,7 +709,7 @@
   startTime = new Date().getTime() // record time when finger first makes contact with surface
   e.preventDefault()
 
- }, false)
+ }, false);
 
  touchsurface.addEventListener('touchmove', function(e){
   e.preventDefault() // prevent scrolling when inside DIV
@@ -717,9 +720,10 @@
   dist = touchobj.pageX - startX // get total dist traveled by finger while in contact with surface
   elapsedTime = new Date().getTime() - startTime // get time elapsed
   // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
-var swiperightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100)
-handleswipe(swiperightBol)
-e.preventDefault()
+var swiperightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100);
+var swipeleftBol = (elapsedTime <= allowedTime && dist <= threshold && Math.abs(touchobj.pageY - startY) >= 100);
+handleswipe(swiperightBol, swipeleftBol);
+e.preventDefault();
 }, false)
 
 }, false);

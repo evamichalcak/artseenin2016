@@ -21,6 +21,8 @@ function get_ip() {
 	return $ip;
 }
 
+$previewPrensa = isset($_GET["prensa"]);
+
 function check_ip() {
 	$ip        = get_ip();
 	$voted_ips = get_option( 'asib_voted_ips', array() );
@@ -33,8 +35,8 @@ function check_ip() {
 			update_option( 'asib_voted_ips', $voted_ips );
 			return true;
 		} else {
-			//return false;
-			return true;
+			return false;
+			//return true;
 		}
 	} else {
 		$voted_ips[$ip] = 1;
@@ -43,11 +45,188 @@ function check_ip() {
 	}
 }
 
+$voteOpen = $previewPrensa || (date('M Y') == "Jan 2018");
+
+$voteOK = is_user_logged_in() || isset($_COOKIE['uviews']) || check_ip() || (!$voteOpen);
 
 
-$voteOK = is_user_logged_in() || isset($_COOKIE['uviews']) || check_ip();
 
 get_header(); ?>
+
+<style>
+.intro-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*height: 100%;*/
+    top: 0;
+    background-color: #b0a9a2;
+    z-index: 10000;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.intro-container .intro-wrapper {
+  align-self: center;
+  width: 80%;
+  font-size: 22px;
+}
+.intro-container .intro-wrapper p {
+  margin: .2em auto;
+  max-width: 750px;
+}
+@media (min-width: 481px) and (min-height: 481px) {
+  .intro-container .intro-wrapper {
+    font-size: 32px;
+  }
+}
+.intro-logo {
+  margin-top: -55px;
+}
+.logoin .intro-logo > span { 
+    opacity: 0;
+}
+.intro-logo .word-art {
+  opacity: 1;
+  transition: opacity .3s ease-in .2s;
+}
+.intro-logo .word-seen {
+  opacity: 1;
+  transition: opacity .1s ease-in .3s;
+}
+.intro-logo .word-in {
+  opacity: 1;
+  transition: opacity .1s ease-in .4s;
+}
+.intro-logo .word-bcn {
+  opacity: 1;
+  transition: opacity .2s ease-in .5s;
+}
+.intro-logo > span { 
+    -webkit-backface-visibility: hidden;
+}
+.logoout .intro-logo .word-art {
+  opacity: 0;
+  transition: opacity .5s ease-in .2s;
+}
+.logoout .intro-logo .word-seen {
+  opacity: 0;
+  transition: opacity .2s ease-in .4s;
+}
+.logoout .intro-logo .word-in {
+  opacity: 0;
+  transition: opacity .2s ease-in .5s;
+}
+.logoout .intro-logo .word-bcn {
+  opacity: 0;
+  transition: opacity .2s ease-in .7s;
+}
+.backgroundclip {
+  background-image: url('<?php echo get_bloginfo('template_url') ?>/img/eye-red-2.gif');
+  background-size: cover;
+  color: transparent;
+  display: inline-block;
+  -webkit-background-clip: text;
+  font-family: 'Titan One', sans-serif;
+  font-weight: 900;
+  font-size: 300%;
+  line-height: 1;
+  margin: 0 .2em;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+.backgroundclip.size {  
+  background-position: bottom left;
+}
+@media (min-width: 370px) and (min-height: 370px) {
+  .backgroundclip {
+  font-size: 320%;
+  }
+}
+@media (min-width: 520px) and (min-height: 520px) {
+  .backgroundclip {
+  font-size: 350%;
+  }
+}
+@media (min-width: 895px) and (min-height: 320px) {
+  .backgroundclip {
+  font-size: 400%;
+  }
+}
+@media (min-width: 768px) and (min-height: 768px) {
+  .backgroundclip {
+  font-size: 500%;
+  }
+}
+@media (min-width: 1100px) and (min-height: 320px) {
+  .backgroundclip {
+  font-size: 500%;
+  }
+}
+.textshadow:before {
+  -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  background-image: none;
+  background-color: transparent;
+  -webkit-text-fill-color: #2d1514;
+  background: none;
+  color: #2d1514;
+  -webkit-background-clip: none;
+  content: attr(data-text);
+  text-shadow: .01em .12em .2em #333;
+  z-index: -1;
+}
+.intro-text {
+  color: #b0a9a2;
+  text-shadow: none;
+  margin: 0 auto;
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+.logoout .intro-text {
+  visibility: visible;
+  color: #fff;
+  text-shadow: 4px 4px 8px #333;
+  transition: color .5s ease-in .6s, text-shadow .5s ease-in .6s, z-index 1s linear 1s;
+  z-index: 1;
+}
+.lang-buttons {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+}
+.logoout .lang-buttons {
+  opacity: 1;
+  transition: opacity .5s ease-in .6s;
+}
+.intro-text .nav-btn > i {
+    margin: -2px 0 0 3px;
+    display: inline-block;
+}
+.intro-text .nav-btn {
+  margin-top: 1em;
+  opacity: 0;
+}
+.logoout .intro-text .nav-btn {
+  opacity: 1;
+  transition: opacity .5s ease-in .6s;
+}
+</style>
+
+
+
 
 	<section id="art-viewer">
 		<div class="tinder-container">
@@ -77,20 +256,7 @@ get_header(); ?>
 
 	    </div><!-- /.tinder-container -->
 	    <div id="howToIntro" class="intro-container logoin"><div class="intro-wrapper">
-<!-- <svg>
-<defs>
-	<pattern id="wood" patternUnits="userSpaceOnUse" width="400" height="400" >
-		<image xlink:href="https://media.giphy.com/media/l41YcgNSPj6Wy1KyQ/giphy.gif" width="400" height="400" />
-	</pattern>
-</defs>
-<text y="1em" class="shdw-t-grey">Art</text>
-<text y="2em" class="shdw-t-grey">seen</text>
-<text y="3em">in</text>
-<text y="4em">BCN `17</text>
-</svg>
 
-<div class="clip-text clip-text_one shdw-t-grey"><span>JINTOS</span><span>oh</span></div>
--->
 <?php if ( $voteOK ) { ?>
 	<div class="intro-text">
 		<div class="lang-buttons">
@@ -99,21 +265,21 @@ get_header(); ?>
 			<a href="#!" class="demo-pill ctrl-btn en-en">English</a>
 		</div>
 
-		<p style="text-transform: uppercase; margin-bottom: 20px;">
+		<!-- <p style="text-transform: uppercase; margin-bottom: 20px;">
 			<span class="lang-ca">Ull, no comparteixis aquest enllaç amb tercers!</span>
 			<span class="lang-es">¡Ojo, no compartas este enlace con terceros!</span>
 			<span class="lang-en">Attention, do not share this link with third parties!</span>
 		</p>
 		<p>
-			<span class="lang-ca">Si us plau, revisa que estigui bé i sense errors d'ortografia la informació visible a la pantalla i que hàgim inclòs tot el que necessites incloure d'informació addicional (crèdits, enllaços, etc.) en la info que apareix fent clic al "+" .</span>
-			<span class="lang-es">Por favor, revisa que esté bien y sin errores de ortografía la información visible en la pantalla y que hayamos incluido todo lo que necesitas incluir de información adicional (créditos, enlaces, etc.) en la info que aparece haciendo clic en el "+".</span>
-			<span class="lang-en">Please check that the information visible on the screen is correct and without errors of spelling and that we have included everything you need to include of additional information (credits, links, etc.) in the information that appears by clicking on the "+" .</span>
-		</p>
+			<span class="lang-ca">Si us plau, revisa que estigui bé i sense errors d'ortografia la informació visible a la pantalla i que hàgim inclòs tota la informació addicional (crèdits, enllaços, etc.) en la info que apareix fent clic al "+". També revisa la versió en castellá e anglesa, si us plau.</span>
+			<span class="lang-es">Por favor, revisa que esté bien y sin errores de ortografía la información visible en la pantalla y que hayamos incluido toda la información adicional (créditos, enlaces, etc.) en la info que aparece haciendo clic en el "+". También, revisá la versión catalana e inglesa, por favor.</span>
+			<span class="lang-en">Please check that the information visible on the screen is correct and without errors of spelling and that we have included all additional information (credits, links, etc.) in the slide that appears by clicking on the "+". Please, do also check the catalan and the spanish version.</span>
+		</p> -->
 
-		<!-- <p><span class="lang-ca">Entre Artssspot i Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
+		<p><span class="lang-ca">Entre Artssspot i Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist aquest any, ara et toca a tu: </span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las
 	mejores obras de arte que hemos visto este año, ahora te toca a tí: </span><span class="lang-en">Between Artssspot and Opening BCN we have selected 100 of the
 	best works of art that we have seen this year, now it's up to you:</span></p>
-	<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p> -->
+	<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p>
 	<a href="#!" class="nav-btn vote-start"><i class="icon-arrow-right shdw-b-brown"></i></a>
 	
 
@@ -125,6 +291,18 @@ get_header(); ?>
 		<p><a href="http://www.poblenouurbandistrict.com/" target="_blank" class="pud"><img src="<?php echo get_bloginfo('template_url') ?>/img/pud-logo.png" width="60" height="55" alt=""></a><span class="spacer"></span> <a href="http://www.younggalleryweekend.com/" target="_blank" class="ygw"><img src="<?php echo get_bloginfo('template_url') ?>/img/ygw-logo.png" width="56" height="48" alt=""></a><span class="spacer"></span> <a href="http://www.bcnstreetart.xyz/" target="_blank" class="streetart"><img src="<?php echo get_bloginfo('template_url') ?>/img/streetart-logo.png" width="45" height="45" alt=""></a></p>
 	</div>-->
 	</div>
+<?php } else if ($previewPrensa) { ?>
+	<div class="login-modal-wrapper">
+		<div class="login-modal">
+			<span class="demo-pill">
+				<span class="lang-ca">Entra les teves dades d'usuari per a l'accés previ.</span>
+				<span class="lang-es">Entra tus datos de usuario para el acceso previo.</span>
+				<span class="lang-en">Enter your user data for prior access.</span>
+			</span>
+			<div class="login-form">
+				<?php echo do_shortcode('[login-with-ajax template="modal-register-press" registration="0" remember="0"]'); ?>
+			</div>
+		</div>
 <?php } else { ?>
 	<div class="login-modal-wrapper">
 		<div class="login-modal">
@@ -159,10 +337,21 @@ get_header(); ?>
 	<span data-text="BCN&nbsp;'17" class="backgroundclip textshadow word-bcn">BCN&nbsp;'17</span>
 </div>
 
-	    	
+
+
 </div></div>
 
 	</section><!-- /#art-viewer -->
+
+
+
+<script>
+	var introel = document.getElementById('howToIntro');
+	introel.classList.remove('logoin');
+	var tt = setTimeout(function(){
+		introel.classList.add('logoout');
+	}, 8000);
+</script>	   
 
 
 	<script>
@@ -177,6 +366,7 @@ get_header(); ?>
 	<?php echo 'var user_voting_data = "' . get_user_meta( get_current_user_id(), 'vvo', true) . '";'; ?>
 	<?php echo 'var user_id = "' . get_current_user_id() . '";'; ?>
 	<?php echo 'var voteOK = "' . $voteOK . '";'; ?>
+	<?php echo 'var voteOpen = "' . $voteOpen . '";'; ?>
 
 	<?php 
 	// echo "var json=". json_encode(get_posts(array(
