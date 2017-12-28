@@ -53,11 +53,11 @@ if ($pid) { ?>
 <?php } else { ?>
 
 	<meta property="og:title" content="Art seen in BCN 2017 - El millor art vist a Barcelona el 2017"/>
-	<meta property="og:image" content="<?php bloginfo('template_url'); ?>/img/asibcn-logo-share.png"/>
+	<meta property="og:image" content="<?php bloginfo('template_url'); ?>/img/fbimage.jpg"/>
 	<!-- <meta property="og:image" content="<?php echo the_permalink(); ?>wp-content/uploads/2017/01/albarran-cabrera-7.jpg"/> -->
 	<meta property="og:url" content="<?php echo the_permalink(); ?>"/>
 	<meta name="twitter:title" content="Art seen in BCN 2017 - El millor art vist a Barcelona el 2017" />
-	<meta name="twitter:image" content="<?php bloginfo('template_url'); ?>/img/asibcn-logo-share.png" />
+	<meta name="twitter:image" content="<?php bloginfo('template_url'); ?>/img/twimage.jpg" />
 	<!-- <meta name="twitter:image" content="<?php echo the_permalink(); ?>wp-content/uploads/2017/01/albarran-cabrera-7.jpg" /> -->
 	<meta name="twitter:url" content="<?php echo the_permalink(); ?>" />
 

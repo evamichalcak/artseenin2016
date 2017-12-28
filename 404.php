@@ -14,13 +14,13 @@ get_header(); ?>
 
 			<section class="error-404 not-found">
 				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Ups! No hem trobat la pàgina.', 'artseenin2016' ); ?></h1>
+					<h1 class="page-title" style="text-align: center; max-width: 80%; margin: 10vh auto;"><?php esc_html_e( 'Ups! No hem trobat la pàgina.', 'artseenin2016' ); ?></h1>
 				</header><!-- .page-header -->
 
 				<div class="page-content">
 					<!--<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'artseenin2016' ); ?></p>-->
-
-					<?php
+<?php echo the_permalink(); ?>
+					<!-- <?php
 						get_search_form();
 
 						the_widget( 'WP_Widget_Recent_Posts' );

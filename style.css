@@ -400,6 +400,7 @@ body,
   margin: .5em .2em;
   text-decoration: none;
   text-shadow: none;
+  min-height: 17px;
 }
 
 .ctrl-btn:hover,

@@ -50,7 +50,7 @@
 		var info = savedVotes;
 	    var printable_posts = post_query;
 
-		if (voteOpen) {
+		if (voteOpen || previewPrensa) {
 
 			// if either cookie or user variable is "done", go to preview-only
 			if ((cookie_actions === "done") || (previous_actions === 1)) {
@@ -560,10 +560,12 @@
 		console.log('viewing cookie: ' + user_viewing_data);
 		// update jTinder view
 		update_viewing_class(post_id);
-		//update cookie
-		update_cookie(post_id);
-		// save view to DB
-		viewmeviewvotestore(post_id, vote);
+		if (!previewPrensa) {
+			//update cookie
+			update_cookie(post_id);
+			// save view to DB
+			viewmeviewvotestore(post_id, vote);
+		}
 		// if all images are viewed, do finish actions
 		if (imgCounter >= maxImages) {
 			$(unsavedVotes).hide();
@@ -664,8 +666,10 @@
 	// save finish and display thanks
 	function finish() {
 		// set user meta and cookie to "done"
-		viewmeusersave('done', user_voting_data);
-		setCookie('uviews', 'done');
+		if (!previewPrensa) {
+			viewmeusersave('done', user_voting_data);
+			setCookie('uviews', 'done');
+		}
 		// show thanks
 		$(sliderList).html('<li class="info-slide"><div class="saving shdw-t-brown"><span class="lang-ca">Gràcies per participar!</span><span class="lang-es">¡Gracias por participar!</span><span class="lang-en">Thanks for taking part!</span></li>');
 		clean_screen();
