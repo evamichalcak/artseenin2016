@@ -25,7 +25,7 @@
 	var winningImages = 1;
 	var maxPreloadImages = 1;
 	// var voteOpen = false;
-	var siteURL = "https://artseeninbcn17.artssspot.com";
+	var siteURL = "http://artseeninbcn2017.artssspot.com/";
 
 	// variables
 	var post_query;

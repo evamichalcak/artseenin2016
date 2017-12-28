@@ -341,9 +341,9 @@ get_header(); ?>
 			<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p>
 			<p>
 				<small>
-					<span class="lang-ca">Els teus vots no es comptabilitzaran en el accès previ. Per poder votar hauràs de desloguearte <a href="http://artseeninbcn17.artssspot.com/wp-login.php/?action=logout" target="_blank">http://artseeninbcn17.artssspot.com/wp-login.php/?action=logout</a> i accedir a través de <a href = "http://artseeninbcn17.artssspot.com/" target = "_blank"> http://artseeninbcn17.artssspot.com/ </a></span>
-					<span class="lang-es">Tus votos no se contabilizarán en el aceso previo. Para poder votar tendrás que desloguearte <a href="http://artseeninbcn17.artssspot.com/wp-login.php/?action=logout" target="_blank">http://artseeninbcn17.artssspot.com/wp-login.php/?action=logout</a> y acceder a través de <a href="http://artseeninbcn17.artssspot.com/" target="_blank">http://artseeninbcn17.artssspot.com/</a></span>
-					<span class="lang-en">Your votes will not be counted in the previous access. To be able to vote you will have to logout <a href="http://artseeninbcn17.artssspot.com/wp-login.php/?action=logout" target="_blank">http://artseeninbcn17.artssspot.com/wp-login.php/?action=logout</a> and access through <a href = "http://artseeninbcn17.artssspot.com/" target = "_blank"> http://artseeninbcn17.artssspot.com/ </a></span>
+					<span class="lang-ca">Els teus vots no es comptabilitzaran en el accès previ. Per poder votar hauràs de desloguearte <a href="http://artseeninbcn2017.artssspot.com/wp-login.php/?action=logout" target="_blank">http://artseeninbcn2017.artssspot.com/wp-login.php/?action=logout</a> i accedir a través de <a href = "http://artseeninbcn2017.artssspot.com/" target = "_blank"> http://artseeninbcn2017.artssspot.com/ </a></span>
+					<span class="lang-es">Tus votos no se contabilizarán en el aceso previo. Para poder votar tendrás que desloguearte <a href="http://artseeninbcn2017.artssspot.com/wp-login.php/?action=logout" target="_blank">http://artseeninbcn2017.artssspot.com/wp-login.php/?action=logout</a> y acceder a través de <a href="http://artseeninbcn2017.artssspot.com/" target="_blank">http://artseeninbcn2017.artssspot.com/</a></span>
+					<span class="lang-en">Your votes will not be counted in the previous access. To be able to vote you will have to logout <a href="http://artseeninbcn2017.artssspot.com/wp-login.php/?action=logout" target="_blank">http://artseeninbcn2017.artssspot.com/wp-login.php/?action=logout</a> and access through <a href = "http://artseeninbcn2017.artssspot.com/" target = "_blank"> http://artseeninbcn2017.artssspot.com/ </a></span>
 				</small>
 			</p>
 
@@ -374,9 +374,9 @@ get_header(); ?>
 			<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p>
 			<p>
 				<small>
-					<span class="lang-ca">Pots consultar el rànquing complet aquí <a href="http://artseeninbcn17.artssspot.com/ranking" target="_blank">http://artseeninbcn17.artssspot.com/ranking</a></span>
-					<span class="lang-es">Puedes consultar el ranking completo aquí<a href="http://artseeninbcn17.artssspot.com/ranking" target="_blank">http://artseeninbcn17.artssspot.com/ranking</a></span>
-					<span class="lang-en">You can check the full ranking here <a href="http://artseeninbcn17.artssspot.com/ranking" target="_blank"> http://artseeninbcn17.artssspot.com/ranking </a></span>
+					<span class="lang-ca">Pots consultar el rànquing complet aquí <a href="http://artseeninbcn2017.artssspot.com/ranking" target="_blank">http://artseeninbcn2017.artssspot.com/ranking</a></span>
+					<span class="lang-es">Puedes consultar el ranking completo aquí<a href="http://artseeninbcn2017.artssspot.com/ranking" target="_blank">http://artseeninbcn2017.artssspot.com/ranking</a></span>
+					<span class="lang-en">You can check the full ranking here <a href="http://artseeninbcn2017.artssspot.com/ranking" target="_blank"> http://artseeninbcn2017.artssspot.com/ranking </a></span>
 				</small>
 			</p>
 

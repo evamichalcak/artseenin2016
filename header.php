@@ -64,14 +64,14 @@ if ($pid) { ?>
 <?php } ?>
 
 <!-- <meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat i el públic ha votat als seus favorits! El resultat és una imatge fresca i amb identitat pròpia de l'art a Barcelona."/> -->
-<meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a decidir els favorits amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2016 a Barcelona."/>
+<meta property="og:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a decidir els favorits amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2017 a Barcelona."/>
 <meta property="og:type" content="article"/>
 <meta property="og:site_name" content="<?php echo get_bloginfo(); ?>"/>
 
 <meta property="fb:app_id" content="328047170906455"/>
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@doartystuff" />
-<meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a decidir els favorits amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2016 a Barcelona." />
+<meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat, ara ajuda'ns a decidir els favorits amb els teus vots! Però sobretot gaudeix de la millor producció artística del 2017 a Barcelona." />
 <!-- <meta name="twitter:description" content="Hem preseleccionat 100 obres d'art de l'any passat i el públic ha votat als seus favorits! El resultat és una imatge fresca i amb identitat pròpia de l'art a Barcelona." /> -->
 
 
