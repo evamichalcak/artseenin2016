@@ -107,19 +107,19 @@ get_header(); ?>
 }
 .logoout .intro-logo .word-art {
   opacity: 0;
-  transition: opacity .5s ease-in .4s;
+  transition: opacity .2s ease-in;
 }
 .logoout .intro-logo .word-seen {
   opacity: 0;
-  transition: opacity .2s ease-in .6s;
+  transition: opacity .2s ease-in .1s;
 }
 .logoout .intro-logo .word-in {
   opacity: 0;
-  transition: opacity .2s ease-in .7s;
+  transition: opacity .2s ease-in .2s;
 }
 .logoout .intro-logo .word-bcn {
   opacity: 0;
-  transition: opacity .2s ease-in .9s;
+  transition: opacity .2s ease-in .3s;
 }
 .backgroundclip {
   background-image: url('<?php echo get_bloginfo('template_url') ?>/img/eye-red-2.gif');
@@ -418,7 +418,7 @@ get_header(); ?>
 	introel.classList.remove('logoin');
 	var tt = setTimeout(function(){
 		introel.classList.add('logoout');
-	}, 8000);
+	}, 6000);
 </script>	   
 
 
