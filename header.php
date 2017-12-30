@@ -15,8 +15,8 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
+<link href="https://fonts.googleapis.com/css?family=Titan+One&text=ArtseniBCN17%27" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,300i" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Titan+One" rel="stylesheet">
 
 <link rel="apple-touch-icon" sizes="57x57" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="http://www.artssspot.com/wp-content/uploads/2017/03/apple-icon-60x60.png">

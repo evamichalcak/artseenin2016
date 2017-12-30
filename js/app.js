@@ -22,8 +22,9 @@
 
 	//constans
 	var maxImages = 100;
-	var winningImages = 1;
-	var maxPreloadImages = 1;
+	var winningImages = 25;
+	var maxPreloadImages = 10;
+	var loadFactor = maxImages / maxPreloadImages;
 	// var voteOpen = false;
 	var siteURL = "http://artseeninbcn2017.artssspot.com/";
 
@@ -32,8 +33,34 @@
 	var posts;
 	var image_loader = 0;
 	var imgCounter = 1;
-	var showdemotour = true;
+	var showdemotour = false;
 	var pid = getCookie('pid');
+	var voteSaveQueue = [];
+
+	// messages
+	var showMsg = false;
+	var msgs = {
+		'voteStarted': [{
+			'ca': 'Ja has començat a votar.',
+			'es': 'Ya has empezado a votar.',
+			'en': 'You already started voting.',
+		},
+		{
+			'ca': 'Continuem on ho has deixat.',
+			'es': 'Continuamos donde lo has dejado.',
+			'en': 'We pick up where you left it.',
+		}],
+		'voteDone': [{
+			'ca': 'Ja has votat.',
+			'es': 'Ya has votado.',
+			'en': 'You have already voted.',
+		},
+		{
+			'ca': 'Veuràs les obres en modo galeria.',
+			'es': 'Verás las obras en modo galería.',
+			'en': 'You will see the works in gallery mode.',
+		}],
+	};
 
 
 	//-----------------------------------------
@@ -57,12 +84,20 @@
 				//clean_screen();
 				console.log('else');
 				preload_images(post_query);
+				showMsg = msgs.voteDone;
 				$(loaderDisplay).on('asi.allLoaded', function() {
 					print_posts(post_query, maxImages);
 					preview_only_setup();
-					$(previewOnly).show();
+					//$(previewOnly).show();
+					if ((pid !== undefined) && (winningImages == 1)) {
+						if (showdemotour) {
+							demoTour(true);
+						}
+					}
+					if (showMsg) {
+						inform_user(showMsg);
+					}
 				});
-
 			} else {
 				// if there is a cookie
 				if (cookie_actions !== undefined) {
@@ -74,18 +109,25 @@
 				} else if (previous_actions === 0) {		
 					showdemotour = true;	
 				} 	
-				// if user previus actions has content, clean up post-query, update maxImages and save cookie
+				// if user previous actions has content, clean up post-query, update maxImages and save cookie
 				if (previous_actions !== 0) {	
 					printable_posts = clean_post_array(previous_actions, post_query);
 					maxImages -= previous_actions.length;
 					console.log('printable_posts: ' + printable_posts);
 					setCookie('uviews', user_viewing_data);
+					showMsg = msgs.voteStarted;
 				}
 				// print jTinder
 				preload_images(post_query);
 				$(loaderDisplay).on('asi.allLoaded', function() {
 					print_posts(printable_posts);
 					slider_setup();
+					if (showdemotour) {
+						demoTour();
+					}
+					if (showMsg) {
+						inform_user(showMsg);
+					}
 				});
 
 			}
@@ -98,6 +140,11 @@
 				maxImages = winningImages;
 				print_posts(post_query, winningImages);
 				preview_only_setup();
+				if ((pid !== undefined) && (winningImages == 1)) {
+					if (showdemotour) {
+						demoTour(true);
+					}
+				}
 			});
 
 			//print_ranking(post_query);
@@ -137,17 +184,20 @@
 		// 	$('#howToIntro').addClass('logoout');
 		// }, 8000);
 		// start button binding: hide intro, show demo if required ***TODO: disable jTinder during demo***
-		$('.vote-start').on('click tap', function() {
-			var previewTour = false;
-			$('#howToIntro').fadeOut();
-			if ((pid !== undefined) && (winningImages == 1)) {
-				previewTour = true;
-			}
-			if (showdemotour) {
-				demoTour(previewTour);
+		
+		console.log('user_viewing_data on init: ' + user_viewing_data);
+
+		// handling for votes pending to save: update array that grows when save is send, message on unload
+		$(document).on('asi.votesaved', function() {
+			if (voteSaveQueue.length > 0) {
+				voteSaveQueue.pop();
 			}
 		});
-		console.log('user_viewing_data on init: ' + user_viewing_data);
+		window.onbeforeunload = function() {
+			if (voteSaveQueue.length > 0) {
+			    return true;
+			}
+		}
 	}
 
 	function slider_setup() {
@@ -360,14 +410,15 @@
 				if (post.id == pid) {
 					var img = new Image();
 					img.src = post.thumbnail_images.full.url;
+        			return false; 
 				}
 			});
 		}
 		console.log('loading images');
 		//get last 10 images and load them
 		var last10 = post_query.slice(-10);
-		$.each(last10, function(index, post) {
-		console.log(post.thumbnail_images.full.url);
+		$.each(last10.reverse(), function(index, post) {
+			console.log(post.thumbnail_images.full.url);
 			var img = new Image();
 			img.src = post.thumbnail_images.full.url;
 		    img.onload = update_loader;
@@ -377,10 +428,11 @@
 
 	//update loader
 	function update_loader() {
-		image_loader+=10;
-		$(loaderDisplay).html(image_loader);
+		image_loader+=1;
+		$(loaderDisplay).html(image_loader*loadFactor);
 		if (image_loader >= maxPreloadImages) {
 			$(loaderDisplay).trigger('asi.allLoaded');
+			console.log('asi.allLoaded');
 		}
 		return true;	
 	}
@@ -495,12 +547,20 @@
 
 
 	//inform user that they have already started voting
-	function inform_user(elem) {
-		$(elem).show();
-		var tt = setTimeout(function(){
-			$(elem).hide();
-		}, 10000);
+	function inform_user(msg) {
+		var elem = '<div class="messages slide-dimension msg-total--' + msg.length + '"><span class="demo-pill">';
+		for (var i = 0, len = msg.length; i < len; i++) {
+			elem += '<span class="message msg--'+ i +'"><span class="lang-ca">' + msg[i].ca;
+			elem += '</span><span class="lang-es">' + msg[i].es;
+			elem += '</span><span class="lang-en">' + msg[i].en;
+			elem += '</span></span>';
+		}
+		elem += '</div></div></div>';
+		$('.viewing').append(elem);
+		$('.demo-tour').show();
 	}
+
+
 
 
 	//-----------------------------------------
@@ -565,6 +625,8 @@
 			update_cookie(post_id);
 			// save view to DB
 			viewmeviewvotestore(post_id, vote);
+			voteSaveQueue.push('1');
+			console.log('voteSaveQueue: ' + voteSaveQueue.length);
 		}
 		// if all images are viewed, do finish actions
 		if (imgCounter >= maxImages) {
@@ -685,7 +747,7 @@
 
    // var touchsurface = document.getElementById('touchsurface'),
    var touchsurface = document.getElementById('tinderslideList'),
-   touchresponse = document.getElementById('testtemp'),
+   // touchresponse = document.getElementById('testtemp'),
   startX,
   startY,
   dist,

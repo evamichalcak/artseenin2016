@@ -554,7 +554,7 @@ html[lang="es-ES"] .lang-en,
 
 
 
-/* DEMO */
+/* DEMO & MESSAGING */
 
 .demo-pill {
   background-color: #f30a02;
@@ -576,6 +576,7 @@ html[lang="es-ES"] .lang-en,
   width: auto;
 }
 
+
 .viewing .demo-pill,
 .site-branding .demo-pill {
   box-shadow: 2px 3px 6px rgba(0, 0, 0, .4);
@@ -586,7 +587,8 @@ html[lang="es-ES"] .lang-en,
   box-shadow: 2px 3px 6px rgba(0, 0, 0, .2);
 }
 
-.viewing .demo-tour {
+.viewing .demo-tour,
+.viewing .messages {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -595,7 +597,8 @@ html[lang="es-ES"] .lang-en,
   top: 0;
 }
 
-.viewing .demo-tour .demo-pill {
+.viewing .demo-tour .demo-pill,
+.viewing .messages .demo-pill {
   display: flex;
   justify-content: flex-start;
   /*position: relative;*/
@@ -690,6 +693,22 @@ html[lang="es-ES"] .lang-en,
   50% { transform: translate(0,0); }
   75% { transform: translate(0,-5px); }
   100% { transform: translate(0,0); }
+}
+
+.viewing .messages.msg-total--2 .demo-pill {
+  animation: 
+    openPill .5s ease-in forwards, 
+    closePill .5s ease-out 8.5s forwards;
+}
+.viewing .messages .msg--0 {
+  animation: 
+    showText .3s ease-in .2s forwards, 
+    hideText .3s ease-out 3.3s forwards;
+}
+.viewing .messages .msg--1 {
+  animation: 
+    showText .3s ease-in 3.7s both, 
+    hideText .3s ease-out 8.3s forwards;
 }
 
 .viewing .demo-tour .demo-pill:not(.demo--4) {
@@ -1671,18 +1690,20 @@ J-TINDER
 .viewing .more-action {
   cursor: pointer;
   display: inline-block;
-  height: 1.3em;
+  height: 1.5em;
   position: relative;
   text-align: center;
-  width: 1.3em;
+  width: 1.5em;
   -webkit-backface-visibility: hidden;
+  margin-top: -7px;
+  vertical-align: middle;
 }
 
 .viewing .more-action:after {
     content: '\e80a';
     position: absolute;
-    right: -.4em;
-    bottom: -.2em;
+    right: -.2em;
+    bottom: -.1em;
     display: inline-block;
     font-family: "fontello";
     font-size: 1.4em;
@@ -1705,13 +1726,34 @@ J-TINDER
 
 .viewing .more-action:hover:after {
     transition: all .2s ease-in;
-    right: -.35em;
-    bottom: -.15em;
+    right: -.15em;
+    bottom: -.05em;
 }
 
 #tinderslide li.viewing .content .more-action.shdw-t-grey:hover {
     text-shadow: 3px 3px 4px #333;
     transition: text-shadow .2s ease-in;
+}
+
+@media (min-width: 600px) {
+  .viewing .more-action {
+    margin-top: -3px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .viewing .more-action {
+    height: 1.3em;
+    width: 1.3em;
+  }
+  .viewing .more-action:after {
+    right: -.4em;
+    bottom: -.2em;
+  }
+  .viewing .more-action:hover:after {
+    right: -.35em;
+    bottom: -.15em;
+  }
 }
 
 .slide-actions .actions-wrapper a {
@@ -1804,7 +1846,7 @@ J-TINDER
 }
 
 .tinder-container .more-viewer.show {
-    opacity: .9 !important;
+    opacity: .93 !important;
     z-index: 100;
 }
 

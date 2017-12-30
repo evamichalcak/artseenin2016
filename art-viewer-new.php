@@ -45,7 +45,8 @@ function check_ip() {
 	}
 }
 
-$voteOpen = (date('M Y') == "Jan 2018");
+#$voteOpen = (date('M Y') == "Jan 2018");
+$voteOpen = true;
 
 $voteOK = is_user_logged_in() || isset($_COOKIE['uviews']) || check_ip();
 
@@ -170,9 +171,9 @@ get_header(); ?>
   top: 0;
   background-image: none;
   background-color: transparent;
-  -webkit-text-fill-color: #2d1514;
+  -webkit-text-fill-color: #270907;
   background: none;
-  color: #2d1514;
+  color: #270907;
   -webkit-background-clip: none;
   content: attr(data-text);
   text-shadow: .01em .12em .2em #333;
@@ -236,6 +237,15 @@ get_header(); ?>
   opacity: 1;
   transition: opacity .5s ease-in .6s;
 }
+
+@keyframes blink {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.loading-blink {
+	animation: blink .5s alternate infinite;
+}
+
 </style>
 
 
@@ -250,7 +260,7 @@ get_header(); ?>
 		
 			<div id="tinderslide">
 			    <ul id="tinderslideList" class="slide-dimension">
-			        <li id="loaderSlide" class="slide-dimension info-slide"><div class="loading shdw-t-brown">Loading...<div class="loader"><span id="loader-percentage">0</span>%</div></div></li>
+			        <li id="loaderSlide" class="slide-dimension info-slide"><div class="loading shdw-t-brown"><span class="loading-blink">Loading...</span><div class="loader"><span id="loader-percentage">0</span>%</div></div></li>
 			    </ul>
 			</div><!-- /#tinderslide -->
 
@@ -324,7 +334,6 @@ get_header(); ?>
 					<?php echo do_shortcode('[login-with-ajax template="modal-register" registration="1"]'); ?>
 				</div>
 			</div>
-		</div>
 	<?php } ?>
 <?php } else if ($previewPrensa) { ?>
 	<?php if ( $voteOK ) { ?>
@@ -370,7 +379,7 @@ get_header(); ?>
 				<a href="#!" class="demo-pill ctrl-btn en-en">English</a>
 			</div>
 
-			<p><span class="lang-ca">Entre Artssspot i de obertura BCN hem seleccionat 100 de les millors obres d'art que hem vist durant l'any 2017 a Barcelona i el públic ha votat els seus 25 favorits.</span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las mejores obras de arte que hemos visto durante el año 2017 en Barcelona y el público ha votado sus 25 favoritos.</span><span class="lang-en">Between Artssspot and Opening BCN we have selected 100 of the best works of art we have seen during the year 2017 in Barcelona and the public has voted their 25 favorites.</span></p>
+			<p><span class="lang-ca">Entre Artssspot i Opening BCN hem seleccionat 100 de les millors obres d'art que hem vist durant l'any 2017 a Barcelona i el públic ha votat els seus 25 favorits.</span><span class="lang-es">Entre Artssspot y Opening BCN hemos seleccionado 100 de las mejores obras de arte que hemos visto durante el año 2017 en Barcelona y el público ha votado sus 25 favoritos.</span><span class="lang-en">Between Artssspot and Opening BCN we have selected 100 of the best works of art we have seen during the year 2017 in Barcelona and the public has voted their 25 favorites.</span></p>
 			<p><span class="lang-ca">Repassa la selecció, vota els teus favorits, però sobretot, descobreix el millor art de Barcelona de 2017.</span><span class="lang-es">Repasa la selección, vota tus favoritos, pero sobre todo, descubre el mejor arte de Barcelona de 2017.</span><span class="lang-en">Review the selection, vote your favorites, but above all, discover the best art of Barcelona in 2017.</span></p>
 			<p>
 				<small>
@@ -415,10 +424,15 @@ get_header(); ?>
 
 <script>
 	var introel = document.getElementById('howToIntro');
+	//document.fonts.onloadingdone = 
 	introel.classList.remove('logoin');
 	var tt = setTimeout(function(){
 		introel.classList.add('logoout');
-	}, 6000);
+	}, 7500);
+
+	jQuery('.vote-start').on('click tap', function() {
+		jQuery('#howToIntro').fadeOut();
+	});
 </script>	   
 
 
@@ -446,9 +460,9 @@ get_header(); ?>
 	?>
 
 	</script>
-	<p id="testtemp" style="position: absolute; top: 0; left: 0; z-index: 1000000;"></p>
 
 	<?php
 	get_footer(); ?>
+	<!-- <p id="testtemp" style="position: absolute; top: 0; left: 0; z-index: 10000; width:100%; height:100%; background-color: rgba(0,0,0,.2); margin:0;"></p> -->
 			
 
