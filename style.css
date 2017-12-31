@@ -226,6 +226,7 @@ a:active {
 .site-branding .project-info {
   color: #f30a02;
   padding: 5px 14px;
+  font-size: 15px;
 }
 
 .site-branding .project-info .info-col {
@@ -296,7 +297,18 @@ a:active {
   }
 }
 
+
+@media (max-width: 400px) {
+  .site-branding .project-info {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 480px) {
+  .site-branding .project-info {
+    font-size: 15px;
+  }
+
   .site-branding .bottom-bar {
     padding: 5px;
   }
@@ -317,6 +329,47 @@ a:active {
 
   .counter-container {
     flex: 1 1 15%;
+  }
+
+  .site-branding .project-info .logo-link--l {
+      margin: 0;
+  }
+  .site-branding .project-info .info-col {
+    width: 100%;
+  }
+  .info-col p {
+      margin: 7px 0;
+  }
+  .spacer {
+      margin: 5px;
+  }
+  .logolinks .artssspot img {
+    height: 60px;
+    width: 60px;
+  }
+  .logolinks .opening img {
+    height: 45px;
+    width: 45px;
+  }
+  .logolinks .pud img {
+    width: auto;
+    height: 45px;
+  }
+  .logolinks .ggac img {
+    width: auto;
+    height: 19px;
+  }
+  .logolinks .ygw img {
+    width: auto;
+    height: 35px;
+  }
+  .logolinks .lhdc img {
+    width: auto;
+    height: 25px;
+  }
+  .logolinks .streetart img {
+    width: auto;
+    height: 30px;
   }
 }
 

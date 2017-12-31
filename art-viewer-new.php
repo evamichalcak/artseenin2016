@@ -45,8 +45,7 @@ function check_ip() {
 	}
 }
 
-#$voteOpen = (date('M Y') == "Jan 2018");
-$voteOpen = true;
+$voteOpen = (date('M Y') == "Jan 2018");
 
 $voteOK = is_user_logged_in() || isset($_COOKIE['uviews']) || check_ip();
 
@@ -432,6 +431,11 @@ get_header(); ?>
 
 	jQuery('.vote-start').on('click tap', function() {
 		jQuery('#howToIntro').fadeOut();
+		if (proceed) {
+			jQuery(document).trigger('asi.proceed');
+		} else {
+			proceed = true;
+		}
 	});
 </script>	   
 
@@ -450,6 +454,7 @@ get_header(); ?>
 	<?php echo 'var voteOK = "' . $voteOK . '";'; ?>
 	<?php echo 'var voteOpen = "' . $voteOpen . '";'; ?>
 	<?php echo 'var previewPrensa = "' . $previewPrensa . '";'; ?>
+	var proceed = false;
 
 	<?php 
 	// echo "var json=". json_encode(get_posts(array(

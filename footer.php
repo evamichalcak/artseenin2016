@@ -41,7 +41,7 @@
 				<span class="lang-es">Una iniciativa de:</span>
 				<span class="lang-en">An initiative by:</span>
 			</p>
-			<p><a href="http://www.artssspot.com" target="_blank" class="logo-link--l artssspot"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-artssspot.png" width="100" height="100" alt=""></a><span class="spacer"></span><a href="https://www.facebook.com/opening.bcn" target="_blank" class="logo-link--l opening"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-opening.png" width="70" height="70" alt=""></a></p>
+			<p class="logolinks"><a href="http://www.artssspot.com" target="_blank" class="logo-link--l artssspot"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-artssspot.png" width="100" height="100" alt=""></a><span class="spacer"></span><a href="https://www.facebook.com/opening.bcn" target="_blank" class="logo-link--l opening"><img src="<?php echo get_bloginfo('template_url') ?>/img/logo-opening.png" width="70" height="70" alt=""></a></p>
 		</div><!-- .info-col -->
 		<div class="info-col colaborators">
 			<p>
@@ -49,14 +49,14 @@
 				<span class="lang-es">Colaboran:</span>
 				<span class="lang-en">Collaborating:</span>
 			</p>
-			<p>
+			<p class="logolinks">
 				<a href="http://www.poblenouurbandistrict.com/" target="_blank" class="pud"><img src="<?php echo get_bloginfo('template_url') ?>/img/pud-logo.png" width="60" height="55" alt="Poblenou Urban District"></a>
 				<span class="spacer"></span>
 				<a href="http://www.galeriescatalunya.com/" target="_blank" class="ggac"><img src="<?php echo get_bloginfo('template_url') ?>/img/ggac-logo.png" width="80" height="31" alt="Gremi de galeries d'art de Catalunya"></a>
 				<span class="spacer"></span>
 				<a href="http://www.younggalleryweekend.com/" target="_blank" class="ygw"><img src="<?php echo get_bloginfo('template_url') ?>/img/ygw-logo.png" width="56" height="48" alt="Young Gallery Weekend"></a>
 				<span class="spacer"></span>
-				<a href="http://www.lhdistrictecultural.cat/" target="_blank" class="streetart"><img src="<?php echo get_bloginfo('template_url') ?>/img/dclh-logo.png" width="80" height="35" alt="Districte cultural l'Hospitalet"></a>
+				<a href="http://www.lhdistrictecultural.cat/" target="_blank" class="lhdc"><img src="<?php echo get_bloginfo('template_url') ?>/img/dclh-logo.png" width="80" height="35" alt="Districte cultural l'Hospitalet"></a>
 				<span class="spacer"></span>
 				<a href="http://www.bcnstreetart.xyz/" target="_blank" class="streetart"><img src="<?php echo get_bloginfo('template_url') ?>/img/streetart-logo.png" width="45" height="45" alt="BCN Street Art"></a>
 			</p>

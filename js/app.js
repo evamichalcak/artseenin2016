@@ -82,27 +82,24 @@
 			// if either cookie or user variable is "done", go to preview-only
 			if ((cookie_actions === "done") || (previous_actions === 1)) {
 				//clean_screen();
-				console.log('else');
+				//console.log('else');
 				preload_images(post_query);
 				showMsg = msgs.voteDone;
 				$(loaderDisplay).on('asi.allLoaded', function() {
 					print_posts(post_query, maxImages);
 					preview_only_setup();
-					//$(previewOnly).show();
-					if ((pid !== undefined) && (winningImages == 1)) {
-						if (showdemotour) {
-							demoTour(true);
-						}
-					}
-					if (showMsg) {
-						inform_user(showMsg);
+					//$(previewOnly).show();				
+					if (proceed) {
+						$(document).trigger('asi.proceed');
+					} else {
+						proceed = true;
 					}
 				});
 			} else {
 				// if there is a cookie
 				if (cookie_actions !== undefined) {
 					// if there is a cookie, load its content as it prevails
-					console.log('cookie beeing read');
+					//console.log('cookie beeing read');
 					user_viewing_data = cookie_actions;
 					previous_actions = cookie_actions.split(',');
 					info = unsavedVotes;
@@ -113,7 +110,7 @@
 				if (previous_actions !== 0) {	
 					printable_posts = clean_post_array(previous_actions, post_query);
 					maxImages -= previous_actions.length;
-					console.log('printable_posts: ' + printable_posts);
+					//console.log('printable_posts: ' + printable_posts);
 					setCookie('uviews', user_viewing_data);
 					showMsg = msgs.voteStarted;
 				}
@@ -122,11 +119,11 @@
 				$(loaderDisplay).on('asi.allLoaded', function() {
 					print_posts(printable_posts);
 					slider_setup();
-					if (showdemotour) {
-						demoTour();
-					}
-					if (showMsg) {
-						inform_user(showMsg);
+					//console.log(proceed);
+					if (proceed) {
+						$(document).trigger('asi.proceed');
+					} else {
+						proceed = true;
 					}
 				});
 
@@ -134,16 +131,17 @@
 
 		// vote is not open, print winners, print ranking, set to viewing only
 		} else {
-			console.log('else');
+			//console.log('else');
 			preload_images(post_query);
 			$(loaderDisplay).on('asi.allLoaded', function() {
 				maxImages = winningImages;
 				print_posts(post_query, winningImages);
 				preview_only_setup();
-				if ((pid !== undefined) && (winningImages == 1)) {
-					if (showdemotour) {
-						demoTour(true);
-					}
+				//console.log(proceed);
+				if (proceed) {
+					$(document).trigger('asi.proceed');
+				} else {
+					proceed = true;
 				}
 			});
 
@@ -184,8 +182,21 @@
 		// 	$('#howToIntro').addClass('logoout');
 		// }, 8000);
 		// start button binding: hide intro, show demo if required ***TODO: disable jTinder during demo***
-		
-		console.log('user_viewing_data on init: ' + user_viewing_data);
+		$(document).on('asi.proceed', function() {
+			var previewTour = false;
+			if ((pid !== undefined) && (winningImages == 1)) {
+				previewTour = true;
+			}
+			if (showdemotour) {
+				demoTour(previewTour);
+			}
+			if (showMsg) {
+				inform_user(showMsg);
+			}
+		});
+
+
+		//console.log('user_viewing_data on init: ' + user_viewing_data);
 
 		// handling for votes pending to save: update array that grows when save is send, message on unload
 		$(document).on('asi.votesaved', function() {
@@ -203,23 +214,17 @@
 	function slider_setup() {
 		// if post in query, show requested post
 		show_start_post();
-		// if all posts are through, hide messages and start finish actions ***REMOVE***
-		// if (imgCounter > maxImages) {
-		// 	$(unsavedVotes).hide();
-		// 	$(savedVotes).hide();
-		// 	finish();
-		// }
 		// update image counter
 		$(counterContainer).html(imgCounter);
 		$(totalContainer).html(maxImages);
 		// setup jTinder ***REFACTOR*** this needs to distinguish preview-only state!
 		$(slider).jTinder({
 		    onDislike: function (item) {
-		        console.log('Dislike image ' + $(item).data('postid'));
+		        //console.log('Dislike image ' + $(item).data('postid'));
 		        on_swipe_vote($(item).data('postid'), 0);
 		    },
 		    onLike: function (item) {
-		        console.log('Like image ' + $(item).data('postid'));
+		        //console.log('Like image ' + $(item).data('postid'));
 		        on_swipe_vote($(item).data('postid'), 1);
 		    },
 		    animationRevertSpeed: 200,
@@ -266,7 +271,7 @@
 
 
 	function preview_only_setup() {
-		console.log('previewonly_setup');
+		//console.log('previewonly_setup');
 		show_start_post();
 		// update image counter
 		$(counterContainer).html(imgCounter);
@@ -300,12 +305,12 @@
 		$('.tinder-container').addClass('preview-only forward-only');
 		// bind right swipe
 		$('#tinderslide').on('swiperight', '.slider-image', function(e,data) {
-			console.log('swipeevent right');
+			//console.log('swipeevent right');
 			on_swipe_right($('.viewing').data(postid));
 		});	
 		// bind left swipe
 		$('#tinderslide').on('swipeleft', '.slider-image', function(e,data) {
-			console.log('swipeevent right');
+			//console.log('swipeevent right');
 			on_swipe_left($('.viewing').data(postid));
 		});	
 
@@ -393,11 +398,11 @@
 				dataType: 'json',
 				success: function( resp ) {
 					post_query = resp['posts'];
-					console.log(post_query);
+					//console.log(post_query);
 					initialize(post_query);
 				},
 				error: function( req, status, err ) {
-					console.log( 'something went wrong', status, err );
+					//console.log( 'something went wrong', status, err );
 				}
 			});
 	}
@@ -414,11 +419,11 @@
 				}
 			});
 		}
-		console.log('loading images');
+		//console.log('loading images');
 		//get last 10 images and load them
 		var last10 = post_query.slice(-10);
 		$.each(last10.reverse(), function(index, post) {
-			console.log(post.thumbnail_images.full.url);
+			//console.log(post.thumbnail_images.full.url);
 			var img = new Image();
 			img.src = post.thumbnail_images.full.url;
 		    img.onload = update_loader;
@@ -432,14 +437,14 @@
 		$(loaderDisplay).html(image_loader*loadFactor);
 		if (image_loader >= maxPreloadImages) {
 			$(loaderDisplay).trigger('asi.allLoaded');
-			console.log('asi.allLoaded');
+			//console.log('asi.allLoaded');
 		}
 		return true;	
 	}
 
 	//generate html for jTinder and print posts if voteOK (IP and cookie detection)
 	function print_posts(posts, postcount) {
-		console.log('printing posts, printcount is: ' + postcount);
+		//console.log('printing posts, printcount is: ' + postcount);
 		var printable = posts;
 		if (postcount) {
 			if ((pid !== undefined) && (winningImages == 1)) {
@@ -479,7 +484,7 @@
 
 	//print ranking 
 	function print_ranking(posts) {
-		console.log('printing ranking');
+		//console.log('printing ranking');
 		var html = '<ol>';
 		$.each(posts, function(index, element) {
 		    html+='<li><div class="content">';
@@ -495,7 +500,7 @@
 
 	//remove all posts already viewed
 	function clean_post_array(user_viewing_array, post_query) {
-		console.log('cleaning posts');
+		//console.log('cleaning posts');
 		var posts = post_query.filter(function(post) {
 		  return user_viewing_array.indexOf(post['id']+'') == -1;
 		});
@@ -525,7 +530,7 @@
 
 	// checks to set viewing state: new, done or return an array
 	function get_user_viewing_info() {
-		console.log('getting user viewing info');
+		//console.log('getting user viewing info');
 		if (user_viewing_data === '') {
 			return 0;
 		} else if (user_viewing_data === 'done') {
@@ -534,17 +539,6 @@
 			return user_viewing_data.split(',');
 		}
 	}
-
-	// // creating string array with viewing info or adding new post to it
-	// function add_post_to_viewing_data(post_id) {
-	// 	if ((user_viewing_data == undefined) || (user_viewing_data.length <= 0)) {
-	// 		user_viewing_data = post_id;
-	// 	} else {
-	// 		user_viewing_data += ',' + post_id;
-	// 	}
-	// 	return true;
-	// }
-
 
 	//inform user that they have already started voting
 	function inform_user(msg) {
@@ -571,7 +565,7 @@
 
 	//save post view to local array and cookie ***REFACTOR*** this is probably not needed or it should save view also to DB
 	function update_cookie(post_id) {
-		console.log('update cookie');
+		//console.log('update cookie');
 		if ((user_viewing_data == undefined) || (user_viewing_data.length <= 0)) {
 			user_viewing_data = post_id;
 		} else {
@@ -582,17 +576,10 @@
 		return true;
 	}
 
-	//save post vote as cookie ***REFACTOR*** this is probably not needed, it should save vote as comment instead
-	// function save_post_vote(post_id) {
-	// 	// add_post_to_voting_data(post_id); // removed function
-	// 	setCookie('uvotes', user_voting_data);
-	// 	return true;
-	// }
-
 	//update markup on slide change
 	function update_viewing_class(post_id, backward) {
-		console.log('update viewing class');
-		console.log(post_id);
+		//console.log('update viewing class');
+		//console.log(post_id);
 		// preload next image
 		$('.img-load:first-of-type').parent().prev().find('.img').addClass('img-load');
 		// close more-info, if open
@@ -600,7 +587,7 @@
 		//switch viewing class
 		$('#p'+post_id).removeClass('viewing');
 		if (backward) {
-			console.log(backward);
+			//console.log(backward);
 			$('#p'+post_id).next().addClass('viewing');
 			$('#p'+post_id).css('display', 'inline-block');
 		} else {
@@ -617,7 +604,7 @@
 
 	//actions on swipe, recieves vote (0 or 1)
 	function on_swipe_vote(post_id, vote) {
-		console.log('viewing cookie: ' + user_viewing_data);
+		//console.log('viewing cookie: ' + user_viewing_data);
 		// update jTinder view
 		update_viewing_class(post_id);
 		if (!previewPrensa) {
@@ -626,14 +613,14 @@
 			// save view to DB
 			viewmeviewvotestore(post_id, vote);
 			voteSaveQueue.push('1');
-			console.log('voteSaveQueue: ' + voteSaveQueue.length);
+			//console.log('voteSaveQueue: ' + voteSaveQueue.length);
 		}
 		// if all images are viewed, do finish actions
 		if (imgCounter >= maxImages) {
 			$(unsavedVotes).hide();
 			$(savedVotes).hide();
 			finish();
-			console.log('finish executed')
+			//console.log('finish executed')
 		} else {
 			// update counter
 			update_image_counter();
@@ -643,7 +630,7 @@
 
 	//actions on swipe_right, moving forward
 	function on_swipe_right(post_id) {
-		console.log('right swipe, moving forward');
+		//console.log('right swipe, moving forward');
 		// update view
 		if (imgCounter < maxImages) {
 			update_viewing_class(post_id);
@@ -657,7 +644,7 @@
 
 	//actions on swipe_left, moving back
 	function on_swipe_left(post_id) {
-		console.log('left swipe, moving back');
+		//console.log('left swipe, moving back');
 		// update view
 		if (1 < imgCounter) {
 			update_viewing_class(post_id, true);
@@ -675,7 +662,7 @@
 	}
 
 	function update_image_counter( backwards ) {
-		console.log(imgCounter);
+		//console.log(imgCounter);
 		// update counter
 		if(backwards && (imgCounter > 1)) {
 			imgCounter--;
@@ -743,59 +730,67 @@
 
 // SWIPE EVENTS //
 
-	window.addEventListener('load', function(){
+function swipedetect(el, callback){
+  
+    var touchsurface = el,
+    swipedir,
+    startX,
+    startY,
+    distX,
+    distY,
+    threshold = 150, //required min distance traveled to be considered swipe
+    restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+    allowedTime = 300, // maximum time allowed to travel that distance
+    elapsedTime,
+    startTime,
+    handleswipe = callback || function(swipedir){};
+  
+    touchsurface.addEventListener('touchstart', function(e){
+        var touchobj = e.changedTouches[0];
+        swipedir = 'none';
+        dist = 0;
+        startX = touchobj.pageX;
+        startY = touchobj.pageY;
+        startTime = new Date().getTime(); // record time when finger first makes contact with surface
+        e.preventDefault();
+    }, false);
+  
+    touchsurface.addEventListener('touchmove', function(e){
+        e.preventDefault(); // prevent scrolling when inside DIV
+    }, false);
+  
+    touchsurface.addEventListener('touchend', function(e){
+        var touchobj = e.changedTouches[0];
+        distX = touchobj.pageX - startX; // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.pageY - startY; // get vertical dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime; // get time elapsed
+        if (elapsedTime <= allowedTime){ // first condition for awipe met
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+                swipedir = (distX < 0)? 'left' : 'right'; // if dist traveled is negative, it indicates left swipe
+            }
+            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                swipedir = (distY < 0)? 'up' : 'down'; // if dist traveled is negative, it indicates up swipe
+            }
+        }
+        handleswipe(swipedir);
+        e.preventDefault();
+    }, false)
+}
 
-   // var touchsurface = document.getElementById('touchsurface'),
-   var touchsurface = document.getElementById('tinderslideList'),
-   // touchresponse = document.getElementById('testtemp'),
-  startX,
-  startY,
-  dist,
-  threshold = 150, //required min distance traveled to be considered swipe
-  allowedTime = 400, // maximum time allowed to travel that distance
-  elapsedTime,
-  startTime;
 
- function handleswipe(isrightswipe, isleftswipe){
-  if (isrightswipe) {
-  	console.log('SWIPE right');
-   	on_swipe_right($('.viewing').data('postid'));
-  } 
-  if (isleftswipe) {
-  	console.log('SWIPE left');
-   	on_swipe_left($('.viewing').data('postid'));
-  }
- }
-
- touchsurface.addEventListener('touchstart', function(e){
-  var touchobj = e.changedTouches[0]
-  dist = 0
-  startX = touchobj.pageX
-  startY = touchobj.pageY
-  startTime = new Date().getTime() // record time when finger first makes contact with surface
-  e.preventDefault()
-
- }, false);
-
- touchsurface.addEventListener('touchmove', function(e){
-  e.preventDefault() // prevent scrolling when inside DIV
- }, false)
-
- touchsurface.addEventListener('touchend', function(e){
-  var touchobj = e.changedTouches[0]
-  dist = touchobj.pageX - startX // get total dist traveled by finger while in contact with surface
-  elapsedTime = new Date().getTime() - startTime // get time elapsed
-  // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
-var swiperightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100);
-var swipeleftBol = (elapsedTime <= allowedTime && dist <= threshold && Math.abs(touchobj.pageY - startY) >= 100);
-handleswipe(swiperightBol, swipeleftBol);
-e.preventDefault();
-}, false)
-
+window.addEventListener('load', function(){
+    var el = document.getElementById('tinderslideList');
+    swipedetect(el, function(swipedir){
+		if (swipedir == 'right') {
+			//console.log('SWIPE right');
+			on_swipe_right($('.viewing').data('postid'));
+		} 
+		if (swipedir == 'left') {
+			//console.log('SWIPE left');
+			on_swipe_left($('.viewing').data('postid'));
+		}
+    })
 }, false);
-
-// <div id="touchsurface" style="position:fixed; top:0; background:red; width:200px;height:200px;z-index:10000000;">Swipe Me</div>
-
 
 
 // EXEC!!!!!!
