@@ -254,7 +254,7 @@
 			}
 		});
 		// deactivate jTinder events on slide info
-		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
+		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content, .info-slide', function(e) {
 			e.stopPropagation();
 		});	
 
@@ -297,7 +297,7 @@
 			}
 		});
 		// deactivate jTinder events on slide info
-		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content', function(e) {
+		$('#tinderslide').on('touchstart mousedown touchmove mousemove touchend mouseup', '.content, .info-slide', function(e) {
 			e.stopPropagation();
 		});	
 
@@ -391,7 +391,7 @@
 		if(voteOpen) {	
 			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmecount&order=DESC&count='+maxImages;
 		} else {
-			wpQueryString = 'get_posts?orderby=meta_value&meta_key=_viewmecount&order=DESC&count='+maxImages;
+			wpQueryString = 'get_posts?orderby=comment_count&order=ASC&count='+maxImages;
 		}
 		$.ajax({
 				url: AppAPI.url + wpQueryString,

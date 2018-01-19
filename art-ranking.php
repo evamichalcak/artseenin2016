@@ -28,13 +28,11 @@ get_header();
 
 	
 <div class="tinder-container">			
-<div id="thankYouSlide" class="messages__thanks">
-		<div class="thanks-container" id="ranking_container">
+<div id="thankYouSlide" class="messages__thanks more-viewer slide-dimension show">
+		<div class="thanks-container more-viewer-inner shdw-t-brown" id="ranking_container">
 			<?php
 				$args = array(
-					'orderby' => array( 'meta_value_num' => 'DESC', 'title' => 'ASC' ),
-					'meta_key'  => '_viewmevotescount',
-				    'order' => 'DESC',
+					'orderby' => array( 'comment_count' => 'DESC', 'title' => 'ASC' ),
 					'posts_per_page' => '100',
 				);
 				$loop = new WP_Query( $args );

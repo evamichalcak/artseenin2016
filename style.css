@@ -1301,7 +1301,7 @@ J-TINDER
 }
 */
 @media (min-height: 600px) and (min-width: 400px) and (max-width: 1280px) {
-  .tinder-container .more-viewer {
+  .tinder-container .more-viewer:not(.messages__thanks) {
       margin-top: -35px !important;
   }
   #tinderslide ul {
@@ -1975,6 +1975,39 @@ html[lang="es-ES"] p.lang-en,
   display: none;
 }
 
+
+/*------------------------------------------------
+
+RANKING
+
+-------------------------------------------------*/
+
+.messages__thanks.more-viewer {
+  top: 10px;
+}
+
+.thanks-container.more-viewer-inner {
+  box-shadow: 3px 3px 10px rgba(30, 8, 30, .3);
+}
+
+.thanks-container.more-viewer-inner li {
+  color: #602400;
+  margin: 15px auto;
+  text-shadow: 2px 2px 4px #602400;
+}
+
+.thanks-container.more-viewer-inner .content {
+  color: #fff;
+}
+
+.thanks-container.more-viewer-inner .visto {
+  font-size: 14px;
+  margin: 3px auto;
+}
+
+.thanks-container.more-viewer-inner li::marker {
+  text-shadow: 2px 2px 4px #602400;
+}
 
 /*------------------------------------------------
 

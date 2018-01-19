@@ -46,6 +46,7 @@ function check_ip() {
 }
 
 $voteOpen = (date('M Y') == "Jan 2018");
+#$voteOpen = false;
 
 $voteOK = is_user_logged_in() || isset($_COOKIE['uviews']) || check_ip();
 
